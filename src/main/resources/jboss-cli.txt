@@ -1,0 +1,8 @@
+/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql,driver-class-name=com.mysql.jdbc.Driver)
+
+/subsystem=datasources/data-source=TraccarDS:add(driver-name=mysql,user-name=traccar,password=traccar,connection-url=jdbc:mysql://localhost:3306/traccar,min-pool-size=5,max-pool-size=15,jndi-name=java:jboss/datasources/TraccarDS,enabled=true,validate-on-match=true,valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker,exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter)
+/subsystem=datasources/data-source=TrackerDS:add(driver-name=mysql,user-name=tracker,password=tracker,connection-url=jdbc:mysql://localhost:3306/tracker,min-pool-size=5,max-pool-size=15,jndi-name=java:jboss/datasources/TrackerDS,enabled=true,validate-on-match=true,valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker,exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter)
+/subsystem=datasources/data-source=BatchDS:add(driver-name=mysql,user-name=batch,password=batch,connection-url=jdbc:mysql://localhost:3306/batch,min-pool-size=5,max-pool-size=15,jndi-name=java:jboss/datasources/BatchDS,enabled=true,validate-on-match=true,valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker,exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter)
+
+/subsystem=batch/:write-attribute(name=job-repository-type,value=jdbc)
+/subsystem=batch/job-repository=jdbc/:write-attribute(name=jndi-name,value=java:jboss/datasources/BatchDS)
