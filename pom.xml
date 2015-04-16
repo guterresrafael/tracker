@@ -10,113 +10,83 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
-        <version.compiler.plugin>3.1</version.compiler.plugin>
-        <version.surefire.plugin>2.16</version.surefire.plugin>
-        <version.war.plugin>2.5</version.war.plugin>
+        
+        <version.dependency.jboss.spec.javaee.7.0>1.0.0.Final</version.dependency.jboss.spec.javaee.7.0>
+        <version.dependency.cdi>1.2</version.dependency.cdi>
+        <version.dependency.jsf>2.2.10</version.dependency.jsf>
+        <version.dependency.hibernate>5.1.3.Final</version.dependency.hibernate>
+        <version.dependency.hibernate-metamodel>4.3.8.Final</version.dependency.hibernate-metamodel>
+        <version.dependency.resteasy>3.0.11.Final</version.dependency.resteasy>
+        <version.dependency.jackson>2.5.2</version.dependency.jackson>
+        <version.dependency.junit>4.12</version.dependency.junit>
+        <version.dependency.arquillian>1.1.7.Final</version.dependency.arquillian>
+        <version.dependency.arquillian-container>8.2.0.Final</version.dependency.arquillian-container>
+        
+        <version.plugin.wildfly>1.0.2.Final</version.plugin.wildfly>
+        <version.plugin.compiler>3.1</version.plugin.compiler>
+        <version.plugin.surefire>2.16</version.plugin.surefire>
+        <version.plugin.war>2.5</version.plugin.war>
+        
         <maven.compiler.target>1.7</maven.compiler.target>
         <maven.compiler.source>1.7</maven.compiler.source>
     </properties>
 
     <dependencies>
-
-        <!-- Import the CDI API, we use provided scope as the 
-        API is included in JBoss WildFly -->
-        <dependency>
-            <groupId>javax.enterprise</groupId>
-            <artifactId>cdi-api</artifactId>
-            <scope>provided</scope>
-            <version>1.2</version>
-        </dependency>
-
-        <!-- Import the Common Annotations API (JSR-250), we use provided scope as the 
-        API is included in JBoss WildFly -->
+        <!-- Annotation API -->
         <dependency>
             <groupId>org.jboss.spec.javax.annotation</groupId>
             <artifactId>jboss-annotations-api_1.2_spec</artifactId>
-            <version>1.0.0.Final</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.spec.javax.enterprise.concurrent</groupId>
-            <artifactId>jboss-concurrency-api_1.0_spec</artifactId>
-            <version>1.0.0.Final</version>
-        </dependency>
-
-        <!-- Import the Batch API which is included in WildFly 8 -->
-        <dependency>
-            <groupId>org.jboss.spec.javax.batch</groupId>
-            <artifactId>jboss-batch-api_1.0_spec</artifactId>
-            <version>1.0.0.Final</version>
-        </dependency>
-
-        <!-- Import the JAX-RS API, we use provided scope as the 
-        API is included in JBoss WildFly -->
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxrs</artifactId>
-            <scope>provided</scope>
-            <version>3.0.11.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>jaxrs-api</artifactId>
-            <scope>provided</scope>
-            <version>3.0.11.Final</version>
-        </dependency>
-
-        <!-- Import the JSON API to build JSON Objects -->
-        <dependency>
-            <groupId>org.jboss.spec.javax.json</groupId>
-            <artifactId>jboss-json-api_1.0_spec</artifactId>
-            <scope>provided</scope>
-            <version>1.0.0.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.5.1</version>
+            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.5.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jackson2-provider</artifactId>
-            <version>3.0.11.Final</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Import the JPA API, we use provided scope as the 
-        API is included in JBoss WildFly -->
-        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <scope>provided</scope>
-            <version>1.0.0.Final</version>
-        </dependency>
-
-        <!-- Import the EJB API, we use provided scope as the 
-        API is included in JBoss WildFly -->
+        <!-- /Annotation API -->
+        
+        <!-- EJB API -->
         <dependency>
             <groupId>org.jboss.spec.javax.ejb</groupId>
             <artifactId>jboss-ejb-api_3.2_spec</artifactId>
+            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
             <scope>provided</scope>
-            <version>1.0.0.Final</version>
         </dependency>
+        <!-- /EJB API -->
+        
+        <!-- JPA API -->
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- JPA 2.0 metamodel classes for typesafe criteria queries -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>${version.dependency.hibernate-metamodel}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator-annotation-processor</artifactId>
+            <version>${version.dependency.hibernate}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- /JPA API -->
 
-        <!-- JSR-303 (Bean Validation) Implementation -->
-        <!-- Provides portable constraints such as @Email -->
-        <!-- Hibernate Validator is shipped in JBoss WildFly -->
+        <!-- /JTA API -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- /JTA API -->
+
+        <!-- Bean Validation API -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
+            <version>${version.dependency.hibernate}</version>
             <scope>provided</scope>
-            <version>5.1.3.Final</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -124,75 +94,136 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- /Bean Validation API -->
 
-        <!-- Now we declare any tools needed -->
-
-        <!-- Annotation processor to generate the JPA 2.0 metamodel classes 
-        for typesafe criteria queries -->
-        <!--            
+        <!-- Servlet API -->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-jpamodelgen</artifactId>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_3.1_spec</artifactId>
+            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
             <scope>provided</scope>
-            <version>4.3.8.Final</version>
         </dependency>
-        -->
-
-        <!-- Annotation processor that raising compilation errors whenever 
-        constraint annotations are incorrectly used. -->
+        <!-- /Servlet API -->
+        
+        <!-- JSF API -->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator-annotation-processor</artifactId>
+            <groupId>org.jboss.spec.javax.faces</groupId>
+            <artifactId>jboss-jsf-api_2.2_spec</artifactId>
+            <version>${version.dependency.jsf}</version>
             <scope>provided</scope>
-            <version>5.1.3.Final</version>
         </dependency>
+        <!-- JSF API -->
 
-        <!-- Needed for running tests (you may also use TestNG) -->
+        <!-- JSON API -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.json</groupId>
+            <artifactId>jboss-json-api_1.0_spec</artifactId>
+            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- /JSON API -->
+        
+        <!-- JAX-RS API -->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>jaxrs-api</artifactId>
+            <version>${version.dependency.resteasy}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <version>${version.dependency.resteasy}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jackson2-provider</artifactId>
+            <version>${version.dependency.resteasy}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${version.dependency.jackson}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${version.dependency.jackson}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- /JAX-RS API -->
+
+        <!-- CDI API -->
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <version>${version.dependency.cdi}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- /CDI API -->
+        
+        <!-- Concurrency API -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.enterprise.concurrent</groupId>
+            <artifactId>jboss-concurrency-api_1.0_spec</artifactId>
+            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- /Concurrency API -->
+        
+        <!-- Batch API -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.batch</groupId>
+            <artifactId>jboss-batch-api_1.0_spec</artifactId>
+            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- /Batch API -->
+        
+        <!-- JUnit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>${version.dependency.junit}</version>
             <scope>test</scope>
-            <version>4.12</version>
         </dependency>
-
-        <!-- Optional, but highly recommended -->
-        <!-- Arquillian allows you to test enterprise code such as EJBs and 
-        Transactional(JTA) JPA from JUnit/TestNG -->
+        <!-- /JUnit -->
+        
+        <!-- Arquillian -->
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
+            <version>${version.dependency.arquillian}</version>
             <scope>test</scope>
-            <version>1.1.6.Final</version>
         </dependency>
-
         <dependency>
             <groupId>org.jboss.arquillian.protocol</groupId>
             <artifactId>arquillian-protocol-servlet</artifactId>
+            <version>${version.dependency.arquillian}</version>
             <scope>test</scope>
-            <version>1.1.6.Final</version>
         </dependency>
-
+        <!-- /Arquillian -->
     </dependencies>
 
     <build>
-        <!-- Maven will append the version to the finalName (which is the 
-        name given to the generated war, and hence the context root) -->
         <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>${version.war.plugin}</version>
+                <version>${version.plugin.war}</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
 
-            <!-- The WildFly plugin deploys your war to a local WildFly container -->
-            <!-- To use, run: mvn package wildfly:deploy -->
+            <!-- mvn package wildfly:deploy -->
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
-                <version>${version.wildfly.maven.plugin}</version>
+                <version>${version.plugin.wildfly}</version>
                 <configuration>
                     <hostname>${wildfly-hostname}</hostname>
                     <port>${wildfly-port}</port>
@@ -224,7 +255,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${version.surefire.plugin}</version>
+                        <version>${version.plugin.surefire}</version>
                         <configuration>
                             <skip>true</skip>
                         </configuration>
@@ -234,7 +265,6 @@
         </profile>
 
         <profile>
-
             <!-- An optional Arquillian testing profile that executes tests in your WildFly instance -->
             <!-- This profile will start a new WildFly instance, and execute the test, shutting it down when done -->
             <!-- Run with: mvn clean test -Parq-wildfly-managed -->
@@ -243,7 +273,7 @@
                 <dependency>
                     <groupId>org.wildfly</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
-                    <version>8.2.0.Final</version>
+                    <version>${version.dependency.arquillian-container}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -257,12 +287,12 @@
                 <dependency>
                     <groupId>org.wildfly</groupId>
                     <artifactId>wildfly-arquillian-container-remote</artifactId>
-                    <version>8.2.0.Final</version>
+                    <version>${version.dependency.arquillian-container}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
         </profile>
-
+        
         <profile>
             <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
             <!-- Use this profile for any OpenShift specific customization your app will need. -->
@@ -273,7 +303,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-war-plugin</artifactId>
-                        <version>${version.war.plugin}</version>
+                        <version>${version.plugin.war}</version>
                         <configuration>
                             <outputDirectory>deployments</outputDirectory>
                             <warName>ROOT</warName>

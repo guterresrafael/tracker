@@ -4,7 +4,7 @@
         <actionName>CUSTOM-wildfly:deploy</actionName>
         <displayName>wildfly:deploy</displayName>
         <goals>
-            <goal>wildfly:deploy</goal>
+            <goal>package wildfly:deploy</goal>
         </goals>
     </action>
     <action>
@@ -18,7 +18,7 @@
         <actionName>CUSTOM-wildfly:redeploy</actionName>
         <displayName>wildfly:redeploy</displayName>
         <goals>
-            <goal>wildfly:redeploy</goal>
+            <goal>package wildfly:redeploy</goal>
         </goals>
     </action>
 </actions>
