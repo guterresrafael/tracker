@@ -36,7 +36,7 @@ public class Device implements BaseEntity<Long> {
     
     @ManyToMany(mappedBy = "devices", 
                 cascade = CascadeType.ALL,
-                fetch = FetchType.EAGER)
+                fetch = FetchType.LAZY)
     private List<User> users;
     
     @OneToOne

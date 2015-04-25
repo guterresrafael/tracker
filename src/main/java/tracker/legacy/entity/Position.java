@@ -1,7 +1,5 @@
 package tracker.legacy.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,15 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 import tracker.core.entity.BaseEntity;
 
 /**
  *
  * @author Rafael Guterres
  */
-@XmlRootElement
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity(name = "PositionLegacy")
 @Table(name = "positions")
 public class Position implements BaseEntity<Long> {
@@ -43,10 +38,12 @@ public class Position implements BaseEntity<Long> {
     @Column(name="device_id")
     private Long deviceId;
     
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }

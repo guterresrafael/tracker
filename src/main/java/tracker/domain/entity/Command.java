@@ -29,6 +29,10 @@ public class Command implements BaseEntity<Long> {
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @OneToOne
+    @JoinColumn(name = "device_id")
+    private Device device;
+
     private String command;
     
     @Temporal(TemporalType.TIMESTAMP)
@@ -37,10 +41,6 @@ public class Command implements BaseEntity<Long> {
     @Temporal(TemporalType.TIMESTAMP)
     private Date executed;
     
-    @OneToOne
-    @JoinColumn(name = "device_id")
-    private Device device;
-
     @Override
     public Long getId() {
         return id;
@@ -49,6 +49,14 @@ public class Command implements BaseEntity<Long> {
     @Override
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Device getDevice() {
+        return device;
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
     }
 
     public String getCommand() {
@@ -74,13 +82,4 @@ public class Command implements BaseEntity<Long> {
     public void setExecuted(Date executed) {
         this.executed = executed;
     }
-
-    public Device getDevice() {
-        return device;
-    }
-
-    public void setDevice(Device device) {
-        this.device = device;
-    }
-    
 }

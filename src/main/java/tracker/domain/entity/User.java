@@ -1,6 +1,7 @@
 package tracker.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -29,13 +30,13 @@ public class User implements BaseEntity<Long> {
     private Long id;
     
     private String login;
-    
+
     private String password;
 
     @ManyToMany(cascade = CascadeType.ALL,
-                fetch = FetchType.EAGER)
+                fetch = FetchType.LAZY)
     @JoinTable(name = "users_devices",
-               joinColumns = {@JoinColumn(name = "users_id")}, 
+               joinColumns = {@JoinColumn(name = "users_id")},
                inverseJoinColumns = {@JoinColumn(name = "devices_id")})
     private List<Device> devices;
     

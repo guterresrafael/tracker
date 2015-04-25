@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.enterprise.concurrent.ManagedScheduledExecutorService;
-import tracker.core.batch.TrackerJob;
+import tracker.core.batch.TrackerJobImpl;
 
 /**
  *
@@ -17,15 +17,15 @@ public class TrackerScheduler {
     @Resource
     ManagedScheduledExecutorService managedScheduledExecutorService;
 
-    List<TrackerJob> jobs = new ArrayList<>();
+    List<TrackerJobImpl> jobs = new ArrayList<>();
 
     @PostConstruct
     public void init() {
         jobs.add(createJobPosition());
     }
 
-    private TrackerJob createJobPosition() {
-        TrackerJob jobPosition = new TrackerJob();
+    private TrackerJobImpl createJobPosition() {
+        TrackerJobImpl jobPosition = new TrackerJobImpl();
         jobPosition.setJobName("position-job");
         jobPosition.setInitialDelay(0);
         jobPosition.setPeriod(15);
@@ -34,7 +34,7 @@ public class TrackerScheduler {
     }
 
     public void scheduleJobs() {
-        for (TrackerJob job : jobs) {
+        for (TrackerJobImpl job : jobs) {
             managedScheduledExecutorService.scheduleAtFixedRate(
                     job.getTrackerTask(),
                     job.getInitialDelay(),
