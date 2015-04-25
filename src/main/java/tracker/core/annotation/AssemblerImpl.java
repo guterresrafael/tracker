@@ -33,7 +33,7 @@ public class AssemblerImpl {
                 }
             }
         } catch (IllegalArgumentException | IllegalAccessException e) {
-            System.out.println("erro");
+            //TODO: Implementar tratamento de exceção
         }
     }
 }

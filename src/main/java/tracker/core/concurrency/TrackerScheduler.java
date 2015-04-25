@@ -2,11 +2,11 @@ package tracker.core.concurrency;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.enterprise.concurrent.ManagedScheduledExecutorService;
-import tracker.core.batch.TrackerJobImpl;
+import tracker.core.batch.TrackerJob;
+import tracker.legacy.batch.PositionJob;
 
 /**
  *
@@ -17,26 +17,18 @@ public class TrackerScheduler {
     @Resource
     ManagedScheduledExecutorService managedScheduledExecutorService;
 
-    List<TrackerJobImpl> jobs = new ArrayList<>();
+    List<TrackerJob> jobs = new ArrayList<>();
 
     @PostConstruct
     public void init() {
-        jobs.add(createJobPosition());
-    }
-
-    private TrackerJobImpl createJobPosition() {
-        TrackerJobImpl jobPosition = new TrackerJobImpl();
-        jobPosition.setJobName("position-job");
-        jobPosition.setInitialDelay(0);
-        jobPosition.setPeriod(15);
-        jobPosition.setTimeUnit(TimeUnit.SECONDS);
-        return jobPosition;
+        //TODO: implementar annotation para agendamento automatico
+        jobs.add(new PositionJob());
     }
 
     public void scheduleJobs() {
-        for (TrackerJobImpl job : jobs) {
+        for (TrackerJob job : jobs) {
             managedScheduledExecutorService.scheduleAtFixedRate(
-                    job.getTrackerTask(),
+                    job.getRunnableTask(),
                     job.getInitialDelay(),
                     job.getPeriod(),
                     job.getTimeUnit());

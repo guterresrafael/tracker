@@ -11,16 +11,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Classe que abstrai o uso da API Reflection.
- * 
+ *
  * @author Rafael Guterres
  */
 public class Reflection {
-    
+
     private static final String RAWTYPES = "rawtypes";
 
     /**
@@ -103,10 +101,7 @@ public class Reflection {
     public static <T> T instantiateClass(Class<T> classe) {
         try {
             return classe.newInstance();
-        } catch (InstantiationException e) {
-            throw new IllegalArgumentException(
-                    "Não foi possível instanciar a classe: " + classe.getName(), e);
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             throw new IllegalArgumentException(
                     "Não foi possível instanciar a classe: " + classe.getName(), e);
         }
@@ -147,7 +142,7 @@ public class Reflection {
             throw new IllegalArgumentException(e);
         }
     }
-    
+
     /**
      * Retorna os streams de todos os recursos encontrados no class loader
      * padrão com o nome informado.
@@ -157,11 +152,11 @@ public class Reflection {
      * @return list of streams
      */
     public static List<InputStream> getResources(String name, boolean useCache) {
-        List<InputStream> inputsStreams = new ArrayList<InputStream>();
+        List<InputStream> inputsStreams = new ArrayList<>();
         ClassLoader cl = getDefaultClassLoader();
         try {
             Enumeration<URL> urls = cl.getResources(name);
-            
+
             while (urls.hasMoreElements()) {
                 URL url = (URL) urls.nextElement();
                 URLConnection urlConnection = url.openConnection();
@@ -200,13 +195,13 @@ public class Reflection {
         }
         return classLoader;
     }
-    
+
     /**
      * Retorna todos campos de uma classe;
-     * 
+     *
      * @param fields
      * @param clazz
-     * @return 
+     * @return
      */
     public static List<Field> getAllFields(List<Field> fields, Class<?> clazz) {
         if (clazz.getSuperclass() != null) {
@@ -214,37 +209,5 @@ public class Reflection {
         }
         fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
         return fields;
-    }
-    
-    /**
-     * Realiza o mapeamento conforme o nome dos campos e anotações
-     * 
-     * @param objectFrom
-     * @param objectTo 
-     */
-    public static void assembler(Object objectFrom, Object objectTo) {
-        try {
-            List<Field> fieldsFrom = new ArrayList<>();
-            List<Field> fieldsTo = new ArrayList<>();
-            Reflection.getAllFields(fieldsFrom, objectFrom.getClass());
-            Reflection.getAllFields(fieldsTo, objectTo.getClass());
-            for (Field fieldTo : fieldsTo) {
-                for (Field fieldFrom : fieldsFrom) {
-                    if (fieldTo.getName().equals(fieldFrom.getName())) {
-                        fieldTo.setAccessible(true);
-                        fieldFrom.setAccessible(true);
-                        if (fieldTo.getType() == fieldFrom.getType()) {
-                            fieldTo.set(objectTo, fieldFrom.get(objectFrom));
-                        } else {
-                            //TODO: Implementar annotation para types diferentes
-                        }
-                    } else {
-                        //TODO: Implementar annotation para nomes diferentes
-                    }
-                }
-            }
-        } catch (IllegalArgumentException | IllegalAccessException e) {
-            //TODO: Implementar tratamento de exceção
-        }
     }
 }

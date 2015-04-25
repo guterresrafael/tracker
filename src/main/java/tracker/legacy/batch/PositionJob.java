@@ -1,4 +1,4 @@
-package tracker.legacy.concurrency;
+package tracker.legacy.batch;
 
 import java.util.concurrent.TimeUnit;
 import javax.batch.runtime.BatchRuntime;
@@ -12,7 +12,7 @@ public class PositionJob implements TrackerJob {
 
     private static final String POSITION_JOB_NAME = "position-job";
     private static final long POSITION_JOB_INITIAL_DELAY = 0;
-    private static final long POSITION_JOB_PERIOD = 0;
+    private static final long POSITION_JOB_PERIOD = 15;
     private static final TimeUnit POSITION_JOB_TIME_UNIT = TimeUnit.SECONDS;
     
     @Override
@@ -37,15 +37,12 @@ public class PositionJob implements TrackerJob {
     
     @Override
     public Runnable getRunnableTask() {
-        return this.new TrackerTask();
-    }
+        return new Runnable() {
 
-    private class TrackerTask implements Runnable {
-        TrackerTask(){}
-        
-        @Override
-        public void run() {
-            BatchRuntime.getJobOperator().start(getJobName(), null);
-        }
+            @Override
+            public void run() {
+                BatchRuntime.getJobOperator().start(getJobName(), null);
+            }
+        };
     }
 }
