@@ -2,6 +2,7 @@ package tracker.core.repository;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -22,7 +23,7 @@ public abstract class BaseRepositoryImpl<EntityType extends BaseEntity, IdType e
            implements BaseRepository<EntityType, IdType> {
     
     private final Class<EntityType> entityClass = Reflection.getGenericArgumentType(getClass());
-
+    
     @Override
     public EntityType load(IdType id) {
         EntityType entity = getEntityManager().find(entityClass, id);
@@ -64,34 +65,7 @@ public abstract class BaseRepositoryImpl<EntityType extends BaseEntity, IdType e
         Long count = typedQuery.getSingleResult();
         return count;
     }
-    
-    @Override
-    public List<EntityType> findByPagination(Integer offset, Integer limit) {
-        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<EntityType> criteriaQuery = criteriaBuilder.createQuery(entityClass);
-        Root<EntityType> root = criteriaQuery.from(entityClass);
-        criteriaQuery.select(root);
-        TypedQuery typedQuery = getEntityManager().createQuery(criteriaQuery);
-        List<EntityType> entities = typedQuery
-                .setFirstResult(offset)
-                .setMaxResults(limit)
-                .getResultList();
-        return entities;
-    }
-    
-    @Override
-    public Long countByPagination(Integer offset, Integer limit) {
-        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
-        criteriaQuery.select(criteriaBuilder.count(criteriaQuery.from(entityClass)));
-        TypedQuery<Long> typedQuery = getEntityManager().createQuery(criteriaQuery);
-        Long count = typedQuery
-                .setFirstResult(offset)
-                .setMaxResults(limit)
-                .getSingleResult();
-        return count;
-    }
-
+   
     @Override
     public List<EntityType> findByFilter(BaseFilter filter) {
         CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
@@ -105,7 +79,61 @@ public abstract class BaseRepositoryImpl<EntityType extends BaseEntity, IdType e
         List<EntityType> entities = typedQuery.getResultList();
         return entities;
     }
+    
+    @Override
+    public Long countByFilter(BaseFilter filter) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @Override
+    public List<EntityType> findAllWithPagination(Integer offset, Integer limit) {
+        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<EntityType> criteriaQuery = criteriaBuilder.createQuery(entityClass);
+        Root<EntityType> root = criteriaQuery.from(entityClass);
+        criteriaQuery.select(root);
+        TypedQuery typedQuery = getEntityManager().createQuery(criteriaQuery);
+        List<EntityType> entities = typedQuery
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+        return entities;
+    }
+    
+    @Override
+    public Long countAllWithPagination(Integer offset, Integer limit) {
+        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
+        criteriaQuery.select(criteriaBuilder.count(criteriaQuery.from(entityClass)));
+        TypedQuery<Long> typedQuery = getEntityManager().createQuery(criteriaQuery);
+        Long count = typedQuery
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getSingleResult();
+        return count;
+    }
 
+    @Override
+    public List<EntityType> findByFilterWithPagination(BaseFilter filter, Integer offset, Integer limit) {
+        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<EntityType> criteriaQuery = criteriaBuilder.createQuery(entityClass);
+        Root<EntityType> root = criteriaQuery.from(entityClass);
+        criteriaQuery.select(root);
+        if (filter != null) {
+            CriteriaFilterImpl.applyCriteriaFilterAnnotations(criteriaBuilder, criteriaQuery, root, filter);
+        }
+        TypedQuery typedQuery = getEntityManager().createQuery(criteriaQuery);
+        List<EntityType> entities = typedQuery
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+        return entities;
+    }    
+
+    @Override
+    public Long countByFilterWithPagination(BaseFilter filter, Integer offset, Integer limit) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
     @Override
     public Path getPath(Root root, String strPath) {
         Path path = root;

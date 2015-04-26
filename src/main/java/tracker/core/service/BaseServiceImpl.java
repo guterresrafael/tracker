@@ -52,20 +52,36 @@ public abstract class BaseServiceImpl<EntityType extends BaseEntity, IdType exte
     public Long countAll() {
         return getRepository().countAll();
     }
-    
-    @Override
-    public List<EntityType> findByPagination(Integer offset, Integer limit) {
-        return getRepository().findByPagination(offset, limit);
-    }
-
-    @Override
-    public Long countByPagination(Integer offset, Integer limit) {
-        return getRepository().countByPagination(offset, limit);
-    }
 
     @Override
     public List<EntityType> findByFilter(BaseFilter filter) {
         return getRepository().findByFilter(filter);
+    }
+
+    @Override
+    public Long countByFilter(BaseFilter filter) {
+        return getRepository().countByFilter(filter);
+    }
+
+    
+    @Override
+    public List<EntityType> findAllWithPagination(Integer offset, Integer limit) {
+        return getRepository().findAllWithPagination(offset, limit);
+    }
+
+    @Override
+    public Long countAllWithPagination(Integer offset, Integer limit) {
+        return getRepository().countAllWithPagination(offset, limit);
+    }
+
+    @Override
+    public List<EntityType> findByFilterWithPagination(BaseFilter filter, Integer offset, Integer limit) {
+        return getRepository().findByFilterWithPagination(filter, offset, limit);
+    }
+    
+    @Override
+    public Long countByFilterWithPagination(BaseFilter filter, Integer offset, Integer limit) {
+        return getRepository().countByFilterWithPagination(filter, offset, limit);
     }
     
     @Override

@@ -1,16 +1,17 @@
 package tracker.core.resource;
 
-import com.fasterxml.jackson.core.JsonEncoding;
-import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import java.io.Serializable;
-import java.net.URLDecoder;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import tracker.core.entity.BaseEntity;
+import tracker.core.utils.Reflection;
 
 /**
  *
@@ -19,16 +20,10 @@ import tracker.core.entity.BaseEntity;
  * @param <IdType>
  */
 public abstract class BaseResourceImpl<EntityType extends BaseEntity, IdType extends Serializable>
-        implements BaseResource<EntityType, IdType> {
+           implements BaseResource<EntityType, IdType> {
 
-    private static final String ENCODING_DEFAULT_VALUE = "UTF-8";
-    
-    private static final String OFFSET_KEY_PARAM = "offset";
-    private static final Integer OFFSET_DEFAULT_VALUE = 0;
-    
-    private static final String LIMIT_KEY_PARAM = "limit";
     private static final Integer LIMIT_DEFAULT_VALUE = 20;
-
+    
     @Inject
     ResponseBuilder responseBuilder;
 
@@ -54,13 +49,19 @@ public abstract class BaseResourceImpl<EntityType extends BaseEntity, IdType ext
     @Override
     public Response getEntities(HttpServletRequest request) {
         try {
-            Integer offset = getOffsetValue(request);
-            Integer limit = getLimitValue(request);
-            List<EntityType> entities = getService().findByPagination(offset, limit);
+            QueryParams queryParams = new QueryParams(request);
+            Integer offset = queryParams.getOffset();
+            Integer limit = (queryParams.getLimit() != null) ? queryParams.getLimit() : getLimitDefaultValue();
+            List<EntityType> entities = getService().findAllWithPagination(offset, limit);
             if (entities.isEmpty()) {
                 return getResponseBuilder().notFound();
             }
-            return getResponseBuilder().ok(entities);
+            if (!queryParams.getFields().isEmpty()) {
+                List<Map<String, Object>> entitiesMap = createEntitiesMapListByQueryParams(entities, queryParams);
+                return getResponseBuilder().ok(entitiesMap);
+            } else {
+                return getResponseBuilder().ok(entities);
+            }
         } catch (Exception e) {
             return getResponseBuilder().badRequest(e);
         }
@@ -102,19 +103,23 @@ public abstract class BaseResourceImpl<EntityType extends BaseEntity, IdType ext
         return getResponseBuilder().deleted();
     }
     
-    private Integer getOffsetValue(HttpServletRequest request) {
-        try {
-            return Integer.parseInt(request.getParameter(OFFSET_KEY_PARAM));
-        } catch (Exception e) {
-            return OFFSET_DEFAULT_VALUE;
+    private List<Map<String, Object>> createEntitiesMapListByQueryParams(List<EntityType> entities, QueryParams queryParams) throws IllegalArgumentException, IllegalAccessException {
+        List<Map<String, Object>> entitiesMap = new ArrayList<>();
+        for (EntityType entity : entities) {
+            Map<String, Object> entityMap = new HashMap<>();
+            List<Field> entityFields = new ArrayList<>();
+            Reflection.getAllFields(entityFields, entity.getClass());
+            for (String fieldParam : queryParams.getFields()) {
+                for (Field entityField : entityFields) {
+                    entityField.setAccessible(true);
+                    if (entityField.getName().equals(fieldParam)) {
+                        entityMap.put(fieldParam, entityField.get(entity));
+                        break;
+                    }
+                }
+            }
+            entitiesMap.add(entityMap);
         }
-    }
-    
-    private Integer getLimitValue(HttpServletRequest request) {
-        try {
-            return Integer.parseInt(request.getParameter(LIMIT_KEY_PARAM));
-        } catch (Exception e) {
-            return getLimitDefaultValue();
-        }
+        return entitiesMap;
     }
 }

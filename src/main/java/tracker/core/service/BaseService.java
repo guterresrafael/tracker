@@ -28,10 +28,16 @@ public interface BaseService<EntityType extends BaseEntity, IdType extends Seria
     List<EntityType> findAll();
     
     Long countAll();
-    
-    List<EntityType> findByPagination(Integer offset, Integer limit);
-    
-    Long countByPagination(Integer offset, Integer limit);
-    
+
     List<EntityType> findByFilter(BaseFilter filter);
+    
+    Long countByFilter(BaseFilter filter);
+    
+    List<EntityType> findAllWithPagination(Integer offset, Integer limit);
+    
+    Long countAllWithPagination(Integer offset, Integer limit);
+    
+    List<EntityType> findByFilterWithPagination(BaseFilter filter, Integer offset, Integer limit);
+    
+    Long countByFilterWithPagination(BaseFilter filter, Integer offset, Integer limit);
 }
