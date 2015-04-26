@@ -49,16 +49,29 @@ public abstract class BaseResourceImpl<EntityType extends BaseEntity, IdType ext
     @Override
     public Response getEntities(HttpServletRequest request) {
         try {
+            List entities = new ArrayList();
             QueryParams queryParams = new QueryParams(request);
+            
+            //Pagination
             Integer offset = queryParams.getOffset();
             Integer limit = (queryParams.getLimit() != null) ? queryParams.getLimit() : getLimitDefaultValue();
-            List<EntityType> entities = getService().findAllWithPagination(offset, limit);
+            
+            //OrderBY
+            if (queryParams.getSortList().isEmpty()) {
+                entities = getService().findAllWithPagination(offset, limit);
+            } else {
+                //TODO: implementar suporte orderBy
+            }
+            
+            //NotFound
             if (entities.isEmpty()) {
                 return getResponseBuilder().notFound();
             }
-            if (!queryParams.getFields().isEmpty()) {
-                List<Map<String, Object>> entitiesMap = createEntitiesMapListByQueryParams(entities, queryParams);
-                return getResponseBuilder().ok(entitiesMap);
+            
+            //Custom Fields
+            if (!queryParams.getFieldList().isEmpty()) {
+                entities = createEntitiesMapListByQueryParams(entities, queryParams);
+                return getResponseBuilder().ok(entities);
             } else {
                 return getResponseBuilder().ok(entities);
             }
@@ -109,7 +122,7 @@ public abstract class BaseResourceImpl<EntityType extends BaseEntity, IdType ext
             Map<String, Object> entityMap = new HashMap<>();
             List<Field> entityFields = new ArrayList<>();
             Reflection.getAllFields(entityFields, entity.getClass());
-            for (String fieldParam : queryParams.getFields()) {
+            for (String fieldParam : queryParams.getFieldList()) {
                 for (Field entityField : entityFields) {
                     entityField.setAccessible(true);
                     if (entityField.getName().equals(fieldParam)) {

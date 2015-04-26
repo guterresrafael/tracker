@@ -20,8 +20,8 @@ public class QueryParams {
     
     private static final String LIMIT_KEY_PARAM = "limit";
     
-    private List<String> sort = new ArrayList<>();
-    private List<String> fields = new ArrayList<>();
+    private List<String> sortList = new ArrayList<>();
+    private List<String> fieldList = new ArrayList<>();
     private Integer offset;
     private Integer limit;
 
@@ -31,40 +31,40 @@ public class QueryParams {
     public QueryParams(HttpServletRequest request) {
         setOffset(request.getParameter(OFFSET_KEY_PARAM));
         setLimit(request.getParameter(LIMIT_KEY_PARAM));
-        setSort(request.getParameter(SORT_KEY_PARAM));
-        setFields(request.getParameter(FIELDS_KEY_PARAM));
+        setSortList(request.getParameter(SORT_KEY_PARAM));
+        setFieldList(request.getParameter(FIELDS_KEY_PARAM));
     }
     
-    public List<String> getSort() {
-        return sort;
+    public List<String> getSortList() {
+        return sortList;
     }
 
-    public void setSort(List<String> sort) {
-        this.sort = sort;
+    public void setSortList(List<String> sortList) {
+        this.sortList = sortList;
     }
     
-    private void setSort(String sort) {
-        if (sort != null) {
-            StringTokenizer stringTokenizer = new StringTokenizer(sort, ",");
+    private void setSortList(String sortParams) {
+        if (sortParams != null) {
+            StringTokenizer stringTokenizer = new StringTokenizer(sortParams, ",");
             while(stringTokenizer.hasMoreTokens()) {
-                this.sort.add(stringTokenizer.nextToken());
+                this.sortList.add(stringTokenizer.nextToken());
             }
         }
     }
 
-    public List<String> getFields() {
-        return fields;
+    public List<String> getFieldList() {
+        return fieldList;
     }
 
-    public void setFields(List<String> fields) {
-        this.fields = fields;
+    public void setFieldList(List<String> fieldList) {
+        this.fieldList = fieldList;
     }
     
-    private void setFields(String fields) {
-        if (fields != null) {
-            StringTokenizer stringTokenizer = new StringTokenizer(fields, ",");
+    private void setFieldList(String fieldParams) {
+        if (fieldParams != null) {
+            StringTokenizer stringTokenizer = new StringTokenizer(fieldParams, ",");
             while(stringTokenizer.hasMoreTokens()) {
-                this.fields.add(stringTokenizer.nextToken());
+                this.fieldList.add(stringTokenizer.nextToken());
             }
         }
     }
