@@ -9,7 +9,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import tracker.domain.entity.Position;
 import tracker.domain.filter.PositionFilter;
 import tracker.domain.service.PositionService;
@@ -31,7 +33,7 @@ public class PositionResource {
     public List<Position> getPositions() {
         List<Position> positions = positionService.findAll();
         if (positions.isEmpty()) {
-            //TODO: Implementar NotFound
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
         return positions;
     }
@@ -43,7 +45,7 @@ public class PositionResource {
     public Position getPositionById(@PathParam("id") Long id) {
         Position position = positionService.load(id);
         if (position == null) {
-            //TODO: Implementar NotFound
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
         return position;
     }
@@ -53,10 +55,10 @@ public class PositionResource {
     @Path("/search")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Position> getLastPositionsByDeviceId(@QueryParam("deviceId") Long deviceId,
-                                                     @DefaultValue("10") @QueryParam("maxResults") Integer maxResults) {
+                                                     @DefaultValue("10") @QueryParam("limit") Integer limit) {
         PositionFilter positionFilter = new PositionFilter();
         positionFilter.setDeviceId(deviceId);
-        positionFilter.setMaxResults(maxResults);
+        positionFilter.setLimit(limit);
         return positionService.findByFilter(positionFilter);
     }
     

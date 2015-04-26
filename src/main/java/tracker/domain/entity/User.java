@@ -1,11 +1,8 @@
 package tracker.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -21,7 +18,6 @@ import tracker.core.entity.BaseEntity;
  * @author Rafael Guterres
  */
 @XmlRootElement
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 @Table(name="users")
 public class User implements BaseEntity<Long> {
@@ -66,6 +62,7 @@ public class User implements BaseEntity<Long> {
         this.password = password;
     }
 
+    @JsonIgnore
     public List<Device> getDevices() {
         return devices;
     }
@@ -73,5 +70,4 @@ public class User implements BaseEntity<Long> {
     public void setDevices(List<Device> devices) {
         this.devices = devices;
     }
-
 }

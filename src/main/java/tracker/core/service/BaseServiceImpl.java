@@ -1,7 +1,13 @@
 package tracker.core.service;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import javax.inject.Inject;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Validator;
 import tracker.core.entity.BaseEntity;
 import tracker.core.filter.BaseFilter;
 
@@ -14,6 +20,9 @@ import tracker.core.filter.BaseFilter;
 public abstract class BaseServiceImpl<EntityType extends BaseEntity, IdType extends Serializable>
            implements BaseService<EntityType, IdType> {
 
+    @Inject
+    Validator validator;
+    
     @Override
     public EntityType load(IdType id) {
         return getRepository().load(id);
@@ -38,9 +47,33 @@ public abstract class BaseServiceImpl<EntityType extends BaseEntity, IdType exte
     public List<EntityType> findAll() {
         return getRepository().findAll();
     }
+    
+    @Override
+    public Long countAll() {
+        return getRepository().countAll();
+    }
+    
+    @Override
+    public List<EntityType> findByPagination(Integer offset, Integer limit) {
+        return getRepository().findByPagination(offset, limit);
+    }
+
+    @Override
+    public Long countByPagination(Integer offset, Integer limit) {
+        return getRepository().countByPagination(offset, limit);
+    }
 
     @Override
     public List<EntityType> findByFilter(BaseFilter filter) {
         return getRepository().findByFilter(filter);
+    }
+    
+    @Override
+    public void validate(EntityType entity) throws ConstraintViolationException {
+        Set<ConstraintViolation<EntityType>> violations = validator.validate(entity);
+        
+        if (!violations.isEmpty()) {
+            throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>(violations));
+        }
     }
 }

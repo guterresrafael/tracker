@@ -56,6 +56,43 @@ public abstract class BaseRepositoryImpl<EntityType extends BaseEntity, IdType e
     }
 
     @Override
+    public Long countAll() {
+        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
+        criteriaQuery.select(criteriaBuilder.count(criteriaQuery.from(entityClass)));
+        TypedQuery<Long> typedQuery = getEntityManager().createQuery(criteriaQuery);
+        Long count = typedQuery.getSingleResult();
+        return count;
+    }
+    
+    @Override
+    public List<EntityType> findByPagination(Integer offset, Integer limit) {
+        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<EntityType> criteriaQuery = criteriaBuilder.createQuery(entityClass);
+        Root<EntityType> root = criteriaQuery.from(entityClass);
+        criteriaQuery.select(root);
+        TypedQuery typedQuery = getEntityManager().createQuery(criteriaQuery);
+        List<EntityType> entities = typedQuery
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+        return entities;
+    }
+    
+    @Override
+    public Long countByPagination(Integer offset, Integer limit) {
+        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
+        criteriaQuery.select(criteriaBuilder.count(criteriaQuery.from(entityClass)));
+        TypedQuery<Long> typedQuery = getEntityManager().createQuery(criteriaQuery);
+        Long count = typedQuery
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getSingleResult();
+        return count;
+    }
+
+    @Override
     public List<EntityType> findByFilter(BaseFilter filter) {
         CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<EntityType> criteriaQuery = criteriaBuilder.createQuery(entityClass);

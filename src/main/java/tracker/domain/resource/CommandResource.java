@@ -8,7 +8,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import tracker.domain.entity.Command;
 import tracker.domain.filter.CommandFilter;
 import tracker.domain.service.CommandService;
@@ -30,7 +32,7 @@ public class CommandResource {
     public List<Command> getCommands() {
         List<Command> commands = commandService.findAll();
         if (commands.isEmpty()) {
-            //TODO: Implementar NotFound
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
         return commands;
     }
@@ -42,7 +44,7 @@ public class CommandResource {
     public Command getCommand(@PathParam("id") Long id) {
         Command command = commandService.load(id);
         if (command == null) {
-            //TODO: Implementar NotFound
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
         return command;
     }
@@ -56,7 +58,7 @@ public class CommandResource {
         commandFilter.setDeviceId(deviceId);
         List<Command> commands = commandService.findByFilter(commandFilter);
         if (commands.isEmpty()) {
-            //TODO: Implementar NotFound
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
         return commands;
     }

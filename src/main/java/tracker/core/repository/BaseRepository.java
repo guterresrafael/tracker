@@ -29,6 +29,12 @@ public interface BaseRepository<EntityType extends BaseEntity, IdType extends Se
 
     List<EntityType> findAll();
     
+    Long countAll();
+    
+    List<EntityType> findByPagination(Integer offset, Integer limit);
+    
+    Long countByPagination(Integer offset, Integer limit);
+    
     List<EntityType> findByFilter(BaseFilter filter);
 
     Path getPath(Root root, String strPath);
