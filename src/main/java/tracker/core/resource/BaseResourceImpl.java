@@ -49,7 +49,7 @@ public abstract class BaseResourceImpl<EntityType extends BaseEntity, IdType ext
     @Override
     public Response getEntities(HttpServletRequest request) {
         try {
-            List entities = new ArrayList();
+            List entities;
             QueryParams queryParams = new QueryParams(request);
             
             //Pagination
