@@ -1,7 +1,10 @@
 package tracker.core.resource;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,43 +14,89 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class QueryParams {
     
-    private static final String SORT_KEY_PARAM = "sort";
+    public enum KeyParams {
+        SORT,
+        FIELDS,
+        OFFSET,
+        LIMIT
+    }
     
-    private static final String FIELDS_KEY_PARAM = "fields";
+    public enum OrderBy {
+        ASC,
+        DESC
+    }
     
-    private static final String OFFSET_KEY_PARAM = "offset";
-    private static final Integer OFFSET_DEFAULT_VALUE = 0;
+    private static final String PARAM_DELIMITER_VALUES = ",";
+    private static final String PARAM_ORDERBY_ASC = "+";
+    private static final String PARAM_ORDERBY_DESC = "-";
+    private static final Integer PARAM_OFFSET_DEFAULT_VALUE = 0;
     
-    private static final String LIMIT_KEY_PARAM = "limit";
-    
-    private List<String> sortList = new ArrayList<>();
-    private List<String> fieldList = new ArrayList<>();
     private Integer offset;
     private Integer limit;
+    private List<String> fieldList;
+    private List<Map<String, String>> sortList;
+    private List<Map<String, String>> filterList;
 
     public QueryParams() {
     }
 
     public QueryParams(HttpServletRequest request) {
-        setOffset(request.getParameter(OFFSET_KEY_PARAM));
-        setLimit(request.getParameter(LIMIT_KEY_PARAM));
-        setSortList(request.getParameter(SORT_KEY_PARAM));
-        setFieldList(request.getParameter(FIELDS_KEY_PARAM));
+        setOffset(request.getParameter(KeyParams.OFFSET.name().toLowerCase()));
+        setLimit(request.getParameter(KeyParams.LIMIT.name().toLowerCase()));
+        setSortList(request.getParameter(KeyParams.SORT.name().toLowerCase()));
+        setFieldList(request.getParameter(KeyParams.FIELDS.name().toLowerCase()));
+        setFilterList(request);
+    }
+
+    public Integer getOffset() {
+        return offset;
+    }
+
+    private void setOffset(String offset) {
+        try {
+            this.offset = Integer.parseInt(offset);
+        } catch (NumberFormatException e) {
+            this.offset = PARAM_OFFSET_DEFAULT_VALUE;
+        }
     }
     
-    public List<String> getSortList() {
+    public Integer getLimit() {
+        return limit;
+    }
+
+    private void setLimit(String limit) {
+        try {
+            this.limit = Integer.parseInt(limit);
+        } catch (NumberFormatException e) {
+            this.limit = null;
+        }
+    }
+    
+    public List<Map<String, String>> getSortList() {
         return sortList;
     }
 
-    public void setSortList(List<String> sortList) {
-        this.sortList = sortList;
-    }
-    
     private void setSortList(String sortParams) {
+        this.sortList = new ArrayList<>();
         if (sortParams != null) {
-            StringTokenizer stringTokenizer = new StringTokenizer(sortParams, ",");
+            StringTokenizer stringTokenizer = new StringTokenizer(sortParams, PARAM_DELIMITER_VALUES);
             while(stringTokenizer.hasMoreTokens()) {
-                this.sortList.add(stringTokenizer.nextToken());
+                Map<String, String> sort = new HashMap<>();
+                String fieldParam = stringTokenizer.nextToken();
+                String order;
+                switch (fieldParam.substring(0, 1)) {
+                    case PARAM_ORDERBY_DESC:
+                        order = OrderBy.DESC.name();
+                        fieldParam = fieldParam.substring(1);
+                        break;
+                    case PARAM_ORDERBY_ASC:
+                        fieldParam = fieldParam.substring(1);
+                    default:
+                        order = OrderBy.ASC.name();
+                        break;
+                }
+                sort.put(fieldParam, order);
+                this.sortList.add(sort);
             }
         }
     }
@@ -56,48 +105,32 @@ public class QueryParams {
         return fieldList;
     }
 
-    public void setFieldList(List<String> fieldList) {
-        this.fieldList = fieldList;
-    }
-    
     private void setFieldList(String fieldParams) {
+        this.fieldList = new ArrayList<>();
         if (fieldParams != null) {
-            StringTokenizer stringTokenizer = new StringTokenizer(fieldParams, ",");
+            StringTokenizer stringTokenizer = new StringTokenizer(fieldParams, PARAM_DELIMITER_VALUES);
             while(stringTokenizer.hasMoreTokens()) {
                 this.fieldList.add(stringTokenizer.nextToken());
             }
         }
     }
 
-    public Integer getOffset() {
-        return offset;
+    public List<Map<String, String>> getFilterList() {
+        return filterList;
     }
 
-    public void setOffset(Integer offset) {
-        this.offset = offset;
-    }
-
-    private void setOffset(String offset) {
-        try {
-            this.offset = Integer.parseInt(offset);
-        } catch (NumberFormatException e) {
-            this.offset = OFFSET_DEFAULT_VALUE;
-        }
-    }
-    
-    public Integer getLimit() {
-        return limit;
-    }
-
-    public void setLimit(Integer limit) {
-        this.limit = limit;
-    }
-    
-    private void setLimit(String limit) {
-        try {
-            this.limit = Integer.parseInt(limit);
-        } catch (NumberFormatException e) {
-            this.limit = null;
+    private void setFilterList(HttpServletRequest request) {
+        this.filterList = new ArrayList<>();
+        Enumeration<String> params = request.getParameterNames();
+        while (params.hasMoreElements()) {
+            String paramName = params.nextElement();
+            try {
+                KeyParams.valueOf(paramName.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                Map<String, String> filter = new HashMap<>();
+                filter.put(paramName, request.getParameter(paramName));
+                this.filterList.add(filter);
+            }
         }
     }
 }

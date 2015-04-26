@@ -61,6 +61,7 @@ public abstract class BaseResourceImpl<EntityType extends BaseEntity, IdType ext
                 entities = getService().findAllWithPagination(offset, limit);
             } else {
                 //TODO: implementar suporte orderBy
+                entities = getService().findAllWithPagination(offset, limit);
             }
             
             //NotFound
