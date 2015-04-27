@@ -56,12 +56,19 @@ public abstract class BaseResourceImpl<EntityType extends BaseEntity, IdType ext
             Integer offset = queryParams.getOffset();
             Integer limit = (queryParams.getLimit() != null) ? queryParams.getLimit() : getLimitDefaultValue();
             
+            //Filters
+            if (!queryParams.getFilterList().isEmpty()) {
+                entities = getService().findByMapListWithPagination(queryParams.getFilterList(), offset, limit);
+            } else {
+                entities = getService().findAllWithPagination(offset, limit);
+            }
+            
             //OrderBY
             if (queryParams.getSortList().isEmpty()) {
-                entities = getService().findAllWithPagination(offset, limit);
+                //entities = getService().findAllWithPagination(offset, limit);
             } else {
                 //TODO: implementar suporte orderBy
-                entities = getService().findAllWithPagination(offset, limit);
+                //entities = getService().findAllWithPagination(offset, limit);
             }
             
             //NotFound

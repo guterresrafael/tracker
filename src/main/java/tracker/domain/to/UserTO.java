@@ -1,9 +1,6 @@
 package tracker.domain.to;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.List;
-import javax.xml.bind.annotation.XmlRootElement;
 import tracker.core.annotation.Assembler;
 import tracker.domain.entity.Device;
 

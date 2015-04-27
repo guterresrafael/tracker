@@ -1,7 +1,5 @@
 package tracker.domain.to;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -9,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Rafael Guterres
  */
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @XmlRootElement
 public class CommandTO {
     

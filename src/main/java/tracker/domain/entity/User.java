@@ -24,18 +24,18 @@ public class User implements BaseEntity<Long> {
     
     @Id
     private Long id;
-    
+
     private String login;
 
     private String password;
-
+    
     @ManyToMany(cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY)
     @JoinTable(name = "users_devices",
                joinColumns = {@JoinColumn(name = "users_id")},
                inverseJoinColumns = {@JoinColumn(name = "devices_id")})
     private List<Device> devices;
-    
+
     @Override
     public Long getId() {
         return id;

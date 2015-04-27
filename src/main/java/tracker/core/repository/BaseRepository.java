@@ -2,6 +2,7 @@ package tracker.core.repository;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
@@ -28,20 +29,24 @@ public interface BaseRepository<EntityType extends BaseEntity, IdType extends Se
     void remove(IdType id);
 
     List<EntityType> findAll();
-    
+
     Long countAll();
-    
+
     List<EntityType> findByFilter(BaseFilter filter);
-    
+
     Long countByFilter(BaseFilter filter);
 
     List<EntityType> findAllWithPagination(Integer offset, Integer limit);
-    
+
     Long countAllWithPagination(Integer offset, Integer limit);
-    
+
     List<EntityType> findByFilterWithPagination(BaseFilter filter, Integer offset, Integer limit);
-    
+
     Long countByFilterWithPagination(BaseFilter filter, Integer offset, Integer limit);
+
+    List<EntityType> findByMapListWithPagination(List<Map<String, String>> mapList, Integer offset, Integer limit);
+
+    Long countByMapListWithPagination(List<Map<String, String>> mapList, Integer offset, Integer limit);
 
     Path getPath(Root root, String strPath);
 }

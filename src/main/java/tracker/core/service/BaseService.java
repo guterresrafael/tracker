@@ -2,6 +2,7 @@ package tracker.core.service;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import javax.validation.ConstraintViolationException;
 import tracker.core.entity.BaseEntity;
 import tracker.core.filter.BaseFilter;
@@ -40,4 +41,8 @@ public interface BaseService<EntityType extends BaseEntity, IdType extends Seria
     List<EntityType> findByFilterWithPagination(BaseFilter filter, Integer offset, Integer limit);
     
     Long countByFilterWithPagination(BaseFilter filter, Integer offset, Integer limit);
+    
+    List<EntityType> findByMapListWithPagination(List<Map<String, String>> mapList, Integer offset, Integer limit);
+    
+    Long countByMapListWithPagination(List<Map<String, String>> mapList, Integer offset, Integer limit);
 }

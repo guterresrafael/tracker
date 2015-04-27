@@ -23,6 +23,8 @@ import tracker.core.service.BaseService;
  * @param <EntityType>
  * @param <IdType>
  */
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public interface BaseResource<EntityType extends BaseEntity, IdType extends Serializable> extends Serializable {
     
     BaseService<EntityType, IdType> getService();
@@ -44,15 +46,11 @@ public interface BaseResource<EntityType extends BaseEntity, IdType extends Seri
     @PermitAll
     @POST
     @Path("/")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     Response postEntity(EntityType entity);
 
     @PermitAll
     @PUT
     @Path("/")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
     Response putEntity(EntityType entity);
     
     @PermitAll

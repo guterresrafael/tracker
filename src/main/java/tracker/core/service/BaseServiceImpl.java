@@ -3,6 +3,7 @@ package tracker.core.service;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
@@ -82,6 +83,16 @@ public abstract class BaseServiceImpl<EntityType extends BaseEntity, IdType exte
     @Override
     public Long countByFilterWithPagination(BaseFilter filter, Integer offset, Integer limit) {
         return getRepository().countByFilterWithPagination(filter, offset, limit);
+    }
+
+    @Override
+    public List<EntityType> findByMapListWithPagination(List<Map<String, String>> mapList, Integer offset, Integer limit) {
+        return getRepository().findByMapListWithPagination(mapList, offset, limit);
+    }
+
+    @Override
+    public Long countByMapListWithPagination(List<Map<String, String>> mapList, Integer offset, Integer limit) {
+        return getRepository().countByMapListWithPagination(mapList, offset, limit);
     }
     
     @Override
