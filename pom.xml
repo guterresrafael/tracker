@@ -6,7 +6,7 @@
     <artifactId>tracker</artifactId>
     <version>0.1.0</version>
     <packaging>war</packaging>
-    <name>Tracker</name>
+    <name>Tracker :: pelotas.rs</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,7 +28,7 @@
         <version.plugin.war>2.5</version.plugin.war>
         
         <maven.compiler.target>1.7</maven.compiler.target>
-        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.source>1.7</maven.compiler.source>  
     </properties>
 
     <dependencies>
