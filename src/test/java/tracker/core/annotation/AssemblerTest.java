@@ -1,15 +1,15 @@
 package tracker.core.annotation;
 
-import tracker.core.annotation.AssemblerImpl;
+import rs.pelotas.arch.helper.Assembler;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import tracker.domain.entity.Device;
-import tracker.domain.entity.User;
-import tracker.domain.to.UserTO;
+import rs.pelotas.tracker.entity.Device;
+import rs.pelotas.tracker.entity.User;
+import rs.pelotas.tracker.to.UserTO;
 
 /**
  *
@@ -43,7 +43,7 @@ public class AssemblerTest {
          user.setLogin("login");
          user.setPassword("password");
          UserTO userTO = new UserTO();
-         AssemblerImpl.assembler(user, userTO);
+         Assembler.assembler(user, userTO);
          assertEquals(userTO.getId(), user.getId());
          assertEquals(userTO.getLogin(), user.getLogin());
          assertEquals(userTO.getPassword(), user.getPassword());

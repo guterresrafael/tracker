@@ -12,9 +12,9 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import tracker.core.TrackerResources;
-import tracker.domain.entity.User;
-import tracker.domain.service.UserService;
+import rs.pelotas.arch.core.Resources;
+import rs.pelotas.tracker.entity.User;
+import rs.pelotas.tracker.service.UserService;
 
 @RunWith(Arquillian.class)
 public class UserRepositoryTest {
@@ -22,7 +22,7 @@ public class UserRepositoryTest {
     @Deployment
     public static Archive<?> createTestArchive() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(TrackerResources.class, User.class, UserService.class)
+                .addClasses(Resources.class, User.class, UserService.class)
                 .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebInfResource("test-datasource.xml");
