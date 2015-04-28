@@ -1,5 +1,6 @@
 package rs.pelotas.tracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -74,7 +75,7 @@ public class Device implements BaseEntity<Long> {
         this.latestPosition = latestPosition;
     }
 
-    //@JsonIgnore
+    @JsonIgnore
     public List<User> getUsers() {
         return users;
     }
