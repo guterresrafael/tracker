@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+    <!-- Configure login to be HTTP Basic -->
+    <!--login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>RealmUsersRoles</realm-name>
+    </login-config-->
+    
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+    
+    <context-param>
+        <param-name>resteasy.media.type.mappings</param-name>
+        <param-value>json : application/json, xml : application/xml</param-value>
+    </context-param>
+
+   <!--context-param>
+        <param-name>resteasy.language.mappings</param-name>
+        <param-value>en : en-US, es : es, fr : fr</param-name>
+   </context-param-->
+</web-app>

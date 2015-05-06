@@ -1,5 +1,6 @@
 package rs.pelotas.tracker.resource;
 
+import java.util.Collection;
 import javax.inject.Inject;
 import rs.pelotas.arch.resource.BaseResourceImpl;
 import rs.pelotas.arch.service.BaseService;
@@ -20,4 +21,8 @@ public class DeviceResourceImpl extends BaseResourceImpl<Device, Long> implement
         return deviceService;
     }
 
+    @Override
+    public Collection<Device> getUsers(Long deviceId) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

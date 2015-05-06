@@ -1,6 +1,5 @@
 package rs.pelotas.tracker.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,14 +11,22 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.jboss.resteasy.annotations.providers.NoJackson;
+import org.jboss.resteasy.annotations.providers.jaxb.json.Mapped;
+import org.jboss.resteasy.annotations.providers.jaxb.json.XmlNsMap;
+import org.jboss.resteasy.links.RESTServiceDiscovery;
 import rs.pelotas.arch.entity.BaseEntity;
 
 /**
  *
  * @author Rafael Guterres
  */
+@Mapped(namespaceMap = @XmlNsMap(jsonName = "atom", namespace = "http://www.w3.org/2005/Atom"))
 @XmlRootElement
+@NoJackson
 @Entity
 @Table(name="devices", uniqueConstraints = @UniqueConstraint(columnNames = "uniqueId"))
 public class Device implements BaseEntity<Long> {
@@ -41,6 +48,9 @@ public class Device implements BaseEntity<Long> {
     @JoinColumn(name="latestPosition_id")
     private Position latestPosition;
 
+    @XmlElementRef
+    private RESTServiceDiscovery rest;    
+    
     @Override
     public Long getId() {
         return id;
@@ -75,7 +85,7 @@ public class Device implements BaseEntity<Long> {
         this.latestPosition = latestPosition;
     }
 
-    @JsonIgnore
+    @XmlTransient
     public List<User> getUsers() {
         return users;
     }

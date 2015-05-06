@@ -67,12 +67,12 @@
             <scope>provided</scope>
         </dependency>
         <!-- JPA 2.0 metamodel classes for typesafe criteria queries -->
-        <dependency>
+        <!--dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
             <version>${version.dependency.hibernate-metamodel}</version>
             <scope>provided</scope>
-        </dependency>
+        </dependency-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator-annotation-processor</artifactId>
@@ -149,9 +149,8 @@
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-links</artifactId>
             <version>${version.dependency.resteasy}</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
-        <!--
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxb-provider</artifactId>
@@ -164,25 +163,24 @@
             <version>${version.dependency.resteasy}</version>
             <scope>provided</scope>
         </dependency>
-        -->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jackson2-provider</artifactId>
             <version>${version.dependency.resteasy}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
+        <!--dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>${version.dependency.jackson}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
+        </dependency-->
+        <!--dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>${version.dependency.jackson}</version>
             <scope>provided</scope>
-        </dependency>
+        </dependency-->
         <!-- /JAX-RS API -->
 
         <!-- CDI API -->

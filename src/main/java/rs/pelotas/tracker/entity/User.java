@@ -1,6 +1,5 @@
 package rs.pelotas.tracker.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,14 +9,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.jboss.resteasy.links.RESTServiceDiscovery;
+
+import javax.xml.bind.annotation.XmlTransient;
+import org.jboss.resteasy.annotations.providers.NoJackson;
+import org.jboss.resteasy.annotations.providers.jaxb.json.Mapped;
+import org.jboss.resteasy.annotations.providers.jaxb.json.XmlNsMap;
 import rs.pelotas.arch.entity.BaseEntity;
 
 /**
  *
  * @author Rafael Guterres
  */
+@Mapped(namespaceMap = @XmlNsMap(jsonName = "atom", namespace = "http://www.w3.org/2005/Atom"))
 @XmlRootElement
+@NoJackson
 @Entity
 @Table(name="users")
 public class User implements BaseEntity<Long> {
@@ -35,7 +43,10 @@ public class User implements BaseEntity<Long> {
                joinColumns = {@JoinColumn(name = "users_id")},
                inverseJoinColumns = {@JoinColumn(name = "devices_id")})
     private List<Device> devices;
-
+    
+    @XmlElementRef
+    private RESTServiceDiscovery rest;    
+    
     @Override
     public Long getId() {
         return id;
@@ -62,7 +73,7 @@ public class User implements BaseEntity<Long> {
         this.password = password;
     }
 
-    @JsonIgnore
+    @XmlTransient
     public List<Device> getDevices() {
         return devices;
     }

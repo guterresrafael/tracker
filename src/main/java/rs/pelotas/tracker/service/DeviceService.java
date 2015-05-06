@@ -1,5 +1,6 @@
 package rs.pelotas.tracker.service;
 
+import java.util.List;
 import rs.pelotas.arch.service.BaseService;
 import rs.pelotas.tracker.entity.Device;
 
@@ -9,4 +10,5 @@ import rs.pelotas.tracker.entity.Device;
  */
 public interface DeviceService extends BaseService<Device, Long> {
 
+    List<Device> findDevicesByUserId(Long userId);
 }
