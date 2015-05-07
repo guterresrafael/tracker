@@ -8,23 +8,37 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.jboss.resteasy.annotations.providers.NoJackson;
+import org.jboss.resteasy.annotations.providers.jaxb.json.Mapped;
+import org.jboss.resteasy.annotations.providers.jaxb.json.XmlNsMap;
 import rs.pelotas.arch.entity.BaseEntity;
 
 /**
  *
  * @author Rafael Guterres
  */
+@Mapped(namespaceMap = @XmlNsMap(jsonName = "atom", namespace = "http://www.w3.org/2005/Atom"))
 @XmlRootElement
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@XmlAccessorType(XmlAccessType.FIELD)
+@NoJackson
 @Entity
 @Table(name = "commands")
-public class Command implements BaseEntity<Long> {
+public class Command extends BaseEntity<Long> {
+
+    private static final long serialVersionUID = -3696836637131129573L;
     
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @XmlTransient
     @OneToOne
     @JoinColumn(name = "device_id")
     private Device device;
@@ -46,7 +60,7 @@ public class Command implements BaseEntity<Long> {
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     public Device getDevice() {
         return device;
     }

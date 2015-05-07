@@ -1,6 +1,7 @@
 package rs.pelotas.tracker.resource;
 
 import java.util.Collection;
+import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -16,7 +17,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
-import org.jboss.resteasy.links.LinkResources;
 import rs.pelotas.arch.resource.BaseResource;
 import rs.pelotas.tracker.entity.Device;
 import rs.pelotas.tracker.entity.User;
@@ -30,7 +30,7 @@ import rs.pelotas.tracker.entity.User;
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface UserResource extends BaseResource<User, Long> {
 
-    @PermitAll
+    @DenyAll
     @AddLinks
     @LinkResource(User.class)
     @GET

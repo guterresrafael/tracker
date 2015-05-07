@@ -15,7 +15,9 @@ import rs.pelotas.arch.entity.BaseEntity;
  */
 @Entity
 @Table(name = "positions")
-public class PositionTraccar implements BaseEntity<Long> {
+public class PositionTraccar extends BaseEntity<Long> {
+
+    private static final long serialVersionUID = 6522541410920378753L;    
     
     @Id
     private Long id;

@@ -2,13 +2,13 @@ package rs.pelotas.tracker.batch;
 
 import java.util.concurrent.TimeUnit;
 import javax.batch.runtime.BatchRuntime;
-import rs.pelotas.arch.batch.Job;
+import rs.pelotas.arch.batch.JobUnit;
 
 /**
  *
  * @author Rafael Guterres
  */
-public class PositionJob implements Job {
+public class PositionJob implements JobUnit {
 
     private static final String POSITION_JOB_NAME = "position-job";
     private static final long POSITION_JOB_INITIAL_DELAY = 0;

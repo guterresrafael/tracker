@@ -18,8 +18,10 @@ import rs.pelotas.arch.entity.BaseEntity;
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 @Table(name = "positions")
-public class Position implements BaseEntity<Long> {
+public class Position extends BaseEntity<Long> {
     
+    private static final long serialVersionUID = 461668360836681003L;
+
     @Id
     private Long id;
     private String address;
@@ -122,5 +124,4 @@ public class Position implements BaseEntity<Long> {
     public void setDeviceId(Long deviceId) {
         this.deviceId = deviceId;
     }
-
 }

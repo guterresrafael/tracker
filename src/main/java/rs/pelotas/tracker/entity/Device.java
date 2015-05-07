@@ -29,8 +29,10 @@ import rs.pelotas.arch.entity.BaseEntity;
 @NoJackson
 @Entity
 @Table(name="devices", uniqueConstraints = @UniqueConstraint(columnNames = "uniqueId"))
-public class Device implements BaseEntity<Long> {
-    
+public class Device extends BaseEntity<Long> {
+
+    private static final long serialVersionUID = -5900559872664830378L;
+        
     @Id
     private Long id;
     

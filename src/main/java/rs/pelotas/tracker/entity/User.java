@@ -9,11 +9,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.jboss.resteasy.links.RESTServiceDiscovery;
-
 import javax.xml.bind.annotation.XmlTransient;
+
 import org.jboss.resteasy.annotations.providers.NoJackson;
 import org.jboss.resteasy.annotations.providers.jaxb.json.Mapped;
 import org.jboss.resteasy.annotations.providers.jaxb.json.XmlNsMap;
@@ -25,11 +25,14 @@ import rs.pelotas.arch.entity.BaseEntity;
  */
 @Mapped(namespaceMap = @XmlNsMap(jsonName = "atom", namespace = "http://www.w3.org/2005/Atom"))
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 @NoJackson
 @Entity
 @Table(name="users")
-public class User implements BaseEntity<Long> {
+public class User extends BaseEntity<Long> {
     
+    private static final long serialVersionUID = 2094535745860666195L;
+
     @Id
     private Long id;
 
@@ -37,15 +40,13 @@ public class User implements BaseEntity<Long> {
 
     private String password;
     
+    @XmlTransient
     @ManyToMany(cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY)
     @JoinTable(name = "users_devices",
                joinColumns = {@JoinColumn(name = "users_id")},
                inverseJoinColumns = {@JoinColumn(name = "devices_id")})
     private List<Device> devices;
-    
-    @XmlElementRef
-    private RESTServiceDiscovery rest;    
     
     @Override
     public Long getId() {
@@ -73,7 +74,6 @@ public class User implements BaseEntity<Long> {
         this.password = password;
     }
 
-    @XmlTransient
     public List<Device> getDevices() {
         return devices;
     }
