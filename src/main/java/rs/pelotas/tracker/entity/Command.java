@@ -10,11 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlID;
-import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import org.jboss.resteasy.annotations.providers.NoJackson;
 import org.jboss.resteasy.annotations.providers.jaxb.json.Mapped;
 import org.jboss.resteasy.annotations.providers.jaxb.json.XmlNsMap;
@@ -37,8 +33,7 @@ public class Command extends BaseEntity<Long> {
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    @XmlTransient
+
     @OneToOne
     @JoinColumn(name = "device_id")
     private Device device;

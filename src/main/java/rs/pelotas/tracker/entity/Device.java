@@ -11,13 +11,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.jboss.resteasy.annotations.providers.NoJackson;
 import org.jboss.resteasy.annotations.providers.jaxb.json.Mapped;
 import org.jboss.resteasy.annotations.providers.jaxb.json.XmlNsMap;
-import org.jboss.resteasy.links.RESTServiceDiscovery;
 import rs.pelotas.arch.entity.BaseEntity;
 
 /**
@@ -49,9 +47,6 @@ public class Device extends BaseEntity<Long> {
     @OneToOne
     @JoinColumn(name="latestPosition_id")
     private Position latestPosition;
-
-    @XmlElementRef
-    private RESTServiceDiscovery rest;    
     
     @Override
     public Long getId() {
