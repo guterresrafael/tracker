@@ -1,13 +1,13 @@
 package rs.pelotas.tracker.filter;
 
-import rs.pelotas.arch.filter.BaseFilter;
-import rs.pelotas.arch.annotation.CriteriaFilter;
+import rs.pelotas.arch.repository.Filter;
+import rs.pelotas.arch.repository.CriteriaFilter;
 
 /**
  *
  * @author Rafael Guterres
  */
-public class CommandFilter implements BaseFilter {
+public class CommandFilter implements Filter {
 
     @CriteriaFilter
     private Long deviceId;

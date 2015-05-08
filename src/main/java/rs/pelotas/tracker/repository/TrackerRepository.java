@@ -1,8 +1,11 @@
 package rs.pelotas.tracker.repository;
 
 import java.io.Serializable;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import rs.pelotas.arch.entity.BaseEntity;
 import rs.pelotas.arch.repository.BaseRepository;
+import rs.pelotas.arch.repository.Repository;
 
 /**
  *
@@ -10,7 +13,15 @@ import rs.pelotas.arch.repository.BaseRepository;
  * @param <EntityType>
  * @param <IdType>
  */
-public interface TrackerRepository<EntityType extends BaseEntity, IdType extends Serializable> 
-         extends BaseRepository<EntityType, IdType> {
+public class TrackerRepository<EntityType extends BaseEntity, IdType extends Serializable> 
+     extends BaseRepository<EntityType, IdType>
+  implements Repository<EntityType, IdType> {
 
+    @PersistenceContext(unitName = "tracker")
+    private EntityManager entityManager;
+
+    @Override
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
 }

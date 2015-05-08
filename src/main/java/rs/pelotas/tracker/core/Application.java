@@ -5,14 +5,14 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.ws.rs.ApplicationPath;
 import rs.pelotas.arch.batch.JobScheduler;
-import rs.pelotas.tracker.batch.PositionJob;
+import rs.pelotas.arch.core.BaseApplication;
 
 /**
  *
  * @author Rafael Guterres
  */
 @ApplicationPath("/api")
-public class Application extends rs.pelotas.arch.core.Application {
+public class Application extends BaseApplication {
 
     @Inject
     JobScheduler scheduler;

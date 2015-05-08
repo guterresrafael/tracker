@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
-import rs.pelotas.arch.resource.BaseResource;
+import rs.pelotas.arch.resource.Resource;
 import rs.pelotas.tracker.entity.Device;
 import rs.pelotas.tracker.entity.User;
 
@@ -27,7 +27,7 @@ import rs.pelotas.tracker.entity.User;
 @Path("/users")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-public interface UserResource extends BaseResource<User, Long> {
+public interface UserResource extends Resource<User, Long> {
 
     @PermitAll
     @AddLinks
