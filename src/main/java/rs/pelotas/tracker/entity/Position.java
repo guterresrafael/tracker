@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import rs.pelotas.arch.entity.BaseEntity;
 
@@ -15,7 +17,7 @@ import rs.pelotas.arch.entity.BaseEntity;
  * @author Rafael Guterres
  */
 @XmlRootElement
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "positions")
 public class Position extends BaseEntity<Long> {

@@ -11,20 +11,18 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import org.jboss.resteasy.annotations.providers.NoJackson;
-import org.jboss.resteasy.annotations.providers.jaxb.json.Mapped;
-import org.jboss.resteasy.annotations.providers.jaxb.json.XmlNsMap;
 import rs.pelotas.arch.entity.BaseEntity;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Mapped(namespaceMap = @XmlNsMap(jsonName = "atom", namespace = "http://www.w3.org/2005/Atom"))
 @XmlRootElement
-@NoJackson
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name="devices", uniqueConstraints = @UniqueConstraint(columnNames = "uniqueId"))
 public class Device extends BaseEntity<Long> {
@@ -39,6 +37,7 @@ public class Device extends BaseEntity<Long> {
     @Column(name="uniqueId")
     private String imei;
     
+    @XmlTransient
     @ManyToMany(mappedBy = "devices", 
                 cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY)
@@ -82,7 +81,6 @@ public class Device extends BaseEntity<Long> {
         this.latestPosition = latestPosition;
     }
 
-    @XmlTransient
     public List<User> getUsers() {
         return users;
     }

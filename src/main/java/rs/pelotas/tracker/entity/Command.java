@@ -11,7 +11,6 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.jboss.resteasy.annotations.providers.NoJackson;
 import org.jboss.resteasy.annotations.providers.jaxb.json.Mapped;
 import org.jboss.resteasy.annotations.providers.jaxb.json.XmlNsMap;
 import rs.pelotas.arch.entity.BaseEntity;
@@ -20,10 +19,8 @@ import rs.pelotas.arch.entity.BaseEntity;
  *
  * @author Rafael Guterres
  */
-@Mapped(namespaceMap = @XmlNsMap(jsonName = "atom", namespace = "http://www.w3.org/2005/Atom"))
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@NoJackson
 @Entity
 @Table(name = "commands")
 public class Command extends BaseEntity<Long> {
