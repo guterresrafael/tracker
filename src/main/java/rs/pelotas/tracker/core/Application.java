@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.ws.rs.ApplicationPath;
 import rs.pelotas.arch.batch.JobScheduler;
 import rs.pelotas.arch.core.BaseApplication;
+import rs.pelotas.tracker.batch.PositionJob;
 
 /**
  *
@@ -34,7 +35,7 @@ public class Application extends BaseApplication {
     @Override
     protected void init() {
         //TODO: implementar annotation para agendamento automatico
-        //scheduler.addJob(new PositionJob());
-        //scheduler.scheduleJobs();
+        scheduler.addJob(new PositionJob());
+        scheduler.scheduleJobs();
     }
 }

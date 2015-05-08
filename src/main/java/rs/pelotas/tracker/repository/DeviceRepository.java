@@ -5,6 +5,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import rs.pelotas.arch.repository.BaseRepository;
 import rs.pelotas.arch.repository.Repository;
 import rs.pelotas.tracker.entity.Device;
 
@@ -12,7 +13,7 @@ import rs.pelotas.tracker.entity.Device;
  *
  * @author Rafael Guterres
  */
-public class DeviceRepository extends TrackerRepository<Device, Long> implements Repository<Device, Long> {
+public class DeviceRepository extends BaseRepository<Device, Long> implements Repository<Device, Long> {
 
     public List<Device> findDevicesByUserId(Long userId) {
         CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();

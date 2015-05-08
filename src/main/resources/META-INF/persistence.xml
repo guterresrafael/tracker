@@ -3,6 +3,7 @@
     <persistence-unit name="tracker" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/TrackerDS</jta-data-source>
         <properties>
+            <property name="wildfly.jpa.default-unit" value="true" />
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.show_sql" value="true"/>
