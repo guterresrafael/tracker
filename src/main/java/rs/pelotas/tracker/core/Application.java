@@ -4,9 +4,9 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.Path;
 import rs.pelotas.arch.batch.JobScheduler;
 import rs.pelotas.arch.core.BaseApplication;
-import rs.pelotas.tracker.batch.PositionJob;
 
 /**
  *
@@ -37,5 +37,10 @@ public class Application extends BaseApplication {
         //TODO: implementar annotation para agendamento automatico
         //scheduler.addJob(new PositionJob());
         //scheduler.scheduleJobs();
+    }
+    
+    @Path("test")
+    public String ok() {
+        return "test ok!";
     }
 }
