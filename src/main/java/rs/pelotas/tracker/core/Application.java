@@ -35,7 +35,7 @@ public class Application extends BaseApplication {
     @Override
     protected void init() {
         //TODO: implementar annotation para agendamento automatico
-        scheduler.addJob(new PositionJob());
-        scheduler.scheduleJobs();
+        //scheduler.addJob(new PositionJob());
+        //scheduler.scheduleJobs();
     }
 }
