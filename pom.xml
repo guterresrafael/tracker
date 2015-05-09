@@ -175,24 +175,6 @@
             <version>${version.dependency.resteasy}</version>
             <scope>compile</scope>
         </dependency>
-        <!--dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jackson2-provider</artifactId>
-            <version>${version.dependency.resteasy}</version>
-            <scope>provided</scope>
-        </dependency-->
-        <!--dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${version.dependency.jackson}</version>
-            <scope>provided</scope>
-        </dependency-->
-        <!--dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${version.dependency.jackson}</version>
-            <scope>provided</scope>
-        </dependency-->
         <!-- /JAX-RS API -->
 
         <!-- CDI API -->
