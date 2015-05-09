@@ -161,7 +161,7 @@
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-links</artifactId>
             <version>${version.dependency.resteasy}</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
@@ -173,7 +173,7 @@
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jettison-provider</artifactId>
             <version>${version.dependency.resteasy}</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <!-- /JAX-RS API -->
 
