@@ -36,5 +36,5 @@ public class Application extends BaseApplication {
         //TODO: implementar annotation para agendamento automatico
         //scheduler.addJob(new PositionJob());
         //scheduler.scheduleJobs();
-    }   
+    }
 }

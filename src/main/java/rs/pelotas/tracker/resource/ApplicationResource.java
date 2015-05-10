@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -14,6 +15,11 @@ public interface ApplicationResource extends Serializable {
     
     @PermitAll
     @GET
+    @Path("/ping")
+    public Response getPing();
+    
+    @PermitAll
+    @GET
     @Path("/version")
-    public String getVersion();
+    public Response getVersion();
 }
