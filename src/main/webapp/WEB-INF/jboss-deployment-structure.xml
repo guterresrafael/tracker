@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-deployment-structure>
     <deployment>
-        <dependencies>
-            <module name="org.jboss.weld.core" />
-            <module name="org.jboss.weld.spi" />
-        </dependencies>
         <exclusions>
             <module name="org.jboss.resteasy.resteasy-jackson-provider" />
             <module name="org.jboss.resteasy.resteasy-jackson2-provider" />
