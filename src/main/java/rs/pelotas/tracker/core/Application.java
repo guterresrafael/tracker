@@ -2,8 +2,10 @@ package rs.pelotas.tracker.core;
 
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import rs.pelotas.arch.batch.JobScheduler;
 import rs.pelotas.arch.core.BaseApplication;
@@ -39,8 +41,10 @@ public class Application extends BaseApplication {
         //scheduler.scheduleJobs();
     }
     
-    @Path("test")
-    public String ok() {
-        return "test ok!";
+    @PermitAll
+    @GET
+    @Path("/version")
+    public String getVersion() {
+        return "1.0.0-SNAPSHOT";
     }
 }

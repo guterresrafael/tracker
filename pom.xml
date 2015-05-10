@@ -38,6 +38,7 @@
             <groupId>rs.pelotas</groupId>
             <artifactId>arch</artifactId>
             <version>${version.dependency.arch.pelotas.rs}</version>
+            <scope>compile</scope>
         </dependency>
         <!-- /Arch pelotas.rs -->
         
@@ -161,19 +162,19 @@
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-links</artifactId>
             <version>${version.dependency.resteasy}</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxb-provider</artifactId>
             <version>${version.dependency.resteasy}</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jettison-provider</artifactId>
             <version>${version.dependency.resteasy}</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
         <!-- /JAX-RS API -->
 
