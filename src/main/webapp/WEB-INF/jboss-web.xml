@@ -4,4 +4,13 @@
            xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee 
                                http://www.jboss.org/j2ee/schema/jboss-web_5_1.xsd">
     <context-root>/</context-root>
+    <!--
+    <security-domain>jboss-web-policy</security-domain>
+    <valve>
+      <class-name>org.jboss.web.rewrite.RewriteValve</class-name>
+    </valve>
+    File: rewrite.properties
+    RewriteCond %{HTTP:X-Forwarded-Proto} http   
+    RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+    -->
 </jboss-web>

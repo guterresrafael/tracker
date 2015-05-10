@@ -18,8 +18,20 @@
         <param-value>json : application/json, xml : application/xml</param-value>
     </context-param>
 
-   <!--context-param>
-        <param-name>resteasy.language.mappings</param-name>
-        <param-value>en : en-US, es : es, fr : fr</param-name>
-   </context-param-->
+    <!--
+    <context-param>
+         <param-name>resteasy.language.mappings</param-name>
+         <param-value>en : en-US, es : es, fr : fr</param-name>
+    </context-param>
+    -->
+   
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Viewpoint Secure URLs</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
 </web-app>
