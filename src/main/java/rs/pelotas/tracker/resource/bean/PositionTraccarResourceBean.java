@@ -12,6 +12,8 @@ import rs.pelotas.tracker.service.PositionTraccarService;
  * @author Rafael Guterres
  */
 public class PositionTraccarResourceBean extends BaseResource<PositionTraccar, Long> implements PositionTraccarResource {
+    
+    private static final long serialVersionUID = -8917174923477988L;
 
     @Inject
     PositionTraccarService positionTraccarService;

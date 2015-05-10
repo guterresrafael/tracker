@@ -12,6 +12,8 @@ import rs.pelotas.tracker.service.CommandService;
  * @author Rafael Guterres
  */
 public class CommandResourceBean extends BaseResource<Command, Long> implements CommandResource {
+    
+    private static final long serialVersionUID = -1527652534931195579L;
 
     @Inject
     CommandService commandService;

@@ -13,6 +13,8 @@ import rs.pelotas.tracker.service.DeviceService;
  * @author Rafael Guterres
  */
 public class DeviceResourceBean extends BaseResource<Device, Long> implements DeviceResource {
+    
+    private static final long serialVersionUID = 9145212157187874341L;
 
     @Inject
     DeviceService deviceService;

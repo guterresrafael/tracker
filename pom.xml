@@ -168,13 +168,13 @@
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxb-provider</artifactId>
             <version>${version.dependency.resteasy}</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jettison-provider</artifactId>
             <version>${version.dependency.resteasy}</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
         <!-- /JAX-RS API -->
 
