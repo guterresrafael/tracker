@@ -61,7 +61,7 @@ public interface PositionResource extends Resource<Position, Long> {
     public Response putEntity(@PathParam("id") Long id, Position entity);
 
     @PermitAll
-    @LinkResource(value = Command.class)
+    @LinkResource(Position.class)
     @DELETE
     @Path("/{id}")
     @Override
