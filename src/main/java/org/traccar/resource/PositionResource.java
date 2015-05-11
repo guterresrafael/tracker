@@ -16,7 +16,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
-import org.traccar.entity.Command;
 import rs.pelotas.arch.resource.Resource;
 import org.traccar.entity.Position;
 
@@ -66,4 +65,10 @@ public interface PositionResource extends Resource<Position, Long> {
     @Path("/{id}")
     @Override
     public Response deleteEntity(@PathParam("id") Long id);
+    
+    @PermitAll
+    @LinkResource(value = Position.class, rel = "googlemaps")
+    @GET
+    @Path("/{id}")
+    public Response getGoogleMapsLink(@PathParam("id") Long id);
 }
