@@ -22,6 +22,4 @@ public class CommandResourceBean extends BaseResource<Command, Long> implements 
     public Service<Command, Long> getService() {
         return commandService;
     }
-    
-    
 }

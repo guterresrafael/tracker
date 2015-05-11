@@ -21,6 +21,5 @@ public class PositionResourceBean extends BaseResource<Position, Long> implement
     @Override
     public Service<Position, Long> getService() {
         return positionService;
-    }
-    
+    }  
 }

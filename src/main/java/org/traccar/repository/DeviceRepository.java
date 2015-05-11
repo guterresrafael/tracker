@@ -5,7 +5,6 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import rs.pelotas.arch.repository.BaseRepository;
 import rs.pelotas.arch.repository.Repository;
 import org.traccar.entity.Device;
 
@@ -13,7 +12,9 @@ import org.traccar.entity.Device;
  *
  * @author Rafael Guterres
  */
-public class DeviceRepository extends BaseRepository<Device, Long> implements Repository<Device, Long> {
+public class DeviceRepository extends BaseTraccarRepository<Device, Long> implements Repository<Device, Long> {
+    
+    private static final long serialVersionUID = 5330144509499505026L;
 
     public List<Device> findDevicesByUserId(Long userId) {
         CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
