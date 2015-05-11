@@ -1,4 +1,4 @@
-package rs.pelotas.tracker.resource;
+package org.traccar.resource;
 
 import java.util.Collection;
 import javax.annotation.security.PermitAll;
@@ -17,31 +17,31 @@ import javax.ws.rs.core.Response;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
-import rs.pelotas.tracker.entity.Device;
+import org.traccar.entity.Command;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path("/devices")
+@Path("/commands")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-public interface DeviceResource extends Resource<Device, Long> {
-    
+public interface CommandResource extends Resource<Command, Long> {
+
     @PermitAll
     @AddLinks
-    @LinkResource(Device.class)
+    @LinkResource(value = Command.class)
     @GET
     @Path("/")
     @Override
-    public Collection<Device> getEntities(@Context HttpServletRequest request);
+    public Collection<Command> getEntities(@Context HttpServletRequest request);
 
     @PermitAll
     @LinkResource
     @POST
     @Path("/")
     @Override
-    public Response postEntity(Device entity);
+    public Response postEntity(Command entity);
     
     @PermitAll
     @AddLinks
@@ -49,26 +49,19 @@ public interface DeviceResource extends Resource<Device, Long> {
     @GET
     @Path("/{id}")
     @Override
-    public Device getEntityById(@PathParam("id") Long id);
+    public Command getEntityById(@PathParam("id") Long id);
 
     @PermitAll
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
-    public Response putEntity(@PathParam("id") Long id, Device entity);
+    public Response putEntity(Long id, Command entity);
 
     @PermitAll
-    @LinkResource(Device.class)
+    @LinkResource(value = Command.class)
     @DELETE
     @Path("/{id}")
     @Override
-    public Response deleteEntity(@PathParam("id") Long id);
-    
-    @PermitAll
-    @AddLinks
-    @LinkResource(value = Device.class, rel = "users")
-    @GET
-    @Path("/{id}/users")
-    public Collection<Device> getUsers(@PathParam("id") Long deviceId);
+    public Response deleteEntity(Long id);    
 }

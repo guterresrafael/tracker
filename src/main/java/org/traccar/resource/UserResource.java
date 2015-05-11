@@ -1,4 +1,4 @@
-package rs.pelotas.tracker.resource;
+package org.traccar.resource;
 
 import java.util.Collection;
 import javax.annotation.security.PermitAll;
@@ -17,31 +17,32 @@ import javax.ws.rs.core.Response;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
-import rs.pelotas.tracker.entity.Command;
+import org.traccar.entity.Device;
+import org.traccar.entity.User;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path("/commands")
+@Path("/users")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-public interface CommandResource extends Resource<Command, Long> {
+public interface UserResource extends Resource<User, Long> {
 
     @PermitAll
     @AddLinks
-    @LinkResource(value = Command.class)
+    @LinkResource(User.class)
     @GET
     @Path("/")
     @Override
-    public Collection<Command> getEntities(@Context HttpServletRequest request);
+    public Collection<User> getEntities(@Context HttpServletRequest request);
 
     @PermitAll
     @LinkResource
     @POST
     @Path("/")
     @Override
-    public Response postEntity(Command entity);
+    public Response postEntity(User entity);
     
     @PermitAll
     @AddLinks
@@ -49,19 +50,26 @@ public interface CommandResource extends Resource<Command, Long> {
     @GET
     @Path("/{id}")
     @Override
-    public Command getEntityById(@PathParam("id") Long id);
+    public User getEntityById(@PathParam("id") Long id);
 
     @PermitAll
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
-    public Response putEntity(Long id, Command entity);
+    public Response putEntity(@PathParam("id") Long id, User entity);
 
     @PermitAll
-    @LinkResource(value = Command.class)
+    @LinkResource(User.class)
     @DELETE
     @Path("/{id}")
     @Override
-    public Response deleteEntity(Long id);    
+    public Response deleteEntity(@PathParam("id") Long id);
+    
+    @PermitAll
+    @AddLinks
+    @LinkResource(value = User.class, rel = "devices")
+    @GET
+    @Path("/{id}/devices")
+    public Collection<Device> getDevices(@PathParam("id") Long userId);
 }

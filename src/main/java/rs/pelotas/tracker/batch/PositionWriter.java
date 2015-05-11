@@ -6,8 +6,8 @@ import javax.batch.api.chunk.ItemWriter;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Named;
-import rs.pelotas.tracker.entity.Position;
-import rs.pelotas.tracker.service.PositionService;
+import org.traccar.entity.Position;
+import org.traccar.service.PositionService;
 
 /**
  *

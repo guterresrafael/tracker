@@ -1,4 +1,4 @@
-package rs.pelotas.tracker.entity;
+package org.traccar.entity;
 
 import java.util.Date;
 import javax.persistence.Entity;
@@ -11,8 +11,6 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.jboss.resteasy.annotations.providers.jaxb.json.Mapped;
-import org.jboss.resteasy.annotations.providers.jaxb.json.XmlNsMap;
 import rs.pelotas.arch.entity.BaseEntity;
 
 /**

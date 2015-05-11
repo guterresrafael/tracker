@@ -1,11 +1,11 @@
-package rs.pelotas.tracker.service;
+package org.traccar.service;
 
 import javax.inject.Inject;
 import rs.pelotas.arch.repository.Repository;
 import rs.pelotas.arch.service.BaseService;
 import rs.pelotas.arch.service.Service;
-import rs.pelotas.tracker.entity.Position;
-import rs.pelotas.tracker.repository.PositionRepository;
+import org.traccar.entity.Position;
+import org.traccar.repository.PositionRepository;
 
 /**
  *
@@ -19,5 +19,9 @@ public class PositionService extends BaseService<Position, Long> implements Serv
     @Override
     public Repository<Position, Long> getRepository() {
         return positionRepository;
+    }
+    
+    public Position getPositionToImport() {
+        return null;
     }
 }

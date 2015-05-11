@@ -5,8 +5,8 @@ import javax.batch.api.chunk.ItemReader;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Named;
-import rs.pelotas.tracker.entity.PositionTraccar;
-import rs.pelotas.tracker.service.PositionTraccarService;
+import org.traccar.entity.Position;
+import org.traccar.service.PositionService;
 
 /**
  *
@@ -17,9 +17,9 @@ import rs.pelotas.tracker.service.PositionTraccarService;
 public class PositionReader implements ItemReader {
 
     @Inject
-    private PositionTraccarService positionService;
+    private PositionService positionService;
     
-    private PositionTraccar position;
+    private Position position;
     
     @Override
     public void open(Serializable srlzbl) throws Exception {

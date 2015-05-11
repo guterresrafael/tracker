@@ -1,13 +1,13 @@
-package rs.pelotas.tracker.service;
+package org.traccar.service;
 
 import java.util.List;
 import javax.inject.Inject;
 import rs.pelotas.arch.repository.Repository;
 import rs.pelotas.arch.service.BaseService;
 import rs.pelotas.arch.service.Service;
-import rs.pelotas.tracker.entity.User;
+import org.traccar.entity.User;
 import rs.pelotas.tracker.filter.UserFilter;
-import rs.pelotas.tracker.repository.UserRepository;
+import org.traccar.repository.UserRepository;
 
 /**
  *

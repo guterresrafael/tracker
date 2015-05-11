@@ -13,8 +13,8 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import rs.pelotas.arch.core.Resources;
-import rs.pelotas.tracker.entity.User;
-import rs.pelotas.tracker.service.UserService;
+import org.traccar.entity.User;
+import org.traccar.service.UserService;
 
 @RunWith(Arquillian.class)
 public class UserRepositoryTest {

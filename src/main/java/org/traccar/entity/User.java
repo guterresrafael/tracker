@@ -1,4 +1,4 @@
-package rs.pelotas.tracker.entity;
+package org.traccar.entity;
 
 import java.util.List;
 import javax.persistence.CascadeType;

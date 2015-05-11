@@ -4,7 +4,10 @@ import javax.ws.rs.core.Response;
 import rs.pelotas.arch.resource.ResponseBuilder;
 import rs.pelotas.tracker.resource.ApplicationResource;
 
-
+/**
+ * 
+ * @author Rafael Guterres
+ */
 public class ApplicationResourceBean implements ApplicationResource {
 
     private static final long serialVersionUID = 1429964490392452041L;

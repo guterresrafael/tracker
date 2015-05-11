@@ -1,8 +1,8 @@
-package rs.pelotas.tracker.repository;
+package org.traccar.repository;
 
 import rs.pelotas.arch.repository.BaseRepository;
 import rs.pelotas.arch.repository.Repository;
-import rs.pelotas.tracker.entity.Position;
+import org.traccar.entity.Position;
 
 /**
  *

@@ -1,4 +1,4 @@
-package rs.pelotas.tracker.entity;
+package org.traccar.entity;
 
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -16,6 +16,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import rs.pelotas.arch.entity.BaseEntity;
+import org.traccar.entity.Position;
+import org.traccar.entity.User;
 
 /**
  *

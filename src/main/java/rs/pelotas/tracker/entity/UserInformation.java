@@ -2,6 +2,7 @@ package rs.pelotas.tracker.entity;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.traccar.entity.User;
 
 /**
  *

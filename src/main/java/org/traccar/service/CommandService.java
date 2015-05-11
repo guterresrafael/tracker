@@ -1,11 +1,11 @@
-package rs.pelotas.tracker.service;
+package org.traccar.service;
 
 import javax.inject.Inject;
 import rs.pelotas.arch.repository.Repository;
 import rs.pelotas.arch.service.BaseService;
 import rs.pelotas.arch.service.Service;
-import rs.pelotas.tracker.entity.Command;
-import rs.pelotas.tracker.repository.CommandRepository;
+import org.traccar.entity.Command;
+import org.traccar.repository.CommandRepository;
 
 /**
  *

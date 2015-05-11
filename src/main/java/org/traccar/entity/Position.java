@@ -1,4 +1,4 @@
-package rs.pelotas.tracker.entity;
+package org.traccar.entity;
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -30,7 +30,9 @@ public class Position extends BaseEntity<Long> {
     private Double altitude;
     private Double course;
     private Double latitude;  
-    private Double longitude;  
+    private Double longitude;
+    private String other;
+    private Double power;
     private Double speed;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -41,7 +43,6 @@ public class Position extends BaseEntity<Long> {
 //    @OneToOne
 //    @JoinColumn(name="device_id")
 //    private Device device;
-
     @Column(name="device_id")
     private Long deviceId;
     
@@ -93,6 +94,22 @@ public class Position extends BaseEntity<Long> {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+    public String getOther() {
+        return other;
+    }
+
+    public void setOther(String other) {
+        this.other = other;
+    }
+
+    public Double getPower() {
+        return power;
+    }
+
+    public void setPower(Double power) {
+        this.power = power;
     }
 
     public Double getSpeed() {

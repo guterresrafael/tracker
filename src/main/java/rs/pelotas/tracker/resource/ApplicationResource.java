@@ -10,7 +10,7 @@ import javax.ws.rs.core.Response;
  *
  * @author Rafael Guterres
  */
-@Path("app")
+@Path("/")
 public interface ApplicationResource extends Serializable {
     
     @PermitAll

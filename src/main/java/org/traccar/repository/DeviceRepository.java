@@ -1,4 +1,4 @@
-package rs.pelotas.tracker.repository;
+package org.traccar.repository;
 
 import java.util.List;
 import javax.persistence.TypedQuery;
@@ -7,7 +7,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import rs.pelotas.arch.repository.BaseRepository;
 import rs.pelotas.arch.repository.Repository;
-import rs.pelotas.tracker.entity.Device;
+import org.traccar.entity.Device;
 
 /**
  *

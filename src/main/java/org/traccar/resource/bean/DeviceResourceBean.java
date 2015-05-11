@@ -1,12 +1,12 @@
-package rs.pelotas.tracker.resource.bean;
+package org.traccar.resource.bean;
 
 import java.util.Collection;
 import javax.inject.Inject;
 import rs.pelotas.arch.resource.BaseResource;
 import rs.pelotas.arch.service.Service;
-import rs.pelotas.tracker.entity.Device;
-import rs.pelotas.tracker.resource.DeviceResource;
-import rs.pelotas.tracker.service.DeviceService;
+import org.traccar.entity.Device;
+import org.traccar.resource.DeviceResource;
+import org.traccar.service.DeviceService;
 
 /**
  * 

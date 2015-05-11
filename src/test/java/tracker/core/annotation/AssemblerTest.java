@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import rs.pelotas.tracker.entity.User;
+import org.traccar.entity.User;
 
 /**
  *

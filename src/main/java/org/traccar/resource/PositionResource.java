@@ -1,8 +1,8 @@
-package rs.pelotas.tracker.resource;
+package org.traccar.resource;
 
 import javax.ws.rs.Path;
 import rs.pelotas.arch.resource.Resource;
-import rs.pelotas.tracker.entity.Position;
+import org.traccar.entity.Position;
 
 /**
  *

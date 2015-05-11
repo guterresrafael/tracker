@@ -1,4 +1,4 @@
-package rs.pelotas.tracker.resource;
+package org.traccar.resource;
 
 import java.util.Collection;
 import javax.annotation.security.PermitAll;
@@ -17,32 +17,31 @@ import javax.ws.rs.core.Response;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
-import rs.pelotas.tracker.entity.Device;
-import rs.pelotas.tracker.entity.User;
+import org.traccar.entity.Device;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path("/users")
+@Path("/devices")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-public interface UserResource extends Resource<User, Long> {
-
+public interface DeviceResource extends Resource<Device, Long> {
+    
     @PermitAll
     @AddLinks
-    @LinkResource(User.class)
+    @LinkResource(Device.class)
     @GET
     @Path("/")
     @Override
-    public Collection<User> getEntities(@Context HttpServletRequest request);
+    public Collection<Device> getEntities(@Context HttpServletRequest request);
 
     @PermitAll
     @LinkResource
     @POST
     @Path("/")
     @Override
-    public Response postEntity(User entity);
+    public Response postEntity(Device entity);
     
     @PermitAll
     @AddLinks
@@ -50,17 +49,17 @@ public interface UserResource extends Resource<User, Long> {
     @GET
     @Path("/{id}")
     @Override
-    public User getEntityById(@PathParam("id") Long id);
+    public Device getEntityById(@PathParam("id") Long id);
 
     @PermitAll
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
-    public Response putEntity(@PathParam("id") Long id, User entity);
+    public Response putEntity(@PathParam("id") Long id, Device entity);
 
     @PermitAll
-    @LinkResource(User.class)
+    @LinkResource(Device.class)
     @DELETE
     @Path("/{id}")
     @Override
@@ -68,8 +67,8 @@ public interface UserResource extends Resource<User, Long> {
     
     @PermitAll
     @AddLinks
-    @LinkResource(value = User.class, rel = "devices")
+    @LinkResource(value = Device.class, rel = "users")
     @GET
-    @Path("/{id}/devices")
-    public Collection<Device> getDevices(@PathParam("id") Long userId);
+    @Path("/{id}/users")
+    public Collection<Device> getUsers(@PathParam("id") Long deviceId);
 }

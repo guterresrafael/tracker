@@ -1,12 +1,12 @@
-package rs.pelotas.tracker.service;
+package org.traccar.service;
 
 import java.util.List;
 import javax.inject.Inject;
 import rs.pelotas.arch.repository.Repository;
 import rs.pelotas.arch.service.BaseService;
 import rs.pelotas.arch.service.Service;
-import rs.pelotas.tracker.entity.Device;
-import rs.pelotas.tracker.repository.DeviceRepository;
+import org.traccar.entity.Device;
+import org.traccar.repository.DeviceRepository;
 
 /**
  * @author Rafael Guterres
