@@ -1,5 +1,6 @@
 package org.traccar.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ import rs.pelotas.arch.entity.BaseEntity;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "commands")
-public class Command extends BaseEntity<Long> {
+public class Command extends BaseEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = -3696836637131129573L;
     

@@ -1,5 +1,6 @@
 package org.traccar.entity;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,8 +17,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import rs.pelotas.arch.entity.BaseEntity;
-import org.traccar.entity.Position;
-import org.traccar.entity.User;
 
 /**
  *
@@ -27,7 +26,7 @@ import org.traccar.entity.User;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name="devices", uniqueConstraints = @UniqueConstraint(columnNames = "uniqueId"))
-public class Device extends BaseEntity<Long> {
+public class Device extends BaseEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = -5900559872664830378L;
         

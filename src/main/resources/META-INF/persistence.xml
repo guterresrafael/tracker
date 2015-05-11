@@ -5,7 +5,7 @@
         <properties>
             <property name="wildfly.jpa.default-unit" value="true" />
             <property name="hibernate.hbm2ddl.auto" value="validate"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
         </properties>
@@ -14,7 +14,7 @@
         <jta-data-source>java:jboss/datasources/TraccarDS</jta-data-source>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="validate"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
         </properties>

@@ -1,9 +1,12 @@
 package org.traccar.entity;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -25,11 +28,12 @@ import rs.pelotas.arch.entity.BaseEntity;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name="users")
-public class User extends BaseEntity<Long> {
+public class User extends BaseEntity<Long> implements Serializable {
     
     private static final long serialVersionUID = 2094535745860666195L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String login;

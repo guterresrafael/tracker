@@ -1,5 +1,6 @@
 package org.traccar.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ import rs.pelotas.arch.entity.BaseEntity;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "positions")
-public class Position extends BaseEntity<Long> {
+public class Position extends BaseEntity<Long> implements Serializable {
     
     private static final long serialVersionUID = 461668360836681003L;
 
