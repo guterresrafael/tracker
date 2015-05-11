@@ -24,7 +24,7 @@ import org.traccar.entity.User;
  *
  * @author Rafael Guterres
  */
-@Path("/users")
+@Path("/traccar/users")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface UserResource extends Resource<User, Long> {

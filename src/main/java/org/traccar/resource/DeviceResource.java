@@ -23,7 +23,7 @@ import org.traccar.entity.Device;
  *
  * @author Rafael Guterres
  */
-@Path("/devices")
+@Path("/traccar/devices")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface DeviceResource extends Resource<Device, Long> {

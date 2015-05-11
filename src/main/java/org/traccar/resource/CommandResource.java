@@ -23,7 +23,7 @@ import org.traccar.entity.Command;
  *
  * @author Rafael Guterres
  */
-@Path("/commands")
+@Path("/traccar/commands")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface CommandResource extends Resource<Command, Long> {
@@ -56,12 +56,12 @@ public interface CommandResource extends Resource<Command, Long> {
     @PUT
     @Path("/{id}")
     @Override
-    public Response putEntity(Long id, Command entity);
+    public Response putEntity(@PathParam("id") Long id, Command entity);
 
     @PermitAll
     @LinkResource(value = Command.class)
     @DELETE
     @Path("/{id}")
     @Override
-    public Response deleteEntity(Long id);    
+    public Response deleteEntity(@PathParam("id") Long id);    
 }
