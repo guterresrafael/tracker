@@ -69,6 +69,6 @@ public interface PositionResource extends Resource<Position, Long> {
     @PermitAll
     @LinkResource(value = Position.class, rel = "googlemaps")
     @GET
-    @Path("/{id}")
+    @Path("/{id}/googlemaps")
     public Response getGoogleMapsLink(@PathParam("id") Long id);
 }
