@@ -13,7 +13,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import rs.pelotas.arch.annotation.adapters.PasswordAdapter;
 import rs.pelotas.arch.entity.BaseEntity;
 
 /**
@@ -33,6 +34,7 @@ public class User extends BaseEntity<Long> {
 
     private String login;
 
+    @XmlJavaTypeAdapter(PasswordAdapter.class)
     private String password;
     
     @XmlTransient
