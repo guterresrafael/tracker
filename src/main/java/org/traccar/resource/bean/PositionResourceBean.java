@@ -1,6 +1,5 @@
 package org.traccar.resource.bean;
 
-import java.net.URI;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import rs.pelotas.arch.resource.BaseResource;

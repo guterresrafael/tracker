@@ -1,6 +1,7 @@
 package org.traccar.resource;
 
 import java.util.Collection;
+import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -34,7 +35,7 @@ public interface DeviceResource extends Resource<Device, Long> {
     @GET
     @Path("/")
     @Override
-    public Collection<Device> getEntities(@Context HttpServletRequest request);
+    public List<Device> getEntities(@Context HttpServletRequest request);
 
     @PermitAll
     @LinkResource

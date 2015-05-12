@@ -1,6 +1,6 @@
 package org.traccar.resource;
 
-import java.util.Collection;
+import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -34,7 +34,7 @@ public interface CommandResource extends Resource<Command, Long> {
     @GET
     @Path("/")
     @Override
-    public Collection<Command> getEntities(@Context HttpServletRequest request);
+    public List<Command> getEntities(@Context HttpServletRequest request);
 
     @PermitAll
     @LinkResource
