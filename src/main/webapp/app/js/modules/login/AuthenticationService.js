@@ -7,29 +7,28 @@ app.factory('AuthenticationService',
 
                 service.Login = function (username, password, callback) {
 
-                    /* Dummy authentication for testing, uses $timeout to simulate api call
+                    /* Descomentar para fazer teste de autenticação
                      ----------------------------------------------*/
-                    $timeout(function () {
-                        var response = {success: username === 'test' && password === 'test'};
-                        if (!response.success) {
-                            response.message = 'Username or password is incorrect';
-                        }
-                        callback(response);
-                    }, 1000);
-
+//                    $timeout(function () {
+//                        var response = {success: username === 'anderson' && password === 'noguez'};
+//                        if (!response.success) {
+//                            response.message = 'Username or password is incorrect';
+//                        }
+//                        callback(response);
+//                    }, 1000);
 
                     /* Use this for real authentication
                      ----------------------------------------------*/
-                    //$http.post('/api/authenticate', { username: username, password: password })
-                    //    .success(function (response) {
-                    //        callback(response);
-                    //    });
+                    $http.post('/api/authenticate', {username: username, password: password})
+                            .success(function (response) {
+                                callback(response);
+                            });
 
                 };
 
                 service.SetCredentials = function (username, password) {
                     var authdata = Base64.encode(username + ':' + password);
-
+                    alert(authdata)
                     $rootScope.globals = {
                         currentUser: {
                             username: username,
