@@ -19,7 +19,7 @@ app.factory('AuthenticationService',
 
                     /* Use this for real authentication
                      ----------------------------------------------*/
-                    $http.post('/api/authenticate', {username: username, password: password})
+                    $http.get('/api/traccar/users/1', {username: username, password: password})
                             .success(function (response) {
                                 callback(response);
                             });
