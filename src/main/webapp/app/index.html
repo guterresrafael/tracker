@@ -35,7 +35,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a class="pull-right" href="#"> . </a></li>
+                        <li><a class="pull-right" href="#"> </a></li>
                     </ul>
                 </div>
             </div>
@@ -56,19 +56,22 @@
         <script src="./assets/js/angular/angular.js"></script>
         <script type="text/javascript" src="./assets/js/angular/angular-route.js"></script>
         <script type="text/javascript" src="./assets/js/angular/angular-resource.js"></script>
+        <script type="text/javascript" src="./assets/js/angular/angular-cookies.js"></script>
 
         <script src="js/main/app.js"></script>
         <script src="js/main/routes.js"></script>
 
-        <script src="js/controller/HomeController.js"></script>
-        <script src="js/controller/MainController.js"></script>
-        <script src="js/controller/controllers.js"></script>
+        <script src="js/modules/home/HomeController.js"></script>
+        <script src="js/modules/home/MainController.js"></script>
+        
+        <script type="text/javascript" src="js/directives/loginDirective.js"></script>
+        <script src="js/modules/login/LoginController.js"></script>
+        <script type="text/javascript" src="js/modules/login/AuthenticationService.js"></script>
         
         <script type="text/javascript" src="js/directives/homeDirective.js"></script>
-        <script type="text/javascript" src="js/directives/loginDirective.js"></script>
         <script type="text/javascript" src="js/directives/registrationDirective.js"></script>
 
-        <script src="js/service/deviceService.js"></script>
-        <script src="js/service/userService.js"></script>
+        <script src="js/modules/device/deviceService.js"></script>
+        <script src="js/modules/user/userService.js"></script>
     </body>
 </html>

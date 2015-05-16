@@ -4,5 +4,6 @@
  * Injeções de módulos auxiliares devem ser feitas aqui
  */
 var app = angular.module('trackerApp', [
-    'routes'
+    'routes',
+    'ngCookies'
 ]);
