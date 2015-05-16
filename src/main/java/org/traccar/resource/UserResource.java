@@ -3,6 +3,7 @@ package org.traccar.resource;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -45,7 +46,7 @@ public interface UserResource extends Resource<User, Long> {
     @Override
     public Response postEntity(User entity);
     
-    @PermitAll
+    @RolesAllowed("admin")
     @AddLinks
     @LinkResource
     @GET
