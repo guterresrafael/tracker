@@ -282,6 +282,13 @@
                             <skip>true</skip>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <configuration>
+                            <webXml>src/main/webapp/WEB-INF/localhost.web.xml</webXml>
+                        </configuration>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -324,11 +331,12 @@
             <build>
                 <plugins>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-war-plugin</artifactId>
-                        <version>${version.plugin.war}</version>
                         <configuration>
-                            <outputDirectory>deployments</outputDirectory>
-                            <warName>ROOT</warName>
+                            <webXml>src/main/webapp/WEB-INF/openshift.web.xml</webXml>
+                            <!--outputDirectory>deployments</outputDirectory-->
+                            <!--warName>ROOT</warName-->
                         </configuration>
                     </plugin>
                 </plugins>

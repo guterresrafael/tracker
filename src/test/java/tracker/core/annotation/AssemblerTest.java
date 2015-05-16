@@ -33,7 +33,7 @@ public class AssemblerTest {
     public void tearDown() {
     }
 
-     @Test
+    //@Test
      public void simpleAssemblerUserTest() {
          User user = new User();
          user.setId(1L);
@@ -46,7 +46,7 @@ public class AssemblerTest {
 //         assertEquals(userTO.getPassword(), user.getPassword());
      }
      
-     @Test
+     //@Test
      public void hello() {
          assertTrue(true);
      }

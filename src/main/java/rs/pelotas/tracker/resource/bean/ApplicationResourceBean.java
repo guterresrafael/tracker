@@ -21,4 +21,9 @@ public class ApplicationResourceBean implements ApplicationResource {
     public Response getVersion() {
         return ResponseBuilder.ok("1.0.0-SNAPSHOT");
     }
+
+    @Override
+    public Response getLogin() {
+        return ResponseBuilder.ok();
+    }
 }
