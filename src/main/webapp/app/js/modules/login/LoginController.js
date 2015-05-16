@@ -8,8 +8,7 @@ app.controller('LoginController',
 
                 $scope.login = function () {
                     AuthenticationService.SetCredentials($scope.username, $scope.password);
-                    AuthenticationService.Login($scope.username, $scope.password, function (response) {
-                        alert(response);
+                    AuthenticationService.Login(function (response) {
                         if (response.success) {
                             $location.path('/home');
                         } else {

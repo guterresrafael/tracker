@@ -5,18 +5,10 @@ app.factory('AuthenticationService',
             function (Base64, $http, $cookieStore, $rootScope, $timeout) {
                 var service = {};
 
-                service.Login = function (username, password, callback) {
-
-                    /* Use this for real authentication
-                     ----------------------------------------------*/
-//                    $http.get('/api/traccar/users/1', {username: username, password: password})
-//                            .success(function (response) {
-//                                callback(response);
-//                            });
+                service.Login = function (callback) {
                     $http({
-                        url: '/api/traccar/users/1',
+                        url: '/api/login/',
                         method: "GET"
-//                        params: {username: username, password: password}
                     }).success(function (response) {
                         callback(response);
                     });
