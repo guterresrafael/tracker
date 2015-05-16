@@ -29,15 +29,4 @@ public class UserService extends BaseService<User, Long> implements Service<User
         List<User> users = userRepository.findByFilter(userFilter);
         return users.get(0);
     }
-    
-    public boolean isUserAuthenticated(String username, String passsword) {
-        User user = this.findByLogin(username);
-        return user != null && 
-               user.getPassword() != null &&
-               user.getPassword().equals(passsword);
-    }
-    
-    public boolean isUserAuthorizated(String username, String role) {
-        return true;
-    }
 }
