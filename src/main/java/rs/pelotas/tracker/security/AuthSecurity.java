@@ -1,4 +1,4 @@
-package rs.pelotas.tracker.core;
+package rs.pelotas.tracker.security;
 
 import java.util.Set;
 import javax.inject.Inject;

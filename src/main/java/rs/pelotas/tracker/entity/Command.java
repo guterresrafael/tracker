@@ -1,8 +1,12 @@
-package org.traccar.entity;
+package rs.pelotas.tracker.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -20,26 +24,30 @@ import rs.pelotas.arch.entity.BaseEntity;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@Entity(name = "commands")
-@Table(name = "commands")
+@Entity
+@Table(name = "command")
 public class Command extends BaseEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = -3696836637131129573L;
     
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "device_id")
+    @JoinColumn(name = "device_id", foreignKey = @ForeignKey(name = "fk_device_id__command_deviceid"))
     private Device device;
 
+    @Column(name = "command")
     private String command;
     
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "queued")
     private Date queued;
     
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "executed")
     private Date executed;
     
     @Override

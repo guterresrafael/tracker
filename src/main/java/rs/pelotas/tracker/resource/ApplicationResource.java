@@ -24,7 +24,7 @@ public interface ApplicationResource extends Serializable {
     @Path("/version")
     public Response getVersion();
     
-    @RolesAllowed("login")
+    @RolesAllowed({"login"})
     @GET
     @Path("/login")
     public Response getLogin();

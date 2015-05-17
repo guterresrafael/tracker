@@ -26,7 +26,7 @@ import rs.pelotas.arch.entity.BaseEntity;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@Entity
+@Entity(name = "users")
 @Table(name="users")
 public class User extends BaseEntity<Long> implements Serializable {
     
