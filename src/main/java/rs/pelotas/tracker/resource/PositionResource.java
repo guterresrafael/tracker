@@ -1,6 +1,7 @@
-package org.traccar.resource;
+package rs.pelotas.tracker.resource;
 
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -17,51 +18,58 @@ import javax.ws.rs.core.Response;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
-import org.traccar.entity.Command;
+import rs.pelotas.tracker.entity.Position;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path("/traccar/commands")
+@Path("/positions")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-public interface CommandResource extends Resource<Command, Long> {
+public interface PositionResource extends Resource<Position, Long> {
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
+    @RolesAllowed("admin")
     @AddLinks
-    @LinkResource(value = Command.class)
+    @LinkResource(Position.class)
     @GET
     @Path("/")
     @Override
-    public List<Command> getEntities(@Context HttpServletRequest request);
+    public List<Position> getEntities(@Context HttpServletRequest request);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_create"})
+    @RolesAllowed("admin")
     @LinkResource
     @POST
     @Path("/")
     @Override
-    public Response postEntity(Command entity);
-    
-    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
+    public Response postEntity(Position entity);
+
+    @RolesAllowed("admin")
     @AddLinks
     @LinkResource
     @GET
     @Path("/{id}")
     @Override
-    public Command getEntityById(@PathParam("id") Long id);
-
-    @RolesAllowed({"traccar_admin", "traccar_admin_update"})
+    public Position getEntityById(@PathParam("id") Long id);
+    
+    @RolesAllowed("admin")
+    @AddLinks
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
-    public Response putEntity(@PathParam("id") Long id, Command entity);
+    public Response putEntity(@PathParam("id") Long id, Position entity);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_delete"})
-    @LinkResource(value = Command.class)
+    @RolesAllowed("admin")
+    @LinkResource(Position.class)
     @DELETE
     @Path("/{id}")
     @Override
-    public Response deleteEntity(@PathParam("id") Long id);    
+    public Response deleteEntity(@PathParam("id") Long id);
+    
+    @RolesAllowed("admin")
+    @LinkResource(value = Position.class, rel = "googlemaps")
+    @GET
+    @Path("/{id}/googlemaps")
+    public Response getGoogleMapsLink(@PathParam("id") Long id);
 }

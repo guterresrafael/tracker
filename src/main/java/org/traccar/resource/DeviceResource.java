@@ -2,7 +2,7 @@ package org.traccar.resource;
 
 import java.util.Collection;
 import java.util.List;
-import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -29,7 +29,7 @@ import org.traccar.entity.Device;
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface DeviceResource extends Resource<Device, Long> {
     
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
     @AddLinks
     @LinkResource(Device.class)
     @GET
@@ -37,14 +37,14 @@ public interface DeviceResource extends Resource<Device, Long> {
     @Override
     public List<Device> getEntities(@Context HttpServletRequest request);
 
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_create"})
     @LinkResource
     @POST
     @Path("/")
     @Override
     public Response postEntity(Device entity);
     
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
     @AddLinks
     @LinkResource
     @GET
@@ -52,21 +52,21 @@ public interface DeviceResource extends Resource<Device, Long> {
     @Override
     public Device getEntityById(@PathParam("id") Long id);
 
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_update"})
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
     public Response putEntity(@PathParam("id") Long id, Device entity);
 
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_delete"})
     @LinkResource(Device.class)
     @DELETE
     @Path("/{id}")
     @Override
     public Response deleteEntity(@PathParam("id") Long id);
     
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_read_users"})
     @AddLinks
     @LinkResource(value = Device.class, rel = "users")
     @GET

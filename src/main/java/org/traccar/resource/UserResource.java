@@ -31,7 +31,7 @@ import org.traccar.entity.User;
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface UserResource extends Resource<User, Long> {
 
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
     @AddLinks
     @LinkResource(User.class)
     @GET
@@ -39,14 +39,14 @@ public interface UserResource extends Resource<User, Long> {
     @Override
     public List<User> getEntities(@Context HttpServletRequest request);
 
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_create"})
     @LinkResource
     @POST
     @Path("/")
     @Override
     public Response postEntity(User entity);
     
-    @RolesAllowed("admin")
+    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
     @AddLinks
     @LinkResource
     @GET
@@ -54,21 +54,21 @@ public interface UserResource extends Resource<User, Long> {
     @Override
     public User getEntityById(@PathParam("id") Long id);
 
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_update"})
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
     public Response putEntity(@PathParam("id") Long id, User entity);
 
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_delete"})
     @LinkResource(User.class)
     @DELETE
     @Path("/{id}")
     @Override
     public Response deleteEntity(@PathParam("id") Long id);
     
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_read_devices"})
     @AddLinks
     @LinkResource(value = User.class, rel = "devices")
     @GET

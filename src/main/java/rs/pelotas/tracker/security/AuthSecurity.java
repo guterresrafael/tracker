@@ -24,6 +24,7 @@ public class AuthSecurity implements AuthenticationAndAuthorizationSecurity {
         try {
             User user = userService.findByLogin(authorization.getUsername());
             if (authorization.getPassword().equalsIgnoreCase(user.getPassword())) {
+                authorization.setId(user.getId());
                 for (Role role : user.getRoles()) {
                     authorization.getRoles().add(role.getName());
                 }
