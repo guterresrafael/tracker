@@ -9,10 +9,10 @@ app.controller('LoginController',
                 $scope.login = function () {
                     AuthenticationService.SetCredentials($scope.username, $scope.password);
                     AuthenticationService.Login(function (response) {
-                        if (response.success) {
+                        if (response === 200) {
                             $location.path('/home');
                         } else {
-                            $scope.error = response.message;
+                            $scope.error = "Falha na autenticação.";
                         }
                     });
                 };

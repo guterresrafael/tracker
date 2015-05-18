@@ -6,13 +6,12 @@ app.factory('AuthenticationService',
                 var service = {};
 
                 service.Login = function (callback) {
-                    $http({
-                        url: '/api/login/',
-                        method: "GET"
-                    }).success(function (response) {
-                        callback(response);
-                    });
-
+                    $http.get('/api/login/')
+                            .success(function (data, status) {
+                                callback(status);
+                            }).error(function(data, status){
+                                callback(status);
+                            });
                 };
                 service.SetCredentials = function (username, password) {
                     var authdata = Base64.encode(username + ':' + password);
