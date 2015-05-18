@@ -40,11 +40,12 @@
         </activatedProfiles>
     </action>
     <action>
-        <actionName>CUSTOM-Setup Database</actionName>
-        <displayName>Setup Database</displayName>
+        <actionName>CUSTOM-Setup Database Deploy</actionName>
+        <displayName>Setup Database Deploy</displayName>
         <goals>
             <goal>clean</goal>
             <goal>install</goal>
+            <goal>wildfly:deploy</goal>
         </goals>
         <activatedProfiles>
             <activatedProfile>setup-database</activatedProfile>
