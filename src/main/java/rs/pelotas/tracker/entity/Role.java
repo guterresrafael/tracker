@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import rs.pelotas.arch.entity.BaseEntity;
 
@@ -17,6 +20,8 @@ import rs.pelotas.arch.entity.BaseEntity;
  *
  * @author Rafael Guterres
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "role")
 public class Role extends BaseEntity<Long> {

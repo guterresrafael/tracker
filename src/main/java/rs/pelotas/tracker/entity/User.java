@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -66,8 +68,10 @@ public class User extends BaseEntity<Long> implements Serializable {
     private List<Device> devices;
 
     @XmlTransient
+    @XmlElementWrapper(name = "roles")
+    @XmlElement(name = "role")
     @ManyToMany(cascade = CascadeType.ALL,
-                fetch = FetchType.LAZY)
+                fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
            joinColumns = @JoinColumn(name = "user_id"),
            foreignKey = @ForeignKey(name = "fk_user_id__userrole_userid"),

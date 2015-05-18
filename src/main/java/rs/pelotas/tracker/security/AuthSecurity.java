@@ -2,9 +2,11 @@ package rs.pelotas.tracker.security;
 
 import java.util.Set;
 import javax.inject.Inject;
-import org.traccar.entity.User;
-import org.traccar.service.UserService;
 import rs.pelotas.arch.security.AuthenticationAndAuthorizationSecurity;
+import rs.pelotas.arch.security.AuthorizationBasic;
+import rs.pelotas.tracker.entity.Role;
+import rs.pelotas.tracker.entity.User;
+import rs.pelotas.tracker.service.UserService;
 
 /**
  *
@@ -18,13 +20,28 @@ public class AuthSecurity implements AuthenticationAndAuthorizationSecurity {
     UserService userService;
     
     @Override
-    public boolean isAuthenticatedUser(String login, String password) {
-        User user = userService.findByLogin(login);
-        return password != null && password.equalsIgnoreCase(user.getPassword());
+    public boolean isAuthenticatedUser(AuthorizationBasic authorization) {
+        try {
+            User user = userService.findByLogin(authorization.getUsername());
+            if (authorization.getPassword().equalsIgnoreCase(user.getPassword())) {
+                for (Role role : user.getRoles()) {
+                    authorization.getRoles().add(role.getName());
+                }
+                return true;
+            }
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
     @Override
-    public boolean isAuthorizedUser(String login, Set<String> roles) {
-        return true;
+    public boolean isAuthorizedUser(AuthorizationBasic authorization, Set<String> roles) {
+        for (String role : roles) {
+            if (authorization.getRoles().contains(role)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
