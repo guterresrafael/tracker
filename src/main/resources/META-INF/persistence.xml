@@ -4,22 +4,20 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
                                  http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="tracker" transaction-type="JTA">
-        <jta-data-source>${datasource.tracker}</jta-data-source>
+        <jta-data-source>${datasource.tracker.jndi}</jta-data-source>
         <properties>
-            <property name="wildfly.jpa.default-unit" value="true" />
-            <property name="hibernate.dialect" value="${hibernate.dialect}"/>
-            <property name="hibernate.hbm2ddl.auto" value="${hibernate.hbm2ddl.auto}"/>
-            <property name="hibernate.hbm2ddl.import_files" value="${hibernate.hbm2ddl.import_files}"/>
+            <property name="wildfly.jpa.default-unit" value="true"/>
+            <property name="hibernate.dialect" value="${datasource.tracker.dialect}"/>
             <property name="hibernate.show_sql" value="${hibernate.show_sql}"/>
             <property name="hibernate.format_sql" value="${hibernate.format_sql}"/>
+            <property name="hibernate.hbm2ddl.auto" value="${hibernate.hbm2ddl.auto}"/>
+            <property name="hibernate.hbm2ddl.import_files" value="${hibernate.hbm2ddl.import_files}"/>
         </properties>
     </persistence-unit>
     <persistence-unit name="traccar" transaction-type="JTA">
-        <jta-data-source>${datasource.traccar}</jta-data-source>
+        <jta-data-source>${datasource.traccar.jndi}</jta-data-source>
         <properties>
-            <property name="hibernate.dialect" value="${hibernate.dialect}"/>
-            <property name="hibernate.show_sql" value="${hibernate.show_sql}"/>
-            <property name="hibernate.format_sql" value="${hibernate.format_sql}"/>
+            <property name="hibernate.dialect" value="${datasource.traccar.dialect}"/>
         </properties>
     </persistence-unit>
 </persistence>
