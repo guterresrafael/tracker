@@ -28,7 +28,7 @@ public class UserService extends BaseService<User, Long> implements Service<User
     public User findByLogin(String login) {
         UserFilter userFilter = new UserFilter();
         userFilter.setLogin(login);
-        List<User> users = userRepository.findByFilter(userFilter);
+        List<User> users = userRepository.find(userFilter);
         return users.get(0);
     }
 }
