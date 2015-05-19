@@ -12,6 +12,8 @@ import rs.pelotas.tracker.repository.CommandRepository;
  * @author Rafael Guterres
  */
 public class CommandService extends BaseService<Command, Long> implements Service<Command, Long> {
+
+    private static final long serialVersionUID = 4052449166823238992L;
     
     @Inject
     CommandRepository commandRepository;

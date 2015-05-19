@@ -16,6 +16,7 @@ import rs.pelotas.arch.resource.ResponseBuilder;
 public class PositionResourceBean extends BaseResource<Position, Long> implements PositionResource {
     
     private static final long serialVersionUID = 3630413584076355265L;
+
     private static final String GOOGLE_MAPS_LINK = "https://maps.google.com?q=%s,%s";
 
     @Inject

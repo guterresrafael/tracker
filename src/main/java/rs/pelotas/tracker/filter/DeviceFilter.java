@@ -8,7 +8,9 @@ import rs.pelotas.arch.repository.CriteriaFilter;
  * @author Rafael Guterres
  */
 public class DeviceFilter implements Filter {
-    
+
+    private static final long serialVersionUID = -2816539253666022760L;
+
     @CriteriaFilter
     private Long id;
     

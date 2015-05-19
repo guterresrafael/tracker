@@ -12,7 +12,9 @@ import org.traccar.repository.PositionRepository;
  * @author Rafael Guterres
  */
 public class PositionService extends BaseService<Position, Long> implements Service<Position, Long> {
-    
+
+    private static final long serialVersionUID = 6724032880321896946L;
+
     @Inject
     PositionRepository positionRepository;
 

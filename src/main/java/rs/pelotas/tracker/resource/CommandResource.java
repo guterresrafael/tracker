@@ -1,7 +1,6 @@
 package rs.pelotas.tracker.resource;
 
 import java.util.List;
-import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;

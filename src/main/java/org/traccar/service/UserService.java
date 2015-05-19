@@ -14,7 +14,9 @@ import org.traccar.repository.UserRepository;
  * @author Rafael Guterres
  */
 public class UserService extends BaseService<User, Long> implements Service<User, Long> {
-    
+
+    private static final long serialVersionUID = -8063860493524059545L;
+
     @Inject
     UserRepository userRepository;
 

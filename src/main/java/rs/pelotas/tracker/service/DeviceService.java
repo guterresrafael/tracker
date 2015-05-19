@@ -12,7 +12,9 @@ import rs.pelotas.tracker.repository.DeviceRepository;
  * @author Rafael Guterres
  */
 public class DeviceService extends BaseService<Device, Long> implements Service<Device, Long> {
-    
+
+    private static final long serialVersionUID = -6173900068176198955L;
+
     @Inject
     DeviceRepository deviceRepository;
 

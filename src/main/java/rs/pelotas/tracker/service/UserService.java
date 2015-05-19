@@ -14,6 +14,8 @@ import rs.pelotas.tracker.repository.UserRepository;
  * @author Rafael Guterres
  */
 public class UserService extends BaseService<User, Long> implements Service<User, Long> {
+
+    private static final long serialVersionUID = -8808714191503203114L;
     
     @Inject
     UserRepository userRepository;

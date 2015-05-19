@@ -12,7 +12,9 @@ import rs.pelotas.tracker.repository.PositionRepository;
  * @author Rafael Guterres
  */
 public class PositionService extends BaseService<Position, Long> implements Service<Position, Long> {
-    
+
+    private static final long serialVersionUID = -2496030139227407311L;
+
     @Inject
     PositionRepository positionRepository;
 
