@@ -51,4 +51,11 @@
             <activatedProfile>setup-database</activatedProfile>
         </activatedProfiles>
     </action>
+    <action>
+            <actionName>CUSTOM-sonar analyze</actionName>
+            <displayName>sonar analyze</displayName>
+            <goals>
+                <goal>sonar:sonar</goal>
+            </goals>
+        </action>
 </actions>

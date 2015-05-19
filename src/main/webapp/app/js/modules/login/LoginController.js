@@ -8,12 +8,11 @@ app.controller('LoginController',
 
                 $scope.login = function () {
                     AuthenticationService.SetCredentials($scope.username, $scope.password);
-                    AuthenticationService.Login($scope.username, $scope.password, function (response) {
-                        alert(response);
-                        if (response.success) {
+                    AuthenticationService.Login(function (response) {
+                        if (response === 200) {
                             $location.path('/home');
                         } else {
-                            $scope.error = response.message;
+                            $scope.error = "Falha na autenticação.";
                         }
                     });
                 };

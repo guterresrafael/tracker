@@ -5,22 +5,13 @@ app.factory('AuthenticationService',
             function (Base64, $http, $cookieStore, $rootScope, $timeout) {
                 var service = {};
 
-                service.Login = function (username, password, callback) {
-
-                    /* Use this for real authentication
-                     ----------------------------------------------*/
-//                    $http.get('/api/traccar/users/1', {username: username, password: password})
-//                            .success(function (response) {
-//                                callback(response);
-//                            });
-                    $http({
-                        url: '/api/traccar/users/1',
-                        method: "GET"
-//                        params: {username: username, password: password}
-                    }).success(function (response) {
-                        callback(response);
-                    });
-
+                service.Login = function (callback) {
+                    $http.get('/api/login/')
+                            .success(function (data, status) {
+                                callback(status);
+                            }).error(function(data, status){
+                                callback(status);
+                            });
                 };
                 service.SetCredentials = function (username, password) {
                     var authdata = Base64.encode(username + ':' + password);
