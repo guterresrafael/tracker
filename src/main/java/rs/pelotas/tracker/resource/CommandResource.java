@@ -1,6 +1,7 @@
-package org.traccar.resource;
+package rs.pelotas.tracker.resource;
 
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -17,18 +18,18 @@ import javax.ws.rs.core.Response;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
-import org.traccar.entity.Command;
+import rs.pelotas.tracker.entity.Command;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path("/traccar/commands")
+@Path("/commands")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface CommandResource extends Resource<Command, Long> {
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
+    @RolesAllowed({"admin", "admin_read", "commands", "commands_read"})
     @AddLinks
     @LinkResource(value = Command.class)
     @GET
@@ -36,14 +37,14 @@ public interface CommandResource extends Resource<Command, Long> {
     @Override
     public List<Command> getEntities(@Context HttpServletRequest request);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_create"})
+    @RolesAllowed({"admin", "admin_create", "commands", "commands_create"})
     @LinkResource
     @POST
     @Path("/")
     @Override
     public Response postEntity(Command entity);
     
-    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
+    @RolesAllowed({"admin", "admin_read", "commands", "commands_read"})
     @AddLinks
     @LinkResource
     @GET
@@ -51,14 +52,14 @@ public interface CommandResource extends Resource<Command, Long> {
     @Override
     public Command getEntityById(@PathParam("id") Long id);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_update"})
+    @RolesAllowed({"admin", "admin_update", "commands", "commands_update"})
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
     public Response putEntity(@PathParam("id") Long id, Command entity);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_delete"})
+    @RolesAllowed({"admin", "admin_delete", "commands", "commands_delete"})
     @LinkResource(value = Command.class)
     @DELETE
     @Path("/{id}")

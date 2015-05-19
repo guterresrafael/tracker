@@ -1,4 +1,4 @@
-package org.traccar.resource;
+package rs.pelotas.tracker.resource;
 
 import java.util.Collection;
 import java.util.List;
@@ -19,19 +19,19 @@ import javax.ws.rs.core.Response;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
-import org.traccar.entity.Device;
-import org.traccar.entity.User;
+import rs.pelotas.tracker.entity.Device;
+import rs.pelotas.tracker.entity.User;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path("/traccar/users")
+@Path("/users")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface UserResource extends Resource<User, Long> {
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
+    @RolesAllowed({"admin", "admin_read", "users", "users_read"})
     @AddLinks
     @LinkResource(User.class)
     @GET
@@ -39,14 +39,14 @@ public interface UserResource extends Resource<User, Long> {
     @Override
     public List<User> getEntities(@Context HttpServletRequest request);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_create"})
+    @RolesAllowed({"admin", "admin_create", "users", "users_create"})
     @LinkResource
     @POST
     @Path("/")
     @Override
     public Response postEntity(User entity);
     
-    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
+    @RolesAllowed({"admin", "admin_read", "users", "users_read"})
     @AddLinks
     @LinkResource
     @GET
@@ -54,21 +54,21 @@ public interface UserResource extends Resource<User, Long> {
     @Override
     public User getEntityById(@PathParam("id") Long id);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_update"})
+    @RolesAllowed({"admin", "admin_update", "users", "users_update"})
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
     public Response putEntity(@PathParam("id") Long id, User entity);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_delete"})
+    @RolesAllowed({"admin", "admin_delete", "users", "users_delete"})
     @LinkResource(User.class)
     @DELETE
     @Path("/{id}")
     @Override
     public Response deleteEntity(@PathParam("id") Long id);
     
-    @RolesAllowed({"traccar_admin", "traccar_admin_read_devices"})
+    @RolesAllowed({"admin", "admin_read", "users", "users_read_devices"})
     @AddLinks
     @LinkResource(value = User.class, rel = "devices")
     @GET

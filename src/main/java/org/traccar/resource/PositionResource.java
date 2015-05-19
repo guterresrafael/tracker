@@ -2,6 +2,7 @@ package org.traccar.resource;
 
 import java.util.List;
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -28,7 +29,7 @@ import org.traccar.entity.Position;
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface PositionResource extends Resource<Position, Long> {
 
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
     @AddLinks
     @LinkResource(Position.class)
     @GET
@@ -36,14 +37,14 @@ public interface PositionResource extends Resource<Position, Long> {
     @Override
     public List<Position> getEntities(@Context HttpServletRequest request);
 
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_create"})
     @LinkResource
     @POST
     @Path("/")
     @Override
     public Response postEntity(Position entity);
 
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
     @AddLinks
     @LinkResource
     @GET
@@ -51,7 +52,7 @@ public interface PositionResource extends Resource<Position, Long> {
     @Override
     public Position getEntityById(@PathParam("id") Long id);
     
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_update"})
     @AddLinks
     @LinkResource
     @PUT
@@ -59,14 +60,14 @@ public interface PositionResource extends Resource<Position, Long> {
     @Override
     public Response putEntity(@PathParam("id") Long id, Position entity);
 
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_delete"})
     @LinkResource(Position.class)
     @DELETE
     @Path("/{id}")
     @Override
     public Response deleteEntity(@PathParam("id") Long id);
     
-    @PermitAll
+    @RolesAllowed({"traccar_admin", "traccar_admin_read_maps"})
     @LinkResource(value = Position.class, rel = "googlemaps")
     @GET
     @Path("/{id}/googlemaps")

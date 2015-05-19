@@ -29,7 +29,35 @@
         <version.plugin.war>2.5</version.plugin.war>
         
         <maven.compiler.target>1.7</maven.compiler.target>
-        <maven.compiler.source>1.7</maven.compiler.source>  
+        <maven.compiler.source>1.7</maven.compiler.source>
+                
+        <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
+
+        <wildfly.home>${env.WILDFLY_HOME}</wildfly.home>
+        <wildfly.hostname>127.0.0.1</wildfly.hostname>
+        <wildfly.port>9990</wildfly.port>
+        <wildfly.username>wildfly</wildfly.username>
+        <wildfly.password>wildfly</wildfly.password>
+        
+        <datasource.tracker.name>TrackerDS</datasource.tracker.name>
+        <datasource.tracker.jndi>java:jboss/datasources/TrackerDS</datasource.tracker.jndi>
+        <datasource.tracker.driver>mysql</datasource.tracker.driver>
+        <datasource.tracker.class>com.mysql.jdbc.Driver</datasource.tracker.class>
+        <datasource.tracker.url>jdbc:mysql://localhost:3306/tracker</datasource.tracker.url>
+        <datasource.tracker.username>tracker</datasource.tracker.username>
+        <datasource.tracker.password>tracker</datasource.tracker.password>
+        <datasource.tracker.enable>true</datasource.tracker.enable>
+        <datasource.tracker.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</datasource.tracker.dialect>
+
+        <datasource.traccar.name>TraccarDS</datasource.traccar.name>
+        <datasource.traccar.jndi>java:jboss/datasources/TraccarDS</datasource.traccar.jndi>
+        <datasource.traccar.driver>mysql</datasource.traccar.driver>
+        <datasource.traccar.class>com.mysql.jdbc.Driver</datasource.traccar.class>
+        <datasource.traccar.url>jdbc:mysql://localhost:3306/traccar</datasource.traccar.url>
+        <datasource.traccar.username>traccar</datasource.traccar.username>
+        <datasource.traccar.password>traccar</datasource.traccar.password>
+        <datasource.traccar.enable>true</datasource.traccar.enable>
+        <datasource.traccar.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</datasource.traccar.dialect>
     </properties>
 
     <dependencies>
@@ -232,12 +260,21 @@
 
     <build>
         <finalName>${project.artifactId}</finalName>
+        
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${version.plugin.war}</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webXml>src/main/resources/config_xml/insecure.web.xml</webXml>
                 </configuration>
             </plugin>
 
@@ -247,10 +284,11 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${version.plugin.wildfly}</version>
                 <configuration>
-                    <hostname>${wildfly-hostname}</hostname>
-                    <port>${wildfly-port}</port>
-                    <username>${wildfly-username}</username>
-                    <password>${wildfly-password}</password>
+                    <jbossHome>${wildfly.home}</jbossHome>
+                    <hostname>${wildfly.hostname}</hostname>
+                    <port>${wildfly.port}</port>
+                    <username>${wildfly.username}</username>
+                    <password>${wildfly.password}</password>
                 </configuration>
             </plugin>
         </plugins>
@@ -258,20 +296,127 @@
 
     <profiles>
         <profile>
+            <id>setup-wildfly</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${version.plugin.surefire}</version>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.wildfly.plugins</groupId>
+                        <artifactId>wildfly-maven-plugin</artifactId>
+                        <version>${version.plugin.wildfly}</version>
+                        <executions>
+                            <execution>
+                                <id>undeploy</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>undeploy</goal>
+                                </goals>
+                                <configuration>
+                                    <ignoreMissingDeployment>true</ignoreMissingDeployment>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>add-datasource-tracker</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>add-resource</goal>
+                                </goals>
+                                <configuration>
+                                    <address>subsystem=datasources,data-source=${datasource.tracker.name}</address>
+                                    <resources>
+                                        <resource>
+                                            <properties>
+                                                <jndi-name>${datasource.tracker.jndi}</jndi-name>
+                                                <connection-url>${datasource.tracker.url}</connection-url>
+                                                <driver-name>${datasource.tracker.driver}</driver-name>
+                                                <driver-class>${datasource.tracker.class}</driver-class>
+                                                <user-name>${datasource.tracker.username}</user-name>
+                                                <password>${datasource.tracker.password}</password>
+                                                <enabled>${datasource.tracker.enable}</enabled>
+                                            </properties>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>add-datasource-traccar</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>add-resource</goal>
+                                </goals>
+                                <configuration>
+                                    <address>subsystem=datasources,data-source=${datasource.traccar.name}</address>
+                                    <resources>
+                                        <resource>
+                                            <properties>
+                                                <jndi-name>${datasource.traccar.jndi}</jndi-name>
+                                                <connection-url>${datasource.traccar.url}</connection-url>
+                                                <driver-name>${datasource.traccar.driver}</driver-name>
+                                                <driver-class>${datasource.traccar.class}</driver-class>
+                                                <user-name>${datasource.traccar.username}</user-name>
+                                                <password>${datasource.traccar.password}</password>
+                                                <enabled>${datasource.traccar.enable}</enabled>
+                                            </properties>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>execute-commands</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>execute-commands</goal>
+                                </goals>
+                                <configuration>
+                                    <execute-commands>
+                                        <!--command> /subsystem=ee/service=default-bindings :write-attribute(name=datasource,value=java:jboss/datasources/TrackerDS)</command-->
+                                        <scripts>
+                                            <script>${project.basedir}/src/main/resources/jboss_scripts_cli/02_config_batch_datasource.cli</script>
+                                            <script>${project.basedir}/src/main/resources/jboss_scripts_cli/03_config_ee_datasource.cli</script>
+                                            <script>${project.basedir}/src/main/resources/jboss_scripts_cli/99_reload.cli</script>
+                                        </scripts>
+                                    </execute-commands>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>setup-database</id>
+            <properties>
+                <hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
+                <hibernate.hbm2ddl.import_files>
+                    /database_dump_sql/01_user.sql,
+                    /database_dump_sql/02_device.sql,
+                    /database_dump_sql/03_user_device.sql,
+                    /database_dump_sql/04_role.sql,
+                    /database_dump_sql/05_user_role.sql,
+                    /database_dump_sql/99_drop_traccar.sql
+                </hibernate.hbm2ddl.import_files>
+            </properties>
+        </profile>
+        
+        <profile>
             <!-- The default profile skips all tests, though you can tune 
             it to run just unit tests based on a custom pattern -->
             <!-- Seperate profiles are provided for running all tests, including 
             Arquillian tests that execute in the specified container -->
-            <id>localhost</id>
+            <id>developer</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <wildfly-home>C:\DEV\Servers\wildfly-8.2.0.Final</wildfly-home>
-                <wildfly-hostname>127.0.0.1</wildfly-hostname>
-                <wildfly-port>9990</wildfly-port>
-                <wildfly-username>wildfly</wildfly-username>
-                <wildfly-password>wildfly</wildfly-password>
+                <hibernate.show_sql>true</hibernate.show_sql>
+                <hibernate.format_sql>true</hibernate.format_sql>
             </properties>
             <build>
                 <plugins>
@@ -283,11 +428,18 @@
                         </configuration>
                     </plugin>
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <configuration>
-                            <webXml>src/main/webapp/WEB-INF/localhost.web.xml</webXml>
-                        </configuration>
+                        <groupId>org.wildfly.plugins</groupId>
+                        <artifactId>wildfly-maven-plugin</artifactId>
+                        <version>${version.plugin.wildfly}</version>
+                        <executions>
+                            <!--execution>
+                                <id>deploy_application</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>deploy</goal>
+                                </goals>
+                            </execution-->
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -328,13 +480,18 @@
             <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
             <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
             <id>openshift</id>
+            <properties>
+                <hibernate.hbm2ddl.auto>none</hibernate.hbm2ddl.auto>
+                <hibernate.show_sql>false</hibernate.show_sql>
+                <hibernate.format_sql>false</hibernate.format_sql>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-war-plugin</artifactId>
                         <configuration>
-                            <webXml>src/main/webapp/WEB-INF/openshift.web.xml</webXml>
+                            <webXml>src/main/resources/config_xml/secure.web.xml</webXml>
                             <!--outputDirectory>deployments</outputDirectory-->
                             <!--warName>ROOT</warName-->
                         </configuration>

@@ -1,25 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
     <action>
-        <actionName>CUSTOM-wildfly:deploy</actionName>
-        <displayName>wildfly:deploy</displayName>
+        <actionName>CUSTOM-Deploy</actionName>
+        <displayName>Package Deploy</displayName>
         <goals>
             <goal>package wildfly:deploy</goal>
         </goals>
     </action>
     <action>
-        <actionName>CUSTOM-wildfly:undeploy</actionName>
-        <displayName>wildfly:undeploy</displayName>
+        <actionName>CUSTOM-Deploy</actionName>
+        <displayName>Deploy</displayName>
+        <goals>
+            <goal>wildfly:deploy</goal>
+        </goals>
+    </action>
+    <action>
+        <actionName>CUSTOM-Redeploy</actionName>
+        <displayName>Redeploy</displayName>
+        <goals>
+            <goal>wildfly:redeploy</goal>
+        </goals>
+    </action>
+    <action>
+        <actionName>CUSTOM-Undeploy</actionName>
+        <displayName>Undeploy</displayName>
         <goals>
             <goal>wildfly:undeploy</goal>
         </goals>
     </action>
     <action>
-        <actionName>CUSTOM-wildfly:redeploy</actionName>
-        <displayName>wildfly:redeploy</displayName>
+        <actionName>CUSTOM-Setup Wildfly</actionName>
+        <displayName>Setup Wildfly</displayName>
         <goals>
-            <goal>package wildfly:redeploy</goal>
+            <goal>clean</goal>
+            <goal>install</goal>
         </goals>
+        <activatedProfiles>
+            <activatedProfile>setup-wildfly</activatedProfile>
+        </activatedProfiles>
+    </action>
+    <action>
+        <actionName>CUSTOM-Setup Database Deploy</actionName>
+        <displayName>Setup Database Deploy</displayName>
+        <goals>
+            <goal>clean</goal>
+            <goal>install</goal>
+            <goal>wildfly:deploy</goal>
+        </goals>
+        <activatedProfiles>
+            <activatedProfile>setup-database</activatedProfile>
+        </activatedProfiles>
     </action>
     <action>
             <actionName>CUSTOM-sonar analyze</actionName>

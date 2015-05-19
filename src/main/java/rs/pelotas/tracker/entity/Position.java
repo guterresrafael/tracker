@@ -1,9 +1,11 @@
-package org.traccar.entity;
+package rs.pelotas.tracker.entity;
 
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -19,26 +21,46 @@ import rs.pelotas.arch.entity.BaseEntity;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@Entity(name = "positions")
-@Table(name = "positions")
+@Entity
+@Table(name = "position")
 public class Position extends BaseEntity<Long> implements Serializable {
     
     private static final long serialVersionUID = 461668360836681003L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    
+    @Column(name = "address")
     private String address;
+    
+    @Column(name = "altitude")
     private Double altitude;
+    
+    @Column(name = "course")
     private Double course;
-    private Double latitude;  
+    
+    @Column(name = "latitude")
+    private Double latitude;
+    
+    @Column(name = "longitude")
     private Double longitude;
+    
+    @Column(name = "other")
     private String other;
+    
+    @Column(name = "power")
     private Double power;
+    
+    @Column(name = "speed")
     private Double speed;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "time")
     private Date time;
     
+    @Column(name = "valid")
     private Boolean valid;
     
 //    @OneToOne

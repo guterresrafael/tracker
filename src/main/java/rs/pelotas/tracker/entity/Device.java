@@ -1,4 +1,4 @@
-package org.traccar.entity;
+package rs.pelotas.tracker.entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,6 +6,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -24,28 +27,31 @@ import rs.pelotas.arch.entity.BaseEntity;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@Entity(name = "devices")
-@Table(name="devices", uniqueConstraints = @UniqueConstraint(columnNames = "uniqueId"))
+@Entity
+@Table(name = "device", uniqueConstraints = @UniqueConstraint(name = "uk_device_imei", columnNames = "imei"))
 public class Device extends BaseEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = -5900559872664830378L;
-        
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
-    
+
+    @Column(name = "name")
     private String name;
-    
-    @Column(name="uniqueId")
+
+    @Column(name = "imei")
     private String imei;
     
     @XmlTransient
-    @ManyToMany(mappedBy = "devices", 
+    @ManyToMany(mappedBy = "devices",
                 cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY)
     private List<User> users;
     
     @OneToOne
-    @JoinColumn(name="latestPosition_id")
+    @JoinColumn(name="latest_position_id", foreignKey = @ForeignKey(name = "fk_position_id__device_latestpositionid"))
     private Position latestPosition;
     
     @Override

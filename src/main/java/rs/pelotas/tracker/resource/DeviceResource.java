@@ -1,8 +1,7 @@
-package org.traccar.resource;
+package rs.pelotas.tracker.resource;
 
 import java.util.Collection;
 import java.util.List;
-import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -19,59 +18,58 @@ import javax.ws.rs.core.Response;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
-import org.traccar.entity.Device;
-import org.traccar.entity.User;
+import rs.pelotas.tracker.entity.Device;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path("/traccar/users")
+@Path("/devices")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-public interface UserResource extends Resource<User, Long> {
-
-    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
+public interface DeviceResource extends Resource<Device, Long> {
+    
+    @RolesAllowed({"admin", "admin_read", "devices", "devices_read"})
     @AddLinks
-    @LinkResource(User.class)
+    @LinkResource(Device.class)
     @GET
     @Path("/")
     @Override
-    public List<User> getEntities(@Context HttpServletRequest request);
+    public List<Device> getEntities(@Context HttpServletRequest request);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_create"})
+    @RolesAllowed({"admin", "admin_create", "devices", "devices_create"})
     @LinkResource
     @POST
     @Path("/")
     @Override
-    public Response postEntity(User entity);
+    public Response postEntity(Device entity);
     
-    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
+    @RolesAllowed({"admin", "admin_read", "devices", "devices_read"})
     @AddLinks
     @LinkResource
     @GET
     @Path("/{id}")
     @Override
-    public User getEntityById(@PathParam("id") Long id);
+    public Device getEntityById(@PathParam("id") Long id);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_update"})
+    @RolesAllowed({"admin", "admin_update", "devices", "devices_update"})
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
-    public Response putEntity(@PathParam("id") Long id, User entity);
+    public Response putEntity(@PathParam("id") Long id, Device entity);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_delete"})
-    @LinkResource(User.class)
+    @RolesAllowed({"admin", "admin_delete", "devices", "devices_delete"})
+    @LinkResource(Device.class)
     @DELETE
     @Path("/{id}")
     @Override
     public Response deleteEntity(@PathParam("id") Long id);
     
-    @RolesAllowed({"traccar_admin", "traccar_admin_read_devices"})
+    @RolesAllowed({"admin", "admin_read", "devices", "devices_read_users"})
     @AddLinks
-    @LinkResource(value = User.class, rel = "devices")
+    @LinkResource(value = Device.class, rel = "users")
     @GET
-    @Path("/{id}/devices")
-    public Collection<Device> getDevices(@PathParam("id") Long userId);
+    @Path("/{id}/users")
+    public Collection<Device> getUsers(@PathParam("id") Long deviceId);
 }

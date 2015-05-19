@@ -1,17 +1,15 @@
-package org.traccar.entity;
+package rs.pelotas.tracker.entity;
 
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -24,30 +22,29 @@ import rs.pelotas.arch.entity.BaseEntity;
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@Entity(name = "devices")
-@Table(name="devices", uniqueConstraints = @UniqueConstraint(columnNames = "uniqueId"))
-public class Device extends BaseEntity<Long> implements Serializable {
+@Entity
+@Table(name = "role")
+public class Role extends BaseEntity<Long> {
 
-    private static final long serialVersionUID = -5900559872664830378L;
-        
+    private static final long serialVersionUID = -3904509244026375016L;
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     
+    @Column(name = "name")
     private String name;
     
-    @Column(name="uniqueId")
-    private String imei;
+    @Column(name = "description")
+    private String description;
     
     @XmlTransient
-    @ManyToMany(mappedBy = "devices", 
+    @ManyToMany(mappedBy = "roles",
                 cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY)
     private List<User> users;
-    
-    @OneToOne
-    @JoinColumn(name="latestPosition_id")
-    private Position latestPosition;
-    
+
     @Override
     public Long getId() {
         return id;
@@ -66,20 +63,12 @@ public class Device extends BaseEntity<Long> implements Serializable {
         this.name = name;
     }
 
-    public String getImei() {
-        return imei;
+    public String getDescription() {
+        return description;
     }
 
-    public void setImei(String imei) {
-        this.imei = imei;
-    }
-
-    public Position getLatestPosition() {
-        return latestPosition;
-    }
-
-    public void setLatestPosition(Position latestPosition) {
-        this.latestPosition = latestPosition;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<User> getUsers() {
