@@ -1,6 +1,7 @@
 package rs.pelotas.tracker.resource;
 
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -18,17 +19,18 @@ import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
 import rs.pelotas.tracker.entity.Command;
+import rs.pelotas.tracker.security.role.CommandRole;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path("/commands")
+@Path(AppResourcePath.COMMANDS)
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface CommandResource extends Resource<Command, Long> {
 
-    @RolesAllowed({"admin", "admin_read", "commands", "commands_read"})
+    @RolesAllowed({CommandRole.LIST})
     @AddLinks
     @LinkResource(value = Command.class)
     @GET
@@ -36,14 +38,14 @@ public interface CommandResource extends Resource<Command, Long> {
     @Override
     public List<Command> getEntities(@Context HttpServletRequest request);
 
-    @RolesAllowed({"admin", "admin_create", "commands", "commands_create"})
+    @RolesAllowed({CommandRole.CREATE})
     @LinkResource
     @POST
     @Path("/")
     @Override
     public Response postEntity(Command entity);
     
-    @RolesAllowed({"admin", "admin_read", "commands", "commands_read"})
+    @RolesAllowed({CommandRole.READ})
     @AddLinks
     @LinkResource
     @GET
@@ -51,14 +53,14 @@ public interface CommandResource extends Resource<Command, Long> {
     @Override
     public Command getEntityById(@PathParam("id") Long id);
 
-    @RolesAllowed({"admin", "admin_update", "commands", "commands_update"})
+    @RolesAllowed({CommandRole.UPDATE})
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
     public Response putEntity(@PathParam("id") Long id, Command entity);
 
-    @RolesAllowed({"admin", "admin_delete", "commands", "commands_delete"})
+    @RolesAllowed({CommandRole.DELETE})
     @LinkResource(value = Command.class)
     @DELETE
     @Path("/{id}")

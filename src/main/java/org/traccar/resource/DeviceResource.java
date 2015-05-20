@@ -19,17 +19,18 @@ import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
 import org.traccar.entity.Device;
+import rs.pelotas.tracker.security.role.TraccarRole;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path("/traccar/devices")
+@Path(AppResourcePath.TRACCAR_DEVICES)
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface DeviceResource extends Resource<Device, Long> {
     
-    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
+    @RolesAllowed({TraccarRole.DEVICES_LIST})
     @AddLinks
     @LinkResource(Device.class)
     @GET
@@ -37,14 +38,14 @@ public interface DeviceResource extends Resource<Device, Long> {
     @Override
     public List<Device> getEntities(@Context HttpServletRequest request);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_create"})
+    @RolesAllowed({TraccarRole.DEVICES_CREATE})
     @LinkResource
     @POST
     @Path("/")
     @Override
     public Response postEntity(Device entity);
     
-    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
+    @RolesAllowed({TraccarRole.DEVICES_READ})
     @AddLinks
     @LinkResource
     @GET
@@ -52,21 +53,21 @@ public interface DeviceResource extends Resource<Device, Long> {
     @Override
     public Device getEntityById(@PathParam("id") Long id);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_update"})
+    @RolesAllowed({TraccarRole.DEVICES_UPDATE})
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
     public Response putEntity(@PathParam("id") Long id, Device entity);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_delete"})
+    @RolesAllowed({TraccarRole.DEVICES_DELETE})
     @LinkResource(Device.class)
     @DELETE
     @Path("/{id}")
     @Override
     public Response deleteEntity(@PathParam("id") Long id);
     
-    @RolesAllowed({"traccar_admin", "traccar_admin_read_users"})
+    @RolesAllowed({TraccarRole.DEVICES_USERS_LIST})
     @AddLinks
     @LinkResource(value = Device.class, rel = "users")
     @GET

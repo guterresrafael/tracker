@@ -21,17 +21,19 @@ import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
 import rs.pelotas.tracker.entity.Device;
 import rs.pelotas.tracker.entity.User;
+import rs.pelotas.tracker.security.role.UserRole;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path("/users")
+@Path(AppResourcePath.USERS)
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface UserResource extends Resource<User, Long> {
 
-    @RolesAllowed({"admin", "admin_read", "users", "users_read"})
+    //@RolesAllowed({UserRole.READ})
+    @PermitAll
     @AddLinks
     @LinkResource(User.class)
     @GET
@@ -39,14 +41,14 @@ public interface UserResource extends Resource<User, Long> {
     @Override
     public List<User> getEntities(@Context HttpServletRequest request);
 
-    @RolesAllowed({"admin", "admin_create", "users", "users_create"})
+    @RolesAllowed({UserRole.CREATE})
     @LinkResource
     @POST
     @Path("/")
     @Override
     public Response postEntity(User entity);
     
-    @RolesAllowed({"admin", "admin_read", "users", "users_read"})
+    @RolesAllowed({UserRole.READ})
     @AddLinks
     @LinkResource
     @GET
@@ -54,7 +56,7 @@ public interface UserResource extends Resource<User, Long> {
     @Override
     public User getEntityById(@PathParam("id") Long id);
 
-    @RolesAllowed({"admin", "admin_update", "users", "users_update"})
+    @RolesAllowed({UserRole.UPDATE})
     @LinkResource
     @PUT
     @Path("/{id}")
@@ -68,7 +70,7 @@ public interface UserResource extends Resource<User, Long> {
     @Override
     public Response deleteEntity(@PathParam("id") Long id);
     
-    @RolesAllowed({"admin", "admin_read", "users", "users_read_devices"})
+    @RolesAllowed({UserRole.DEVICES_LIST})
     @AddLinks
     @LinkResource(value = User.class, rel = "devices")
     @GET

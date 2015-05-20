@@ -67,7 +67,7 @@ public class User extends BaseEntity<Long> implements Serializable {
                inverseForeignKey = @ForeignKey(name = "fk_device_id__userdevice_deviceid"))
     private List<Device> devices;
 
-    @XmlTransient
+    //@XmlTransient
     @XmlElementWrapper(name = "roles")
     @XmlElement(name = "role")
     @ManyToMany(cascade = CascadeType.ALL,

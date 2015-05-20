@@ -1,7 +1,6 @@
 package rs.pelotas.tracker.resource;
 
 import java.util.List;
-import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -19,17 +18,18 @@ import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
 import rs.pelotas.tracker.entity.Position;
+import rs.pelotas.tracker.security.role.PositionRole;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path("/positions")
+@Path(AppResourcePath.POSITIONS)
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface PositionResource extends Resource<Position, Long> {
 
-    @RolesAllowed("admin")
+    @RolesAllowed({PositionRole.LIST})
     @AddLinks
     @LinkResource(Position.class)
     @GET
@@ -37,14 +37,14 @@ public interface PositionResource extends Resource<Position, Long> {
     @Override
     public List<Position> getEntities(@Context HttpServletRequest request);
 
-    @RolesAllowed("admin")
+    @RolesAllowed({PositionRole.CREATE})
     @LinkResource
     @POST
     @Path("/")
     @Override
     public Response postEntity(Position entity);
 
-    @RolesAllowed("admin")
+    @RolesAllowed({PositionRole.READ})
     @AddLinks
     @LinkResource
     @GET
@@ -52,7 +52,7 @@ public interface PositionResource extends Resource<Position, Long> {
     @Override
     public Position getEntityById(@PathParam("id") Long id);
     
-    @RolesAllowed("admin")
+    @RolesAllowed({PositionRole.UPDATE})
     @AddLinks
     @LinkResource
     @PUT
@@ -60,14 +60,14 @@ public interface PositionResource extends Resource<Position, Long> {
     @Override
     public Response putEntity(@PathParam("id") Long id, Position entity);
 
-    @RolesAllowed("admin")
+    @RolesAllowed({PositionRole.DELETE})
     @LinkResource(Position.class)
     @DELETE
     @Path("/{id}")
     @Override
     public Response deleteEntity(@PathParam("id") Long id);
     
-    @RolesAllowed("admin")
+    @RolesAllowed({PositionRole.READ})
     @LinkResource(value = Position.class, rel = "googlemaps")
     @GET
     @Path("/{id}/googlemaps")

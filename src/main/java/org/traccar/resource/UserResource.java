@@ -21,17 +21,18 @@ import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
 import org.traccar.entity.Device;
 import org.traccar.entity.User;
+import rs.pelotas.tracker.security.role.TraccarRole;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path("/traccar/users")
+@Path(AppResourcePath.TRACCAR_USERS)
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface UserResource extends Resource<User, Long> {
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
+    @RolesAllowed({TraccarRole.USERS_LIST})
     @AddLinks
     @LinkResource(User.class)
     @GET
@@ -39,14 +40,14 @@ public interface UserResource extends Resource<User, Long> {
     @Override
     public List<User> getEntities(@Context HttpServletRequest request);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_create"})
+    @RolesAllowed({TraccarRole.USERS_CREATE})
     @LinkResource
     @POST
     @Path("/")
     @Override
     public Response postEntity(User entity);
     
-    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
+    @RolesAllowed({TraccarRole.USERS_READ})
     @AddLinks
     @LinkResource
     @GET
@@ -54,21 +55,21 @@ public interface UserResource extends Resource<User, Long> {
     @Override
     public User getEntityById(@PathParam("id") Long id);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_update"})
+    @RolesAllowed({TraccarRole.USERS_UPDATE})
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
     public Response putEntity(@PathParam("id") Long id, User entity);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_delete"})
+    @RolesAllowed({TraccarRole.USERS_DELETE})
     @LinkResource(User.class)
     @DELETE
     @Path("/{id}")
     @Override
     public Response deleteEntity(@PathParam("id") Long id);
     
-    @RolesAllowed({"traccar_admin", "traccar_admin_read_devices"})
+    @RolesAllowed({TraccarRole.USERS_DEVICES_LIST})
     @AddLinks
     @LinkResource(value = User.class, rel = "devices")
     @GET
