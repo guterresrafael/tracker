@@ -32,8 +32,7 @@ import rs.pelotas.tracker.security.role.UserRole;
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface UserResource extends Resource<User, Long> {
 
-    //@RolesAllowed({UserRole.READ})
-    @PermitAll
+    @RolesAllowed({UserRole.READ})
     @AddLinks
     @LinkResource(User.class)
     @GET

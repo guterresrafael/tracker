@@ -2,7 +2,6 @@ package org.traccar.resource;
 
 import java.util.Collection;
 import java.util.List;
-import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
