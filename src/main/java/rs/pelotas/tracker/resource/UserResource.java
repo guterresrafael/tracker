@@ -61,7 +61,7 @@ public interface UserResource extends Resource<User, Long> {
     @Override
     public Response putEntity(@PathParam("id") Long id, User entity);
 
-    @RolesAllowed({"admin", "admin_delete", "users", "users_delete"})
+    @RolesAllowed({UserRole.DELETE})
     @LinkResource(User.class)
     @DELETE
     @Path("/{id}")

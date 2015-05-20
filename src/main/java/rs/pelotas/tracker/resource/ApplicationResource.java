@@ -29,7 +29,6 @@ public interface ApplicationResource extends Serializable {
     
     @PermitAll
     @AddLinks
-    @LinkResource(value = Application.class)
     @GET
     @Path("/")
     public Response getApplication();
