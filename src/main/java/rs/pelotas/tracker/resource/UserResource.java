@@ -2,7 +2,6 @@ package rs.pelotas.tracker.resource;
 
 import java.util.Collection;
 import java.util.List;
-import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -32,7 +31,7 @@ import rs.pelotas.tracker.security.role.UserRole;
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface UserResource extends Resource<User, Long> {
 
-    @RolesAllowed({UserRole.READ})
+    @RolesAllowed({UserRole.LIST})
     @AddLinks
     @LinkResource(User.class)
     @GET
