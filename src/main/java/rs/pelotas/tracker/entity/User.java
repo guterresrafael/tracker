@@ -6,7 +6,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -61,22 +60,19 @@ public class User extends BaseEntity<Long> implements Serializable {
                 fetch = FetchType.LAZY)
     @JoinTable(name = "user_device",
                joinColumns = @JoinColumn(name = "user_id"),
-               foreignKey = @ForeignKey(name = "fk_user_id__userdevice_userid"),
-               inverseJoinColumns = @JoinColumn(name = "device_id"),
-               inverseForeignKey = @ForeignKey(name = "fk_device_id__userdevice_deviceid"))
+               inverseJoinColumns = @JoinColumn(name = "device_id"))
     private List<Device> devices;
 
+    @XmlTransient
     @ManyToMany(cascade = CascadeType.ALL,
-                fetch = FetchType.EAGER)
+                fetch = FetchType.LAZY)
     @JoinTable(name = "user_role",
-           joinColumns = @JoinColumn(name = "user_id"),
-           foreignKey = @ForeignKey(name = "fk_user_id__userrole_userid"),
-           inverseJoinColumns = @JoinColumn(name = "role_id"),
-           inverseForeignKey = @ForeignKey(name = "fk_role_id__userrole_roleid"))
+               joinColumns = @JoinColumn(name = "user_id"),
+               inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
     @OneToMany(mappedBy = "user",
-               fetch = FetchType.EAGER)
+               fetch = FetchType.LAZY)
     private List<UserMeta> metadata;
     
     @Override

@@ -17,6 +17,7 @@ public class DeviceRepositoryBean extends BaseRepository<Device, Long> implement
     
     private static final long serialVersionUID = 5330144509499505026L;
 
+    @Override
     public List<Device> findDevicesByUserId(Long userId) {
         CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Device> criteriaQuery = criteriaBuilder.createQuery(Device.class);

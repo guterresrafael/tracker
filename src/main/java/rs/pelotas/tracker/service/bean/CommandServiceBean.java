@@ -1,5 +1,6 @@
 package rs.pelotas.tracker.service.bean;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import rs.pelotas.arch.repository.Repository;
 import rs.pelotas.arch.service.BaseService;
@@ -11,6 +12,7 @@ import rs.pelotas.tracker.service.CommandService;
  *
  * @author Rafael Guterres
  */
+@Stateless
 public class CommandServiceBean extends BaseService<Command, Long> implements CommandService {
 
     private static final long serialVersionUID = 4052449166823238992L;

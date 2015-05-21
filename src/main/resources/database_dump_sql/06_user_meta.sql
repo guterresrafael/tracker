@@ -1,0 +1,1 @@
+INSERT INTO `user_meta` (`id`, `meta_key`, `meta_value`, `user_id`) VALUES (NULL, 'cpf', '123456789', 2);

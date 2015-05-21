@@ -3,7 +3,6 @@ package rs.pelotas.tracker.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +35,7 @@ public class UserMeta extends BaseMetaEntity {
 
     @XmlTransient
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_user_id__usermeta_userid"))
+    @JoinColumn(name = "user_id")
     private User user;
     
     @Column(name = "meta_key")

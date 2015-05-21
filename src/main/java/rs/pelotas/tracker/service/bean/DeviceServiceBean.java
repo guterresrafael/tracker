@@ -1,6 +1,7 @@
 package rs.pelotas.tracker.service.bean;
 
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import rs.pelotas.arch.repository.Repository;
 import rs.pelotas.arch.service.BaseService;
@@ -11,6 +12,7 @@ import rs.pelotas.tracker.service.DeviceService;
 /**
  * @author Rafael Guterres
  */
+@Stateless
 public class DeviceServiceBean extends BaseService<Device, Long> implements DeviceService {
 
     private static final long serialVersionUID = -6173900068176198955L;
