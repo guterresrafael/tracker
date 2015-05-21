@@ -1,7 +1,6 @@
 package rs.pelotas.tracker.resource;
 
 import java.util.List;
-import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -19,6 +18,7 @@ import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
 import rs.pelotas.tracker.entity.Command;
+import rs.pelotas.tracker.security.role.AdminRole;
 import rs.pelotas.tracker.security.role.CommandRole;
 
 /**
@@ -30,7 +30,7 @@ import rs.pelotas.tracker.security.role.CommandRole;
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface CommandResource extends Resource<Command, Long> {
 
-    @RolesAllowed({CommandRole.LIST})
+    @RolesAllowed({AdminRole.LIST, CommandRole.LIST})
     @AddLinks
     @LinkResource(value = Command.class)
     @GET
@@ -38,14 +38,14 @@ public interface CommandResource extends Resource<Command, Long> {
     @Override
     public List<Command> getEntities(@Context HttpServletRequest request);
 
-    @RolesAllowed({CommandRole.CREATE})
+    @RolesAllowed({AdminRole.CREATE, CommandRole.CREATE})
     @LinkResource
     @POST
     @Path("/")
     @Override
     public Response postEntity(Command entity);
     
-    @RolesAllowed({CommandRole.READ})
+    @RolesAllowed({AdminRole.READ, CommandRole.READ})
     @AddLinks
     @LinkResource
     @GET
@@ -53,14 +53,14 @@ public interface CommandResource extends Resource<Command, Long> {
     @Override
     public Command getEntityById(@PathParam("id") Long id);
 
-    @RolesAllowed({CommandRole.UPDATE})
+    @RolesAllowed({AdminRole.UPDATE, CommandRole.UPDATE})
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
     public Response putEntity(@PathParam("id") Long id, Command entity);
 
-    @RolesAllowed({CommandRole.DELETE})
+    @RolesAllowed({AdminRole.DELETE, CommandRole.DELETE})
     @LinkResource(value = Command.class)
     @DELETE
     @Path("/{id}")

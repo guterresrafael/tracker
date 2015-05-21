@@ -1,5 +1,6 @@
 package rs.pelotas.tracker.resource.bean;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import rs.pelotas.arch.resource.BaseResource;
@@ -13,6 +14,7 @@ import rs.pelotas.tracker.service.PositionService;
  *
  * @author Rafael Guterres
  */
+@RequestScoped
 public class PositionResourceBean extends BaseResource<Position, Long> implements PositionResource {
     
     private static final long serialVersionUID = 3630413584076355265L;

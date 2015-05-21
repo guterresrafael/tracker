@@ -1,7 +1,6 @@
 package rs.pelotas.tracker.resource.bean;
 
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
+import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.core.Response;
 import rs.pelotas.arch.resource.ResponseBuilder;
 import rs.pelotas.tracker.entity.Application;
@@ -15,6 +14,7 @@ import rs.pelotas.tracker.resource.ApplicationResource;
  * 
  * @author Rafael Guterres
  */
+@RequestScoped
 public class ApplicationResourceBean implements ApplicationResource {
 
     private static final long serialVersionUID = 1429964490392452041L;

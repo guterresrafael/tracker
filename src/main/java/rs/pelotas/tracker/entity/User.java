@@ -13,11 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -67,9 +66,6 @@ public class User extends BaseEntity<Long> implements Serializable {
                inverseForeignKey = @ForeignKey(name = "fk_device_id__userdevice_deviceid"))
     private List<Device> devices;
 
-    //@XmlTransient
-    @XmlElementWrapper(name = "roles")
-    @XmlElement(name = "role")
     @ManyToMany(cascade = CascadeType.ALL,
                 fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
@@ -78,6 +74,10 @@ public class User extends BaseEntity<Long> implements Serializable {
            inverseJoinColumns = @JoinColumn(name = "role_id"),
            inverseForeignKey = @ForeignKey(name = "fk_role_id__userrole_roleid"))
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "user",
+               fetch = FetchType.EAGER)
+    private List<UserMeta> metadata;
     
     @Override
     public Long getId() {
@@ -143,5 +143,13 @@ public class User extends BaseEntity<Long> implements Serializable {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<UserMeta> getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(List<UserMeta> metadata) {
+        this.metadata = metadata;
     }
 }

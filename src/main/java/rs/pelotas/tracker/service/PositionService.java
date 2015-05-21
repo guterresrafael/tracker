@@ -1,29 +1,19 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package rs.pelotas.tracker.service;
 
-import javax.inject.Inject;
-import rs.pelotas.arch.repository.Repository;
-import rs.pelotas.arch.service.BaseService;
+import javax.ejb.Stateless;
 import rs.pelotas.arch.service.Service;
 import rs.pelotas.tracker.entity.Position;
-import rs.pelotas.tracker.repository.PositionRepository;
 
 /**
  *
- * @author Rafael Guterres
+ * @author Rafael
  */
-public class PositionService extends BaseService<Position, Long> implements Service<Position, Long> {
-
-    private static final long serialVersionUID = -2496030139227407311L;
-
-    @Inject
-    PositionRepository positionRepository;
-
-    @Override
-    public Repository<Position, Long> getRepository() {
-        return positionRepository;
-    }
+@Stateless
+public interface PositionService extends Service<Position, Long> {
     
-    public Position getPositionToImport() {
-        return null;
-    }
 }

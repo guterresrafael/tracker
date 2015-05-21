@@ -28,6 +28,7 @@ public class Role extends BaseEntity<Long> {
 
     private static final long serialVersionUID = -3904509244026375016L;
 
+    @XmlTransient
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

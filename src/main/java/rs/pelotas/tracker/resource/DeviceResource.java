@@ -19,6 +19,7 @@ import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
 import rs.pelotas.tracker.entity.Device;
+import rs.pelotas.tracker.security.role.AdminRole;
 import rs.pelotas.tracker.security.role.DeviceRole;
 
 /**
@@ -30,7 +31,7 @@ import rs.pelotas.tracker.security.role.DeviceRole;
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface DeviceResource extends Resource<Device, Long> {
     
-    @RolesAllowed({DeviceRole.LIST})
+    @RolesAllowed({AdminRole.LIST, DeviceRole.LIST})
     @AddLinks
     @LinkResource(Device.class)
     @GET
@@ -38,14 +39,14 @@ public interface DeviceResource extends Resource<Device, Long> {
     @Override
     public List<Device> getEntities(@Context HttpServletRequest request);
 
-    @RolesAllowed({DeviceRole.CREATE})
+    @RolesAllowed({AdminRole.CREATE, DeviceRole.CREATE})
     @LinkResource
     @POST
     @Path("/")
     @Override
     public Response postEntity(Device entity);
     
-    @RolesAllowed({DeviceRole.READ})
+    @RolesAllowed({AdminRole.READ, DeviceRole.READ})
     @AddLinks
     @LinkResource
     @GET
@@ -53,21 +54,21 @@ public interface DeviceResource extends Resource<Device, Long> {
     @Override
     public Device getEntityById(@PathParam("id") Long id);
 
-    @RolesAllowed({DeviceRole.UPDATE})
+    @RolesAllowed({AdminRole.UPDATE, DeviceRole.UPDATE})
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
     public Response putEntity(@PathParam("id") Long id, Device entity);
 
-    @RolesAllowed({DeviceRole.DELETE})
+    @RolesAllowed({AdminRole.DELETE, DeviceRole.DELETE})
     @LinkResource(Device.class)
     @DELETE
     @Path("/{id}")
     @Override
     public Response deleteEntity(@PathParam("id") Long id);
     
-    @RolesAllowed({DeviceRole.USERS_LIST})
+    @RolesAllowed({AdminRole.READ, DeviceRole.USERS_LIST})
     @AddLinks
     @LinkResource(value = Device.class, rel = "users")
     @GET
