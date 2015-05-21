@@ -1,22 +1,24 @@
-package org.traccar.service;
+package rs.pelotas.tracker.service.bean;
 
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import rs.pelotas.arch.repository.Repository;
 import rs.pelotas.arch.service.BaseService;
-import rs.pelotas.arch.service.Service;
-import org.traccar.entity.User;
 import rs.pelotas.tracker.filter.UserFilter;
-import org.traccar.repository.UserRepository;
+import rs.pelotas.tracker.entity.User;
+import rs.pelotas.tracker.repository.UserRepository;
+import rs.pelotas.tracker.service.UserService;
 
 /**
  *
  * @author Rafael Guterres
  */
-public class UserService extends BaseService<User, Long> implements Service<User, Long> {
+@Stateless
+public class UserServiceBean extends BaseService<User, Long> implements UserService {
 
-    private static final long serialVersionUID = -8063860493524059545L;
-
+    private static final long serialVersionUID = -8808714191503203114L;
+    
     @Inject
     UserRepository userRepository;
 
@@ -24,7 +26,8 @@ public class UserService extends BaseService<User, Long> implements Service<User
     public Repository<User, Long> getRepository() {
         return userRepository;
     }
-    
+
+    @Override
     public User findByLogin(String login) {
         UserFilter userFilter = new UserFilter();
         userFilter.setLogin(login);

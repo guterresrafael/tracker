@@ -9,7 +9,9 @@ import rs.pelotas.arch.repository.CriteriaFilter;
  */
 @CriteriaFilter
 public class UserFilter implements Filter {
-    
+
+    private static final long serialVersionUID = -826179002987833812L;
+
     private String login;
     
     public String getLogin() {

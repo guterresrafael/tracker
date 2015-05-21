@@ -400,6 +400,7 @@
                     /database_dump_sql/03_user_device.sql,
                     /database_dump_sql/04_role.sql,
                     /database_dump_sql/05_user_role.sql,
+                    /database_dump_sql/06_user_meta.sql,
                     /database_dump_sql/99_drop_traccar.sql
                 </hibernate.hbm2ddl.import_files>
             </properties>
@@ -501,19 +502,12 @@
         </profile>
         <profile>
             <id>sonar</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
-                <sonar.jdbc.url>
-                    jdbc:mysql://sonar.dyndns-ip.com:3306/sonar?useUnicode=true&amp;characterEncoding=utf8
-                </sonar.jdbc.url>
+                <sonar.jdbc.url>jdbc:mysql://sonar.dyndns-ip.com:3306/sonar?useUnicode=true&amp;characterEncoding=utf8</sonar.jdbc.url>
                 <sonar.jdbc.username>sonar</sonar.jdbc.username>
                 <sonar.jdbc.password>sonar</sonar.jdbc.password>
-                <sonar.host.url>
-                    http://sonar.dyndns-ip.com:9000
-                </sonar.host.url>
+                <sonar.host.url>http://sonar.dyndns-ip.com:9000</sonar.host.url>
             </properties>
-        </profile>    
+        </profile>
     </profiles>
 </project>

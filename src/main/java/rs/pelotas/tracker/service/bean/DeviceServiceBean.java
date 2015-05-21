@@ -1,19 +1,21 @@
-package org.traccar.service;
+package rs.pelotas.tracker.service.bean;
 
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import rs.pelotas.arch.repository.Repository;
 import rs.pelotas.arch.service.BaseService;
-import rs.pelotas.arch.service.Service;
-import org.traccar.entity.Device;
-import org.traccar.repository.DeviceRepository;
+import rs.pelotas.tracker.entity.Device;
+import rs.pelotas.tracker.repository.DeviceRepository;
+import rs.pelotas.tracker.service.DeviceService;
 
 /**
  * @author Rafael Guterres
  */
-public class DeviceService extends BaseService<Device, Long> implements Service<Device, Long> {
+@Stateless
+public class DeviceServiceBean extends BaseService<Device, Long> implements DeviceService {
 
-    private static final long serialVersionUID = -271039355862815425L;
+    private static final long serialVersionUID = -6173900068176198955L;
 
     @Inject
     DeviceRepository deviceRepository;

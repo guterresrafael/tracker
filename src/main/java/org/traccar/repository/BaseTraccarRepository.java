@@ -9,11 +9,10 @@ import rs.pelotas.arch.repository.BaseRepository;
 /**
  *
  * @author Rafael Guterres
- * @param <EntityType>
- * @param <IdType>
+ * @param <T>
+ * @param <I>
  */
-public abstract class BaseTraccarRepository<EntityType extends BaseEntity, IdType extends Serializable> 
-              extends BaseRepository<EntityType, IdType> {
+public abstract class BaseTraccarRepository<T extends BaseEntity, I extends Serializable> extends BaseRepository<T, I> {
     
     private static final long serialVersionUID = -6526885283678133001L;
 

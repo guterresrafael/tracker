@@ -18,17 +18,18 @@ import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
 import org.traccar.entity.Command;
+import rs.pelotas.tracker.security.role.TraccarRole;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path("/traccar/commands")
+@Path(AppResourcePath.TRACCAR_COMMANDS)
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface CommandResource extends Resource<Command, Long> {
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
+    @RolesAllowed({TraccarRole.COMMANDS_LIST})
     @AddLinks
     @LinkResource(value = Command.class)
     @GET
@@ -36,14 +37,14 @@ public interface CommandResource extends Resource<Command, Long> {
     @Override
     public List<Command> getEntities(@Context HttpServletRequest request);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_create"})
+    @RolesAllowed({TraccarRole.COMMANDS_CREATE})
     @LinkResource
     @POST
     @Path("/")
     @Override
     public Response postEntity(Command entity);
     
-    @RolesAllowed({"traccar_admin", "traccar_admin_read"})
+    @RolesAllowed({TraccarRole.COMMANDS_READ})
     @AddLinks
     @LinkResource
     @GET
@@ -51,14 +52,14 @@ public interface CommandResource extends Resource<Command, Long> {
     @Override
     public Command getEntityById(@PathParam("id") Long id);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_update"})
+    @RolesAllowed({TraccarRole.COMMANDS_UPDATE})
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
     public Response putEntity(@PathParam("id") Long id, Command entity);
 
-    @RolesAllowed({"traccar_admin", "traccar_admin_delete"})
+    @RolesAllowed({TraccarRole.COMMANDS_DELETE})
     @LinkResource(value = Command.class)
     @DELETE
     @Path("/{id}")

@@ -52,10 +52,13 @@
         </activatedProfiles>
     </action>
     <action>
-            <actionName>CUSTOM-sonar analyze</actionName>
-            <displayName>sonar analyze</displayName>
-            <goals>
-                <goal>sonar:sonar</goal>
-            </goals>
-        </action>
+        <actionName>CUSTOM-Sonar Analyze</actionName>
+        <displayName>Sonar Analyze</displayName>
+        <goals>
+            <goal>sonar:sonar</goal>
+        </goals>
+        <activatedProfiles>
+            <activatedProfile>sonar</activatedProfile>
+        </activatedProfiles>
+    </action>
 </actions>

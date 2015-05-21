@@ -19,17 +19,19 @@ import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
 import rs.pelotas.tracker.entity.Device;
+import rs.pelotas.tracker.security.role.AdminRole;
+import rs.pelotas.tracker.security.role.DeviceRole;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path("/devices")
+@Path(AppResourcePath.DEVICES)
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface DeviceResource extends Resource<Device, Long> {
     
-    @RolesAllowed({"admin", "admin_read", "devices", "devices_read"})
+    @RolesAllowed({AdminRole.LIST, DeviceRole.LIST})
     @AddLinks
     @LinkResource(Device.class)
     @GET
@@ -37,14 +39,14 @@ public interface DeviceResource extends Resource<Device, Long> {
     @Override
     public List<Device> getEntities(@Context HttpServletRequest request);
 
-    @RolesAllowed({"admin", "admin_create", "devices", "devices_create"})
+    @RolesAllowed({AdminRole.CREATE, DeviceRole.CREATE})
     @LinkResource
     @POST
     @Path("/")
     @Override
     public Response postEntity(Device entity);
     
-    @RolesAllowed({"admin", "admin_read", "devices", "devices_read"})
+    @RolesAllowed({AdminRole.READ, DeviceRole.READ})
     @AddLinks
     @LinkResource
     @GET
@@ -52,21 +54,21 @@ public interface DeviceResource extends Resource<Device, Long> {
     @Override
     public Device getEntityById(@PathParam("id") Long id);
 
-    @RolesAllowed({"admin", "admin_update", "devices", "devices_update"})
+    @RolesAllowed({AdminRole.UPDATE, DeviceRole.UPDATE})
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
     public Response putEntity(@PathParam("id") Long id, Device entity);
 
-    @RolesAllowed({"admin", "admin_delete", "devices", "devices_delete"})
+    @RolesAllowed({AdminRole.DELETE, DeviceRole.DELETE})
     @LinkResource(Device.class)
     @DELETE
     @Path("/{id}")
     @Override
     public Response deleteEntity(@PathParam("id") Long id);
     
-    @RolesAllowed({"admin", "admin_read", "devices", "devices_read_users"})
+    @RolesAllowed({AdminRole.READ, DeviceRole.USERS_LIST})
     @AddLinks
     @LinkResource(value = Device.class, rel = "users")
     @GET
