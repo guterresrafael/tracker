@@ -15,4 +15,7 @@ public class AppResourcePath {
     public static final String DEVICES = "/devices";
     public static final String POSITIONS = "/positions";
     public static final String COMMANDS = "/commands";
+
+    private AppResourcePath() {
+    }
 }

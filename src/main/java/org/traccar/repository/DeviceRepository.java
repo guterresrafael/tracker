@@ -23,7 +23,6 @@ public class DeviceRepository extends BaseTraccarRepository<Device, Long> implem
         criteriaQuery.select(root);
         criteriaQuery.where(criteriaBuilder.equal(root.get("user.id"), userId));
         TypedQuery typedQuery = getEntityManager().createQuery(criteriaQuery);
-        List<Device> devices = typedQuery.getResultList();
-        return devices;
+        return typedQuery.getResultList();
     }
 }

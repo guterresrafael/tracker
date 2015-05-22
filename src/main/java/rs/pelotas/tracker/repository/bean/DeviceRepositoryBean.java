@@ -25,7 +25,6 @@ public class DeviceRepositoryBean extends BaseRepository<Device, Long> implement
         criteriaQuery.select(root);
         criteriaQuery.where(criteriaBuilder.equal(root.get("user.id"), userId));
         TypedQuery typedQuery = getEntityManager().createQuery(criteriaQuery);
-        List<Device> devices = typedQuery.getResultList();
-        return devices;
+        return typedQuery.getResultList();
     }
 }

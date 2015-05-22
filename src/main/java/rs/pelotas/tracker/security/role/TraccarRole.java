@@ -31,4 +31,7 @@ public final class TraccarRole {
     public static final String USERS_UPDATE = "traccar_users_update";
     public static final String USERS_DELETE = "traccar_users_delete";
     public static final String USERS_DEVICES_LIST = "traccar_users_devices_list";
+
+    private TraccarRole() {
+    }
 }

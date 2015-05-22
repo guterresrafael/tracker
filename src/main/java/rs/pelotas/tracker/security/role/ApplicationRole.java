@@ -7,4 +7,7 @@ package rs.pelotas.tracker.security.role;
 public final class ApplicationRole {
 
     public static final String LOGIN = "application_login";
+
+    private ApplicationRole() {
+    }
 }

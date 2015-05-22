@@ -11,4 +11,7 @@ public final class CommandRole {
     public static final String READ = "commands_read";
     public static final String UPDATE = "commands_update";
     public static final String DELETE = "commands_delete";
+
+    private CommandRole() {
+    }
 }

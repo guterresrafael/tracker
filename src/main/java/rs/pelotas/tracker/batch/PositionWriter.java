@@ -22,10 +22,12 @@ public class PositionWriter implements ItemWriter {
     
     @Override
     public void open(Serializable srlzbl) throws Exception {
+        //Do nothing.
     }
 
     @Override
     public void close() throws Exception {
+        //Do nothing.
     }
 
     @Override

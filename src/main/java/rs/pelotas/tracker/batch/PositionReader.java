@@ -1,6 +1,7 @@
 package rs.pelotas.tracker.batch;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 import javax.batch.api.chunk.ItemReader;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
@@ -28,6 +29,7 @@ public class PositionReader implements ItemReader {
 
     @Override
     public void close() throws Exception {
+        //Do nothing.
     }
 
     @Override

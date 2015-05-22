@@ -20,14 +20,12 @@ import javax.transaction.UserTransaction;
 @WebFilter("/api/*")
 public class ConnectionFilter implements Filter {
 
-    @Inject
-    Logger logger;
-    
     @Resource
     UserTransaction userTransaction;
 
     @Override
     public void init(FilterConfig fc) throws ServletException {
+        //Do nothing.
     }
 
     @Override
@@ -37,11 +35,12 @@ public class ConnectionFilter implements Filter {
             chain.doFilter(request, response);
             userTransaction.commit();
         } catch (Exception e) {
-            logger.severe(e.getMessage());
+            Logger.getAnonymousLogger().severe(e.getMessage());
         }
     }
 
     @Override
     public void destroy() {
+        //Do nothing.
     }
 }
