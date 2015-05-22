@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -19,6 +20,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import rs.pelotas.arch.annotation.adapters.MD5Adapter;
 import rs.pelotas.arch.entity.BaseEntity;
 
 /**
@@ -38,17 +41,28 @@ public class Device extends BaseEntity<Long> implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "imei")
+    private String imei;
+
+    @XmlJavaTypeAdapter(MD5Adapter.class)
+    @Column(name = "password")
+    private String password;
+    
     @Column(name = "name")
     private String name;
 
-    @Column(name = "imei")
-    private String imei;
+    @Column(name = "phone")
+    private String phone;
     
     @XmlTransient
     @ManyToMany(mappedBy = "devices",
                 cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY)
     private List<User> users;
+    
+    @OneToMany(mappedBy = "device",
+               fetch = FetchType.LAZY)
+    private List<DeviceMeta> metadata;
     
     @OneToOne
     @JoinColumn(name="latest_position_id", foreignKey = @ForeignKey(name = "fk_position_id__device_latestpositionid"))
@@ -64,6 +78,22 @@ public class Device extends BaseEntity<Long> implements Serializable {
         this.id = id;
     }
 
+    public String getImei() {
+        return imei;
+    }
+
+    public void setImei(String imei) {
+        this.imei = imei;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getName() {
         return name;
     }
@@ -72,12 +102,12 @@ public class Device extends BaseEntity<Long> implements Serializable {
         this.name = name;
     }
 
-    public String getImei() {
-        return imei;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setImei(String imei) {
-        this.imei = imei;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Position getLatestPosition() {
@@ -94,5 +124,13 @@ public class Device extends BaseEntity<Long> implements Serializable {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public List<DeviceMeta> getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(List<DeviceMeta> metadata) {
+        this.metadata = metadata;
     }
 }

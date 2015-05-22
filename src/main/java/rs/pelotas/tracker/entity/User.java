@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -145,7 +146,7 @@ public class User extends BaseEntity<Long> implements Serializable {
         return metadata;
     }
 
-    public void setMetadata(List<UserMeta> metadata) {
-        this.metadata = metadata;
+    public void setMetadata(List<UserMeta> usermeta) {
+        this.metadata = usermeta;
     }
 }

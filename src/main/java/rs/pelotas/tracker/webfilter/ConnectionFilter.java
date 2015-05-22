@@ -1,7 +1,9 @@
 package rs.pelotas.tracker.webfilter;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -18,8 +20,11 @@ import javax.transaction.UserTransaction;
 @WebFilter("/api/*")
 public class ConnectionFilter implements Filter {
 
+    @Inject
+    Logger logger;
+    
     @Resource
-    UserTransaction utx;
+    UserTransaction userTransaction;
 
     @Override
     public void init(FilterConfig fc) throws ServletException {
@@ -28,16 +33,15 @@ public class ConnectionFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         try {
-            utx.begin();
+            userTransaction.begin();
             chain.doFilter(request, response);
-            utx.commit();
+            userTransaction.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.severe(e.getMessage());
         }
     }
 
     @Override
     public void destroy() {
     }
-
 }
