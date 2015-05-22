@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('HomeController', ['$scope', 'Device', function ($scope, Device) {
-        this.activeDeviceId = 2;
+        this.activeDeviceId = 1;
 
         $scope.date = new Date();
 

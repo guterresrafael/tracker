@@ -14,7 +14,8 @@
 
         <script src="./assets/js/jquery/jquery.min.js"></script>
 
-        <script type="text/javascript" src="./assets/js/GoogleMapsAPI.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCen8-FkoRbxbWZLTmDM-MwX6jSnL_1o5g"></script>
+        <!--<script type="text/javascript" src="./assets/js/GoogleMapsAPI.js"></script>-->
         <script src="./assets/js/GoogleMaps.js"></script>
 
         <!--link href="css/screen.css" rel="stylesheet"/-->
@@ -29,7 +30,7 @@
             <div class="container" ng-controller="MainController as main">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">Rastreamento Veicular <span class="label label-default">Tracker</span></a>
-                    
+
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -39,11 +40,10 @@
             </div>
         </nav>
 
-        <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
-        </div><!--/jumbotron-->
+        </div>
 
-        <div class="container" ng-view>
+        <div class="container-fluid" ng-view>
             <footer>
                 <p>&copy; Tracker 2015</p>
             </footer>
@@ -61,11 +61,11 @@
 
         <script src="js/modules/home/HomeController.js"></script>
         <script src="js/modules/home/MainController.js"></script>
-        
+
         <script type="text/javascript" src="js/directives/loginDirective.js"></script>
         <script type="text/javascript" src="js/modules/login/LoginController.js"></script>
         <script type="text/javascript" src="js/modules/login/AuthenticationService.js"></script>
-        
+
         <script type="text/javascript" src="js/directives/homeDirective.js"></script>
         <script type="text/javascript" src="js/directives/registrationDirective.js"></script>
 
