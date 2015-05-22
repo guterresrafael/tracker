@@ -34,7 +34,7 @@ public class Command extends BaseEntity<Long> implements Serializable {
     @JoinColumn(name = "device_id")
     private Device device;
 
-    private String command;
+    private String commands;
     
     @Temporal(TemporalType.TIMESTAMP)
     private Date queued;
@@ -60,12 +60,12 @@ public class Command extends BaseEntity<Long> implements Serializable {
         this.device = device;
     }
 
-    public String getCommand() {
-        return command;
+    public String getCommands() {
+        return commands;
     }
 
-    public void setCommand(String command) {
-        this.command = command;
+    public void setCommands(String commands) {
+        this.commands = commands;
     }
 
     public Date getQueued() {
