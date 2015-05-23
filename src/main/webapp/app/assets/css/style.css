@@ -1,5 +1,6 @@
 #map_canvas{
     height:500px;
+    width: auto;
 }
 
 .panel-login {

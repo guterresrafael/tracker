@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-sm-3">
+    <div id="leftSideBar" class="col-sm-3 collapse">
         <div class="col-md-12">
             <div class="panel panel-primary" id="infCol">
                 <div class="panel-heading">
@@ -65,12 +65,17 @@
         </div>
     </div>
 
-    <div class="col-md-9">
+    <div>
+        <button class="btn btn-primary" type="button" 
+                data-toggle="collapse" data-target="#leftSideBar" 
+                aria-expanded="false" aria-controls="leftSideBar">
+            X
+        </button>
         <div id="map_canvas"></div>
     </div>
 
 </div>
 
 <script type="text/javascript">
-            initialize();
+    initialize();
 </script>
