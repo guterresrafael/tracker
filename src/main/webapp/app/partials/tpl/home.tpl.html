@@ -1,81 +1,77 @@
-<div class="row">
-    <div id="leftSideBar" class="col-sm-3 collapse">
-        <div class="col-md-12">
-            <div class="panel panel-primary" id="infCol">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        Rastreio em Tempo Real <br /> {{date | date:'dd/MM/yyyy HH:mm:ss'}}
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    <table class="table">
-                        <tr>
-                            <td>Veiculo: </td>
-                            <td>{{dataDevice.device.imei}}</td>
-                        </tr>
-                        <tr>
-                            <td>Status:</td>
-                            <td><span class="label label-success">Seguro</span></td>
-                        </tr>
-                        <tr>
-                            <td>Estacionado em:</td>
-                            <td>Rua XXXX XXXXXXXXXX</td>
-                        </tr>
-                        <tr>
-                            <td>Longitude:</td>
-                            <td>221456421564</td>
-                        </tr>
-                        <tr>
-                            <td>Latitude:</td>
-                            <td>221456421564</td>
-                        </tr>
-                    </table>
-                </div>
+<!-- Navigation -->
+<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle">
+    <i class="fa fa-bars"></i>
+</a>
+<nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <div class="panel panel-primary" id="infCol">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Rastreio em Tempo Real <br /> {{date | date:'dd/MM/yyyy HH:mm:ss'}}
+                </h3>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td>Veiculo: </td>
+                        <td>{{dataDevice.device.imei}}</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td><span class="label label-success">Seguro</span></td>
+                    </tr>
+                    <tr>
+                        <td>Estacionado em:</td>
+                        <td>Rua XXXX XXXXXXXXXX</td>
+                    </tr>
+                    <tr>
+                        <td>Longitude:</td>
+                        <td>221456421564</td>
+                    </tr>
+                    <tr>
+                        <td>Latitude:</td>
+                        <td>221456421564</td>
+                    </tr>
+                </table>
             </div>
         </div>
+    </ul>
+</nav>
 
-        <div class="col-md-12">
-            <div class="panel panel-info" >
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        Ultimas Localizações
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    <table class="table">
-                        <tr>
-                            <td>Status:</td>
-                            <td><span class="label label-success">Seguro</span></td>
-                        </tr>
-                        <tr>
-                            <td>Estacionado em:</td>
-                            <td>Rua XXXX XXXXXXXXXX</td>
-                        </tr>
-                        <tr>
-                            <td>Longitude:</td>
-                            <td>221456421564</td>
-                        </tr>
-                        <tr>
-                            <td>Latitude:</td>
-                            <td>221456421564</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- Map -->
+<section id="contact" class="map">
+    <div id="map_canvas"></div>
+</section>
 
-    <div>
-        <button class="btn btn-primary" type="button" 
-                data-toggle="collapse" data-target="#leftSideBar" 
-                aria-expanded="false" aria-controls="leftSideBar">
-            X
-        </button>
-        <div id="map_canvas"></div>
-    </div>
-
-</div>
-
-<script type="text/javascript">
+<!-- Custom Theme JavaScript -->
+<script>
     initialize();
+    // Closes the sidebar menu
+    $("#menu-close").click(function (e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Scrolls to the selected menu item on the page
+    $(function () {
+        $('a[href*=#]:not([href=#])').click(function () {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
 </script>

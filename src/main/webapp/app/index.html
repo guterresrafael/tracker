@@ -8,12 +8,15 @@
         <title>Tracker :: Rastreamento Veicular</title>
         <link rel="icon" href="./assets/images/favicon.ico">
 
-        <link href="./assets/css/style.css" rel="stylesheet">
         <link href="./assets/css/bootstrap.css" rel="stylesheet">
         <link href="./assets/css/bootstrap-theme.css" rel="stylesheet">
+        <link href="./assets/css/style.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="./assets/fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
         <script src="./assets/js/jquery/jquery.min.js"></script>
-        
+
         <script src="./assets/js/bootstrap.min.js"></script>
 
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCen8-FkoRbxbWZLTmDM-MwX6jSnL_1o5g"></script>
@@ -42,14 +45,15 @@
             </div>
         </nav>
 
-        <div class="jumbotron">
-        </div>
+<!--        <div class="jumbotron">
+        </div>-->
 
-        <div class="container-fluid" ng-view>
-            <footer>
-                <p>&copy; Tracker 2015</p>
-            </footer>
+        <div ng-view>
         </div><!-- /container -->
+
+        <footer class="text-center">
+            <p>&copy; Tracker 2015</p>
+        </footer>
 
         <!-- Placed at the end of the document so the pages load faster -->
         <!-- AngularJS -->
