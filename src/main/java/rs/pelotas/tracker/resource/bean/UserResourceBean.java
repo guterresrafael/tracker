@@ -33,7 +33,6 @@ public class UserResourceBean extends BaseResource<User, Long> implements UserRe
     
     @Override
     public List<Device> getDevices(Long userId) {
-        return null;
-        //return deviceService.findDevicesByUserId(userId);
+        return deviceService.findDevicesByUserId(userId);
     }
 }

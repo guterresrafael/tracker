@@ -34,4 +34,9 @@ public class UserServiceBean extends BaseService<User, Long> implements UserServ
         List<User> users = userRepository.find(userFilter);
         return users.get(0);
     }
+
+    @Override
+    public List<User> findUsersByDevicesId(Long deviceId) {
+        return userRepository.findUsersByDeviceId(deviceId);
+    }
 }

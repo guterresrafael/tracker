@@ -17,8 +17,8 @@ import javax.ws.rs.core.Response;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
+import rs.pelotas.arch.security.role.AdminRole;
 import rs.pelotas.tracker.entity.Command;
-import rs.pelotas.tracker.security.role.AdminRole;
 import rs.pelotas.tracker.security.role.CommandRole;
 
 /**

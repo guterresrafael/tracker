@@ -96,12 +96,12 @@
             <scope>provided</scope>
         </dependency>
         <!-- JPA 2.0 metamodel classes for typesafe criteria queries -->
-        <!--dependency>
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
             <version>${version.dependency.hibernate-metamodel}</version>
             <scope>provided</scope>
-        </dependency-->
+        </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator-annotation-processor</artifactId>
@@ -402,6 +402,8 @@
                     /database_dump_sql/05_user_role.sql,
                     /database_dump_sql/06_user_meta.sql,
                     /database_dump_sql/07_device_meta.sql,
+                    /database_dump_sql/08_position.sql,
+                    /database_dump_sql/09_device_position.sql,
                     /database_dump_sql/99_drop_traccar.sql
                 </hibernate.hbm2ddl.import_files>
             </properties>

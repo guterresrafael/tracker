@@ -1,0 +1,1 @@
+UPDATE `device` SET `latest_position_id` = '5359' WHERE `id` = 2;

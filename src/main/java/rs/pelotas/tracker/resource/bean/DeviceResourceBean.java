@@ -6,8 +6,10 @@ import javax.inject.Inject;
 import rs.pelotas.arch.resource.BaseResource;
 import rs.pelotas.arch.service.Service;
 import rs.pelotas.tracker.entity.Device;
+import rs.pelotas.tracker.entity.User;
 import rs.pelotas.tracker.resource.DeviceResource;
 import rs.pelotas.tracker.service.DeviceService;
+import rs.pelotas.tracker.service.UserService;
 
 /**
  * 
@@ -21,13 +23,16 @@ public class DeviceResourceBean extends BaseResource<Device, Long> implements De
     @Inject
     DeviceService deviceService;
     
+    @Inject
+    UserService userService;
+    
     @Override
     public Service<Device, Long> getService() {
         return deviceService;
     }
     
     @Override
-    public List<Device> getUsers(Long deviceId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<User> getUsers(Long deviceId) {
+        return userService.findUsersByDevicesId(deviceId);
     }
 }
