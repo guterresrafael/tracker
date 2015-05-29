@@ -25,7 +25,7 @@ public class ApplicationResourceBean implements ApplicationResource {
     }
 
     @Override
-    public Response getLogin() {
+    public Response getDashboard() {
         return ResponseBuilder.ok();
     }
 

@@ -18,7 +18,7 @@ import org.jboss.resteasy.links.RESTServiceDiscovery;
 public class Application {
     
     @XmlAttribute
-    private final String version = "1.0.0-SNAPSHOT";
+    private static final String version = "1.0.0-SNAPSHOT";
     
     @XmlElementWrapper(name = "links")
     @XmlElement(name = "link")

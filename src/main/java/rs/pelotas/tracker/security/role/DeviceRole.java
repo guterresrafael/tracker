@@ -13,4 +13,7 @@ public final class DeviceRole {
     public static final String DELETE = "devices_delete";
 
     public static final String USERS_LIST = "devices_users_list";
+
+    private DeviceRole() {
+    }
 }

@@ -18,8 +18,9 @@ import javax.ws.rs.core.Response;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import rs.pelotas.arch.resource.Resource;
+import rs.pelotas.arch.security.role.AdminRole;
 import rs.pelotas.tracker.entity.Device;
-import rs.pelotas.tracker.security.role.AdminRole;
+import rs.pelotas.tracker.entity.User;
 import rs.pelotas.tracker.security.role.DeviceRole;
 
 /**
@@ -73,5 +74,5 @@ public interface DeviceResource extends Resource<Device, Long> {
     @LinkResource(value = Device.class, rel = "users")
     @GET
     @Path("/{id}/users")
-    public Collection<Device> getUsers(@PathParam("id") Long deviceId);
+    public Collection<User> getUsers(@PathParam("id") Long deviceId);
 }

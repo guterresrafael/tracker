@@ -145,7 +145,7 @@ public class User extends BaseEntity<Long> implements Serializable {
         return metadata;
     }
 
-    public void setMetadata(List<UserMeta> metadata) {
-        this.metadata = metadata;
+    public void setMetadata(List<UserMeta> usermeta) {
+        this.metadata = usermeta;
     }
 }

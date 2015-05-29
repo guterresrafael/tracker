@@ -10,4 +10,7 @@ public class AppResourcePath {
     public static final String TRACCAR_DEVICES = "/traccar/devices";
     public static final String TRACCAR_POSITIONS = "/traccar/positions";
     public static final String TRACCAR_COMMANDS = "/traccar/commands";
+
+    private AppResourcePath() {
+    }
 }

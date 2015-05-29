@@ -22,11 +22,11 @@ import rs.pelotas.arch.entity.BaseMetaEntity;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name = "user_meta")
-public class UserMeta extends BaseMetaEntity {
+@Table(name = "device_meta")
+public class DeviceMeta extends BaseMetaEntity {
     
-    private static final long serialVersionUID = -8682189201700121363L;
-
+    private static final long serialVersionUID = 1057665567625010428L;
+    
     @XmlTransient
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,8 +35,8 @@ public class UserMeta extends BaseMetaEntity {
 
     @XmlTransient
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "device_id")
+    private Device device;
 
     @Column(name = "meta_key")
     private String key;
@@ -52,14 +52,14 @@ public class UserMeta extends BaseMetaEntity {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Device getDevice() {
+        return device;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setDevice(Device device) {
+        this.device = device;
     }
-    
+
     @Override
     public String getKey() {
         return key;

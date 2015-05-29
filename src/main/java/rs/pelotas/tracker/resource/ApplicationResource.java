@@ -11,18 +11,19 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
+import rs.pelotas.arch.resource.ApplicationPath;
+import rs.pelotas.arch.security.role.ApplicationRole;
 import rs.pelotas.tracker.entity.Application;
 import rs.pelotas.tracker.entity.Command;
 import rs.pelotas.tracker.entity.Device;
 import rs.pelotas.tracker.entity.Position;
 import rs.pelotas.tracker.entity.User;
-import rs.pelotas.tracker.security.role.ApplicationRole;
 
 /**
  *
  * @author Rafael Guterres
  */
-@Path(AppResourcePath.APPLICATION)
+@Path(ApplicationPath.APPLICATION)
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface ApplicationResource extends Serializable {
@@ -33,10 +34,11 @@ public interface ApplicationResource extends Serializable {
     @Path("/")
     public Response getApplication();
     
-    @RolesAllowed({ApplicationRole.LOGIN})
+    @RolesAllowed({ApplicationRole.DASHBOARD})
+    @LinkResource(rel = "list", value = Application.class)
     @GET
-    @Path(AppResourcePath.LOGIN)
-    public Response getLogin();
+    @Path(ApplicationPath.DASHBOARD)
+    public Response getDashboard();
     
     @PermitAll
     @AddLinks
