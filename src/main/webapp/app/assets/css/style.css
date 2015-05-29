@@ -2,13 +2,38 @@ html,
 body {
     width: 100%;
     height: 100%;
+}
+
+body{
     font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+#mainContainer{
+    height: calc(100% - 50px);
+}
+
+.wrap{
+    height: 100%;
+}
+
+.navbar{
+    margin-bottom: 0;
+}
+
+/* Map */
+#mapContainer {
+    height: 100%;
+}
+
+@media(max-width:768px) {
+    .map {
+        height: 75%;
+    }
 }
 
 #map_canvas{
     height: 100%;
     width: auto;
-    margin-top: 50px;
 }
 
 .panel-login {
@@ -145,6 +170,7 @@ body {
 
 /* Side Menu */
 #sidebar-wrapper {
+    background: transparent;
     z-index: 2000;
     position: fixed;
     right: 0;
@@ -206,13 +232,6 @@ body {
     background: none;
 }
 
-#menu-toggle {
-    z-index: 2000;
-    position: fixed;
-    top: 0;
-    right: 0;
-}
-
 #sidebar-wrapper.active {
     right: 250px;
     width: 250px;
@@ -223,18 +242,10 @@ body {
     transition: all 0.4s ease 0s;
 }
 
-.toggle {
-    margin: 5px 5px 0 0;
-}
-
-/* Map */
-
-.map {
-    height: 500px;
-}
-
-@media(max-width:768px) {
-    .map {
-        height: 75%;
-    }
+#menu-toggle {
+    z-index: 2000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 50px;
 }

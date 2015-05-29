@@ -3,7 +3,7 @@ var map;
 function initialize() {
 
     var mapOptions = {
-        zoom: 20,
+        zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
                 // HYBRID //SATELLITE //TERRAIN
     };
