@@ -39,13 +39,12 @@
 </nav>
 
 <!-- Map -->
-<section id="mapContainer" class="map">
-    <div id="map_canvas"></div>
+<section id="mapContainer" class="map" ng-controller="MapController">
+    <ui-gmap-google-map center="map.center" options="options" zoom="map.zoom"></ui-gmap-google-map>
 </section>
 
 <!-- Custom Theme JavaScript -->
 <script>
-    initialize();
     // Closes the sidebar menu
     $("#menu-close").click(function (e) {
         e.preventDefault();

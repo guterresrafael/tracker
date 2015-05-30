@@ -29,15 +29,17 @@ body{
     height: 100%;
 }
 
+.angular-google-map{
+    height: 100%;
+}
+.angular-google-map-container { 
+    height: 100%;
+}
+
 @media(max-width:768px) {
     .map {
         height: 75%;
     }
-}
-
-#map_canvas{
-    height: 100%;
-    width: auto;
 }
 
 .panel-login {
