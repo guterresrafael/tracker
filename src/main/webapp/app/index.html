@@ -12,11 +12,14 @@
         <link href="./assets/css/bootstrap-theme.css" rel="stylesheet">
         <link href="./assets/css/style.css" rel="stylesheet">
 
+        <!-- Custom Fonts -->
+        <link href="./assets/fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+
         <script src="./assets/js/jquery/jquery.min.js"></script>
 
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCen8-FkoRbxbWZLTmDM-MwX6jSnL_1o5g"></script>
-        <!--<script type="text/javascript" src="./assets/js/GoogleMapsAPI.js"></script>-->
-        <script src="./assets/js/GoogleMaps.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
         <!--link href="css/screen.css" rel="stylesheet"/-->
         <!--[if lt IE 9]>
@@ -26,11 +29,12 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container" ng-controller="MainController as main">
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Rastreamento Veicular <span class="label label-default">Tracker</span></a>
-
+                    <a class="navbar-brand" href="#">Rastreamento Veicular 
+                        <span class="label label-default">Tracker</span>
+                    </a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -40,27 +44,25 @@
             </div>
         </nav>
 
-        <div class="jumbotron">
-        </div>
-
-        <div class="container-fluid" ng-view>
-            <footer>
-                <p>&copy; Tracker 2015</p>
-            </footer>
+        <div ng-view id="mainContainer">
         </div><!-- /container -->
 
         <!-- Placed at the end of the document so the pages load faster -->
         <!-- AngularJS -->
+        <script type="text/javascript" src="./assets/js/lodash.min.js"></script>
         <script src="./assets/js/angular/angular.js"></script>
         <script type="text/javascript" src="./assets/js/angular/angular-route.js"></script>
         <script type="text/javascript" src="./assets/js/angular/angular-resource.js"></script>
         <script type="text/javascript" src="./assets/js/angular/angular-cookies.js"></script>
+        <script type="text/javascript" src="./assets/js/angular/angular-google-maps.min.js"></script>
 
         <script type="text/javascript" src="js/main/app.js"></script>
         <script type="text/javascript" src="js/main/routes.js"></script>
+        <script type="text/javascript" src="js/main/maps.js"></script>
 
         <script src="js/modules/home/HomeController.js"></script>
         <script src="js/modules/home/MainController.js"></script>
+        <script src="js/modules/home/MapController.js"></script>
 
         <script type="text/javascript" src="js/directives/loginDirective.js"></script>
         <script type="text/javascript" src="js/modules/login/LoginController.js"></script>

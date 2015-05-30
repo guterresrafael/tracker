@@ -6,7 +6,7 @@ app.factory('AuthenticationService',
                 var service = {};
 
                 service.Login = function (callback) {
-                    $http.get('/api/login/')
+                    $http.get('/api/account/')
                             .success(function (data, status) {
                                 callback(status);
                             }).error(function(data, status){

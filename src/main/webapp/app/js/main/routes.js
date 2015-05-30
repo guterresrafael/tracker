@@ -9,9 +9,9 @@ var app = angular.module("routes", [
 
 app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/', {templateUrl: 'partials/login.html', controller: 'LoginController'});
-        $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginController'});
+        $routeProvider.when('/account', {templateUrl: 'partials/login.html', controller: 'LoginController'});
         $routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: 'HomeController as data'});
-        $routeProvider.otherwise({redirectTo: '/login'});
+        $routeProvider.otherwise({redirectTo: '/account'});
     }]);
 
 app.run(['$rootScope', '$location', '$cookieStore', '$http',
@@ -24,8 +24,8 @@ app.run(['$rootScope', '$location', '$cookieStore', '$http',
   
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in
-            if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
-                $location.path('/login');
+            if ($location.path() !== '/account' && !$rootScope.globals.currentUser) {
+                $location.path('/account');
             }
         });
     }]);

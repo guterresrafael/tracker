@@ -5,5 +5,6 @@
  */
 var app = angular.module('trackerApp', [
     'routes',
-    'ngCookies'
+    'ngCookies',
+    'maps'
 ]);
