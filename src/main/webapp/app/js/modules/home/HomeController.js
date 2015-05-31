@@ -1,13 +1,14 @@
 'use strict';
 
-app.controller('HomeController', ['$scope', 'Device', function ($scope, Device) {
-        this.activeDeviceId = 1;
-
+app.controller('HomeController', ['$scope', 'UserService', function ($scope, UserService) {
         $scope.date = new Date();
 
-        $scope.device = Device.get({deviceId: this.activeDeviceId}, function (device) {
-            $scope.dataDevice = device;
+        UserService.FindUser(function (data, response) {
+            if (response === 200) {
+                $scope.device = data;
+            } else {
+                console.log("ERRROOO!!");
+            }
         });
-
 
     }]);
