@@ -1,19 +1,23 @@
 'use strict';
 
 app.controller('MapController',
-        ['$scope', 'uiGmapGoogleMapApi', 'DeviceService',
-            function ($scope, uiGmapGoogleMapApi, DeviceService) {
+        ['uiGmapGoogleMapApi', 'DeviceService',
+            function (uiGmapGoogleMapApi, DeviceService) {
+                var map = {};
+                var options = {};
+                var zoomMap = 14;
+                var areaLat, areaLng, areaZoom;
+                // metodo responsavel por definir Latitude e Logitude do device
+                this.SetPosition = function (latitude, longitude) {
+                    areaLat = latitude;
+                    areaLng = longitude;
+                    areaZoom = zoomMap;
+                };
 
-                // Define variables for our Map object
-                var areaLat = -31.754422,
-                        areaLng = -52.3773069,
-                        areaZoom = 14;
-
-         
 
                 uiGmapGoogleMapApi.then(function (maps) {
-                    $scope.map = {center: {latitude: areaLat, longitude: areaLng}, zoom: areaZoom};
-                    $scope.options = {scrollwheel: true};
+                    map.map = {center: {latitude: areaLat, longitude: areaLng}, zoom: areaZoom};
+                    map.options = {scrollwheel: true};
                 });
 
             }]);
