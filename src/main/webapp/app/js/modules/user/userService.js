@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('UserService',
+services.factory('UserService',
         ['$http', function ($http) {
                 var service = {};
                 

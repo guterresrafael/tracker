@@ -1,8 +1,13 @@
 'use strict';
 
-app.controller('LoginController',
+controllers.controller('LoginController',
         ['$scope', '$rootScope', '$location', 'AuthenticationService',
             function ($scope, $rootScope, $location, AuthenticationService) {
+                $scope.credentials = {
+                    username: '',
+                    password: ''
+                };
+
                 // reset login status
                 AuthenticationService.ClearCredentials();
 

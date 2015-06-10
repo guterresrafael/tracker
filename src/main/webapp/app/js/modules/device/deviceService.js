@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('DeviceService',
+services.factory('DeviceService',
         ['$http', function ($http) {
                 var service = {};
 

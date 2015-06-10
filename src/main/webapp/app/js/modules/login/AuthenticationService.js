@@ -1,8 +1,8 @@
 'use strict';
 
-app.factory('AuthenticationService',
-        ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',
-            function (Base64, $http, $cookieStore, $rootScope, $timeout) {
+services.factory('AuthenticationService',
+        ['Base64', '$http', '$rootScope', '$timeout',
+            function (Base64, $http, $rootScope, $timeout) {
                 var service = {};
 
                 service.Login = function (callback) {
@@ -23,12 +23,10 @@ app.factory('AuthenticationService',
                     };
 
                     $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
-                    $cookieStore.put('globals', $rootScope.globals);
                 };
 
                 service.ClearCredentials = function () {
                     $rootScope.globals = {};
-                    $cookieStore.remove('globals');
                     $http.defaults.headers.common.Authorization = 'Basic ';
                 };
 

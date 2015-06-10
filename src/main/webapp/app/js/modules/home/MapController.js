@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MapController',
+controllers.controller('MapController',
         ['$scope', 'uiGmapGoogleMapApi', 'MapService',
             function ($scope, uiGmapGoogleMapApi, MapService) {
 

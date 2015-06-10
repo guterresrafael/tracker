@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('MapService',
+services.factory('MapService',
         ['$http', function ($http) {
                 var service = {};
 
