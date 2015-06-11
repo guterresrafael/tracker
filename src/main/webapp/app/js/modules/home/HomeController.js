@@ -3,8 +3,6 @@
 controllers.controller('HomeController', ['$scope', 'UserService', 'DeviceService', 'MapService',
     function ($scope, UserService, DeviceService, MapService) {
         $scope.date = new Date();
-        var links = $scope.links;
-
         MapService.zoom = 14;
 
         MapService.setPosition(-31.754422, -52.3773069);

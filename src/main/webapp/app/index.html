@@ -44,7 +44,7 @@
             </div>
         </nav>
 
-        <div ng-view id="mainContainer">
+        <div ng-view id="mainContainer" ng-controller="ApplicationController">
         </div><!-- /container -->
 
         <!-- Placed at the end of the document so the pages load faster -->
@@ -59,7 +59,12 @@
         <script type="text/javascript" src="js/main/app.js"></script>
         <script type="text/javascript" src="js/main/routes.js"></script>
         <script type="text/javascript" src="js/main/maps.js"></script>
+        <script type="text/javascript" src="js/main/authEvents.js"></script>
+        <script type="text/javascript" src="js/main/userRoles.js"></script>
+        <script type="text/javascript" src="js/main/session.js"></script>
 
+        <script src="js/main/ApplicationController.js"></script>
+        
         <script src="js/modules/home/HomeController.js"></script>
         <script src="js/modules/home/MainController.js"></script>
         <script src="js/modules/home/MapController.js"></script>
