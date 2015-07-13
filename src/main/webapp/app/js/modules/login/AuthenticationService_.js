@@ -1,25 +1,23 @@
 'use strict';
 
 services.factory('AuthenticationService',
-        ['Base64', '$http', '$rootScope', '$timeout', 'Session',
-            function (Base64, $http, $rootScope, $timeout, Session) {
+        ['Base64', '$http', '$rootScope', '$timeout',
+            function (Base64, $http, $rootScope, $timeout) {
                 var service = {};
 
-                service.login = function () {
-                    return $http
-                            .get('/api/account/')
-                            .then(function (res) {
-                                Session.create(res.data.id, res.data.user.id,
-                                        res.data.user.role);
-                                return res.data.user;
+                service.Login = function (callback) {
+                    $http.get('/api/account/')
+                            .success(function (data, status) {
+                                callback(status);
+                            }).error(function(data, status){
+                                callback(status);
                             });
                 };
-
-                service.SetCredentials = function (credentials) {
-                    var authdata = Base64.encode(credentials.username + ':' + credentials.password);
+                service.SetCredentials = function (username, password) {
+                    var authdata = Base64.encode(username + ':' + password);
                     $rootScope.globals = {
                         currentUser: {
-                            username: credentials.username,
+                            username: username,
                             authdata: authdata
                         }
                     };
@@ -32,20 +30,9 @@ services.factory('AuthenticationService',
                     $http.defaults.headers.common.Authorization = 'Basic ';
                 };
 
-                service.isAuthenticated = function () {
-                    return !!Session.userId;
-                };
-
-                service.isAuthorized = function (authorizedRoles) {
-                    if (!angular.isArray(authorizedRoles)) {
-                        authorizedRoles = [authorizedRoles];
-                    }
-                    return (service.isAuthenticated() &&
-                            authorizedRoles.indexOf(Session.userRole) !== -1);
-                };
-
                 return service;
-            }])
+            }
+        ])
 
         .factory('Base64', function () {
             /* jshint ignore:start */

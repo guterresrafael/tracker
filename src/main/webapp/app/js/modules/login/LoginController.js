@@ -1,19 +1,23 @@
 'use strict';
 
-app.controller('LoginController',
-        ['$scope', '$rootScope', '$location', 'AuthenticationService',
-            function ($scope, $rootScope, $location, AuthenticationService) {
-                // reset login status
-                AuthenticationService.ClearCredentials();
+controllers.controller('LoginController',
+        function ($scope, $rootScope, $location, AUTH_EVENTS, AuthenticationService) {
+            $scope.credentials = {
+                username: '',
+                password: ''
+            };
 
-                $scope.login = function () {
-                    AuthenticationService.SetCredentials($scope.username, $scope.password);
-                    AuthenticationService.Login(function (response) {
-                        if (response === 200) {
-                            $location.path('/home');
-                        } else {
-                            $scope.error = "Falha na autenticação.";
-                        }
-                    });
-                };
-            }]);
+            $scope.login = function (credentials) {
+                AuthenticationService.SetCredentials(credentials);
+
+                AuthenticationService.login().then(function (user) {
+                    $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                    $scope.setCurrentUser(user);
+                    $location.path('/home');
+                }, function () {
+                    $scope.error = "Falha na autenticação.";
+                    $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                });
+            };
+
+        })

@@ -1,15 +1,12 @@
 'use strict';
 
-var app = app.controller("MapController", function ($scope, uiGmapGoogleMapApi) {
+controllers.controller('MapController',
+        ['$scope', 'uiGmapGoogleMapApi', 'MapService',
+            function ($scope, uiGmapGoogleMapApi, MapService) {
 
-    // Define variables for our Map object
-    var areaLat = -31.754422,
-            areaLng = -52.3773069,
-            areaZoom = 13;
+                uiGmapGoogleMapApi.then(function (maps) {
+                    $scope.map = {center: {latitude: MapService.areaLat, longitude: MapService.areaLng}, zoom: MapService.zoom};
+                    $scope.options = {scrollwheel: true};
+                });
 
-    uiGmapGoogleMapApi.then(function (maps) {
-        $scope.map = {center: {latitude: areaLat, longitude: areaLng}, zoom: areaZoom};
-        $scope.options = {scrollwheel: true};
-    });
-
-});
+            }]);

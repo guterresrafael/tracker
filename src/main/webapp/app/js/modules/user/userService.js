@@ -1,6 +1,18 @@
-app.factory('User', ['$resource',
-    function ($resource) {
-        return $resource('../api/traccar/users/:userId', {}, {
-            query: {method: 'GET', params: {userId: 'users'}}
-        });
-    }]);
+'use strict';
+
+services.factory('UserService',
+        ['$http', function ($http) {
+                var service = {};
+                
+                service.FindUser = function (callback) {
+                    $http.get('/api/users/1/')
+                            .success(function (data, status) {
+                                callback(data, status);
+                            }).error(function(data, status){
+                                callback(data, status);
+                            });
+                };
+                
+                return service;
+            }
+        ]);
