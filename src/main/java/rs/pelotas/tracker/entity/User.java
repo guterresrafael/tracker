@@ -74,7 +74,7 @@ public class User extends BaseEntity<Long> implements Serializable {
     @OneToMany(mappedBy = "user",
                fetch = FetchType.LAZY)
     private List<UserMeta> metadata;
-    
+
     @Override
     public Long getId() {
         return id;

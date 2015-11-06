@@ -6,12 +6,13 @@
     <artifactId>tracker</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>Tracker :: pelotas.rs</name>
+    <name>tracker</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
-        <version.dependency.arch.pelotas.rs>1.0.0-SNAPSHOT</version.dependency.arch.pelotas.rs>        
+        <version.dependency.arch.pelotas.rs>1.0.0-SNAPSHOT</version.dependency.arch.pelotas.rs>
+        <version.dependency.traccar.org>3.1-SNAPSHOT</version.dependency.traccar.org>
         <version.dependency.jboss.spec.javaee.7.0>1.0.0.Final</version.dependency.jboss.spec.javaee.7.0>
         <version.dependency.cdi>1.2</version.dependency.cdi>
         <version.dependency.jsf>2.2.10</version.dependency.jsf>
@@ -61,15 +62,15 @@
     </properties>
 
     <dependencies>
-        <!-- Arch pelotas.rs -->
+        <!-- Arch Java -->
         <dependency>
             <groupId>rs.pelotas</groupId>
             <artifactId>arch</artifactId>
             <version>${version.dependency.arch.pelotas.rs}</version>
             <scope>compile</scope>
         </dependency>
-        <!-- /Arch pelotas.rs -->
-        
+        <!-- /Arch Java -->
+
         <!-- Annotation API -->
         <dependency>
             <groupId>org.jboss.spec.javax.annotation</groupId>
@@ -203,7 +204,19 @@
             <artifactId>resteasy-jettison-provider</artifactId>
             <version>${version.dependency.resteasy}</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.codehaus.jettison</groupId>
+                    <artifactId>jettison</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.codehaus.jettison</groupId>
+            <artifactId>jettison</artifactId>
+            <version>1.3.7</version>
+        </dependency>
+
         <!-- /JAX-RS API -->
 
         <!-- CDI API -->

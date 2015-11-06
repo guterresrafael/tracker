@@ -1,4 +1,4 @@
-package rs.pelotas.tracker.webfilter;
+package rs.pelotas.tracker.web.filter;
 
 import java.io.IOException;
 import java.util.logging.Logger;
