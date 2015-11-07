@@ -67,8 +67,8 @@
             <groupId>rs.pelotas</groupId>
             <artifactId>arch</artifactId>
             <version>${version.dependency.arch.pelotas.rs}</version>
-            <scope>compile</scope>
-            <!--systemPath>${project.basedir}/lib/arch-${version.dependency.arch.pelotas.rs}.jar</systemPath-->
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/arch-${version.dependency.arch.pelotas.rs}.jar</systemPath>
         </dependency>
         <!-- /Arch Java -->
 
