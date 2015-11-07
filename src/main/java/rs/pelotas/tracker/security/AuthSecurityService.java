@@ -17,12 +17,12 @@ public class AuthSecurityService implements SecurityService {
     private static final long serialVersionUID = 3060578476342703986L;
 
     @Inject
-    UserService userService;
-    
+    private UserService userService;
+
     @Override
     public boolean isAuthenticatedUser(UserPrincipal userPrincipal) {
-        if (userPrincipal.getName() != null && 
-            userPrincipal.getPassword() != null) {
+        if (userPrincipal.getName() != null
+            && userPrincipal.getPassword() != null) {
             User user = userService.findByLogin(userPrincipal.getName());
             if (user != null && userPrincipal.getPassword().equalsIgnoreCase(user.getPassword())) {
                 userPrincipal.setId(user.getId());

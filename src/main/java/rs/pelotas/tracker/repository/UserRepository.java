@@ -9,6 +9,6 @@ import rs.pelotas.tracker.entity.User;
  * @author Rafael Guterres
  */
 public interface UserRepository extends Repository<User, Long> {
- 
+
     List<User> findUsersByDeviceId(Long deviceId);
 }

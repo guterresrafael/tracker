@@ -19,7 +19,7 @@ public class PositionWriter implements ItemWriter {
 
     @Inject
     private PositionService positionService;
-    
+
     @Override
     public void open(Serializable srlzbl) throws Exception {
         //Do nothing.

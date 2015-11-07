@@ -9,6 +9,6 @@ import rs.pelotas.tracker.entity.Device;
  * @author Rafael Guterres
  */
 public interface DeviceService extends Service<Device, Long> {
-    
+
     List<Device> findDevicesByUserId(Long userId);
 }

@@ -29,7 +29,7 @@ import rs.pelotas.arch.entity.BaseEntity;
 public class Command extends BaseEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = -3696836637131129573L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -41,15 +41,15 @@ public class Command extends BaseEntity<Long> implements Serializable {
 
     @Column(name = "commands")
     private String commands;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "queued")
     private Date queued;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "executed")
     private Date executed;
-    
+
     @Override
     public Long getId() {
         return id;
@@ -59,7 +59,7 @@ public class Command extends BaseEntity<Long> implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public Device getDevice() {
         return device;
     }

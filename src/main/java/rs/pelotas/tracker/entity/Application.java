@@ -16,16 +16,16 @@ import org.jboss.resteasy.links.RESTServiceDiscovery;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Application {
-    
+
     @XmlAttribute
-    private static final String version = "1.0.0-SNAPSHOT";
-    
+    private static final String APP_VERSION = "1.0.0-SNAPSHOT";
+
     @XmlElementWrapper(name = "links")
     @XmlElement(name = "link")
     @Transient
-    RESTServiceDiscovery rest;
+    private RESTServiceDiscovery rest;
 
     public String getVersion() {
-        return version;
+        return APP_VERSION;
     }
 }

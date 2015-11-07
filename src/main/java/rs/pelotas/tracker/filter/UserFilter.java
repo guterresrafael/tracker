@@ -13,7 +13,7 @@ public class UserFilter implements Filter {
     private static final long serialVersionUID = -826179002987833812L;
 
     private String login;
-    
+
     public String getLogin() {
         return login;
     }
@@ -21,5 +21,4 @@ public class UserFilter implements Filter {
     public void setLogin(String login) {
         this.login = login;
     }
-    
 }

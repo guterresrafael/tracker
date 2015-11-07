@@ -18,9 +18,9 @@ import rs.pelotas.tracker.service.UserService;
 public class UserServiceBean extends BaseService<User, Long> implements UserService {
 
     private static final long serialVersionUID = -8808714191503203114L;
-    
+
     @Inject
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public Repository<User, Long> getRepository() {

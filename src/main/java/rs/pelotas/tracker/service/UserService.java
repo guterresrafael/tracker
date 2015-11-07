@@ -11,6 +11,6 @@ import rs.pelotas.tracker.entity.User;
 public interface UserService extends Service<User, Long> {
 
     User findByLogin(String login);
-    
+
     List<User> findUsersByDevicesId(Long deviceId);
 }

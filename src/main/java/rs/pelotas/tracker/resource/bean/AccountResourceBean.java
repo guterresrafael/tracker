@@ -17,14 +17,14 @@ public class AccountResourceBean implements AccountResource {
     private static final long serialVersionUID = -3491249668209753237L;
 
     @Inject
-    UserService userService;
-    
+    private UserService userService;
+
     @Context
-    SecurityContext securityContext;
-    
+    private SecurityContext securityContext;
+
     @Override
     public User getAccount() {
         UserPrincipal userPrincipal = (UserPrincipal) securityContext.getUserPrincipal();
         return userService.load(userPrincipal.getId());
-    }   
+    }
 }

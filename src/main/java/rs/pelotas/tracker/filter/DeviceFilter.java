@@ -13,10 +13,10 @@ public class DeviceFilter implements Filter {
 
     @CriteriaFilter
     private Long id;
-    
+
     @CriteriaFilter
     private String name;
-    
+
     @CriteriaFilter
     private String imei;
 
@@ -27,7 +27,7 @@ public class DeviceFilter implements Filter {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public String getName() {
         return name;
     }

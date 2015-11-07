@@ -31,7 +31,7 @@ import rs.pelotas.arch.entity.BaseEntity;
 @Entity
 @Table(name = "user")
 public class User extends BaseEntity<Long> implements Serializable {
-    
+
     private static final long serialVersionUID = 7725414857447495314L;
 
     @Id
@@ -105,7 +105,7 @@ public class User extends BaseEntity<Long> implements Serializable {
         return name;
     }
 
-    public void setName(String name ){
+    public void setName(String name) {
         this.name = name;
     }
 

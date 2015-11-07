@@ -14,11 +14,11 @@ import rs.pelotas.tracker.service.CommandService;
  */
 @RequestScoped
 public class CommandResourceBean extends BaseResource<Command, Long> implements CommandResource {
-    
+
     private static final long serialVersionUID = -1527652534931195579L;
 
     @Inject
-    CommandService commandService;
+    private CommandService commandService;
 
     @Override
     public Service<Command, Long> getService() {

@@ -31,48 +31,48 @@ import rs.pelotas.tracker.security.role.DeviceRole;
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface DeviceResource extends Resource<Device, Long> {
-    
+
     @RolesAllowed({AdminRole.LIST, DeviceRole.LIST})
     @AddLinks
     @LinkResource(Device.class)
     @GET
     @Path("/")
     @Override
-    public List<Device> getEntities(@Context HttpServletRequest request);
+    List<Device> getEntities(@Context HttpServletRequest request);
 
     @RolesAllowed({AdminRole.CREATE, DeviceRole.CREATE})
     @LinkResource
     @POST
     @Path("/")
     @Override
-    public Response postEntity(Device entity);
-    
+    Response postEntity(Device entity);
+
     @RolesAllowed({AdminRole.READ, DeviceRole.READ})
     @AddLinks
     @LinkResource
     @GET
     @Path("/{id}")
     @Override
-    public Device getEntityById(@PathParam("id") Long id);
+    Device getEntityById(@PathParam("id") Long id);
 
     @RolesAllowed({AdminRole.UPDATE, DeviceRole.UPDATE})
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
-    public Response putEntity(@PathParam("id") Long id, Device entity);
+    Response putEntity(@PathParam("id") Long id, Device entity);
 
     @RolesAllowed({AdminRole.DELETE, DeviceRole.DELETE})
     @LinkResource(Device.class)
     @DELETE
     @Path("/{id}")
     @Override
-    public Response deleteEntity(@PathParam("id") Long id);
-    
+    Response deleteEntity(@PathParam("id") Long id);
+
     @RolesAllowed({AdminRole.READ, DeviceRole.USERS_LIST})
     @AddLinks
     @LinkResource(value = Device.class, rel = "users")
     @GET
     @Path("/{id}/users")
-    public Collection<User> getUsers(@PathParam("id") Long deviceId);
+    Collection<User> getUsers(@PathParam("id") Long deviceId);
 }

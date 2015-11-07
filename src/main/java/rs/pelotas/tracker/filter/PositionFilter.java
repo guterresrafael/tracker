@@ -13,9 +13,7 @@ public class PositionFilter implements Filter {
 
     @CriteriaFilter
     private Long deviceId;
-    
-    
-    
+
     public Long getDeviceId() {
         return deviceId;
     }
@@ -23,5 +21,4 @@ public class PositionFilter implements Filter {
     public void setDeviceId(Long deviceId) {
         this.deviceId = deviceId;
     }
-    
 }

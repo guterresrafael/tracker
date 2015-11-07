@@ -12,25 +12,25 @@ import rs.pelotas.tracker.service.DeviceService;
 import rs.pelotas.tracker.service.UserService;
 
 /**
- * 
+ *
  * @author Rafael Guterres
  */
 @RequestScoped
 public class DeviceResourceBean extends BaseResource<Device, Long> implements DeviceResource {
-    
+
     private static final long serialVersionUID = 9145212157187874341L;
 
     @Inject
-    DeviceService deviceService;
-    
+    private DeviceService deviceService;
+
     @Inject
-    UserService userService;
-    
+    private UserService userService;
+
     @Override
     public Service<Device, Long> getService() {
         return deviceService;
     }
-    
+
     @Override
     public List<User> getUsers(Long deviceId) {
         return userService.findUsersByDevicesId(deviceId);

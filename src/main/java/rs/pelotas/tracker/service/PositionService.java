@@ -8,5 +8,5 @@ import rs.pelotas.tracker.entity.Position;
  * @author Rafael Guterres
  */
 public interface PositionService extends Service<Position, Long> {
-    
+
 }

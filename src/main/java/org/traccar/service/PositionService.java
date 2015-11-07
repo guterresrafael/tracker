@@ -16,13 +16,13 @@ public class PositionService extends BaseService<Position, Long> implements Serv
     private static final long serialVersionUID = 6724032880321896946L;
 
     @Inject
-    PositionRepository positionRepository;
+    private PositionRepository positionRepository;
 
     @Override
     public Repository<Position, Long> getRepository() {
         return positionRepository;
     }
-    
+
     public Position getPositionToImport() {
         return null;
     }

@@ -3,7 +3,6 @@ package rs.pelotas.tracker.web.filter;
 import java.io.IOException;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
-import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -21,7 +20,7 @@ import javax.transaction.UserTransaction;
 public class ConnectionFilter implements Filter {
 
     @Resource
-    UserTransaction userTransaction;
+    private UserTransaction userTransaction;
 
     @Override
     public void init(FilterConfig fc) throws ServletException {

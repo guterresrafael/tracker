@@ -15,11 +15,11 @@ import rs.pelotas.arch.core.BaseApplication;
 public class Application extends BaseApplication {
 
     @Inject
-    JobScheduler scheduler;
+    private JobScheduler scheduler;
 
     @Inject
-    Logger logger;
-    
+    private Logger logger;
+
     @Override
     public JobScheduler getScheduler() {
         return scheduler;

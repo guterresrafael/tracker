@@ -17,7 +17,7 @@ import rs.pelotas.tracker.repository.DeviceRepository;
  * @author Rafael Guterres
  */
 public class DeviceRepositoryBean extends BaseRepository<Device, Long> implements DeviceRepository {
-    
+
     private static final long serialVersionUID = 5330144509499505026L;
 
     @Override

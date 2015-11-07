@@ -18,13 +18,13 @@ public class UserService extends BaseService<User, Long> implements Service<User
     private static final long serialVersionUID = -8063860493524059545L;
 
     @Inject
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public Repository<User, Long> getRepository() {
         return userRepository;
     }
-    
+
     public User findByLogin(String login) {
         UserFilter userFilter = new UserFilter();
         userFilter.setLogin(login);

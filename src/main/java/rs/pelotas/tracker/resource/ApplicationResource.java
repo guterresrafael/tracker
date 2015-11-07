@@ -27,44 +27,44 @@ import rs.pelotas.tracker.entity.User;
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface ApplicationResource extends Serializable {
-    
+
     @PermitAll
     @AddLinks
     @GET
     @Path("/")
-    public Response getApplication();
-    
+    Response getApplication();
+
     @RolesAllowed({ApplicationRole.DASHBOARD})
     @LinkResource(rel = "list", value = Application.class)
     @GET
     @Path(ApplicationPath.DASHBOARD)
-    public Response getDashboard();
-    
+    Response getDashboard();
+
     @PermitAll
     @AddLinks
     @LinkResource(rel = "list", value = Application.class)
     @GET
     @Path(AppResourcePath.USERS)
-    public Response getResource(User user);
-    
+    Response getResource(User user);
+
     @PermitAll
     @AddLinks
     @LinkResource(rel = "list", value = Application.class)
     @GET
     @Path(AppResourcePath.DEVICES)
-    public Response getResource(Device device);
+    Response getResource(Device device);
 
     @PermitAll
     @AddLinks
     @LinkResource(rel = "list", value = Application.class)
     @GET
     @Path(AppResourcePath.POSITIONS)
-    public Response getResource(Position position);
-    
+    Response getResource(Position position);
+
     @PermitAll
     @AddLinks
     @LinkResource(rel = "list", value = Application.class)
     @GET
     @Path(AppResourcePath.COMMANDS)
-    public Response getResource(Command command);
+    Response getResource(Command command);
 }

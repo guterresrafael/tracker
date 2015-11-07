@@ -15,20 +15,20 @@ import org.traccar.service.UserService;
  * @author Rafael Guterres
  */
 public class UserResourceBean extends BaseResource<User, Long> implements UserResource {
-    
+
     private static final long serialVersionUID = -6835862323296783770L;
-    
-    @Inject
-    UserService userService;
 
     @Inject
-    DeviceService deviceService;
+    private UserService userService;
+
+    @Inject
+    private DeviceService deviceService;
 
     @Override
     public Service<User, Long> getService() {
         return userService;
     }
-    
+
     @Override
     public List<Device> getDevices(Long userId) {
         return deviceService.findDevicesByUserId(userId);

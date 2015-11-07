@@ -20,10 +20,10 @@ import rs.pelotas.tracker.entity.User;
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 public interface AccountResource extends Serializable {
-    
+
     @RolesAllowed({ApplicationRole.ACCOUNT})
     @AddLinks
     @GET
     @Path("/")
-    public User getAccount();
+    User getAccount();
 }

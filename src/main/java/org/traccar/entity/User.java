@@ -27,9 +27,9 @@ import rs.pelotas.arch.entity.BaseEntity;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity(name = "users")
-@Table(name="users")
+@Table(name = "users")
 public class User extends BaseEntity<Long> implements Serializable {
-    
+
     private static final long serialVersionUID = 2094535745860666195L;
 
     @Id
@@ -40,7 +40,7 @@ public class User extends BaseEntity<Long> implements Serializable {
 
     @XmlJavaTypeAdapter(PasswordAdapter.class)
     private String password;
-    
+
     @XmlTransient
     @ManyToMany(cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY)
@@ -48,7 +48,7 @@ public class User extends BaseEntity<Long> implements Serializable {
                joinColumns = {@JoinColumn(name = "users_id")},
                inverseJoinColumns = {@JoinColumn(name = "devices_id")})
     private List<Device> devices;
-    
+
     @Override
     public Long getId() {
         return id;

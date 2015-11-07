@@ -24,9 +24,9 @@ import rs.pelotas.arch.entity.BaseMetaEntity;
 @Entity
 @Table(name = "device_meta")
 public class DeviceMeta extends BaseMetaEntity {
-    
+
     private static final long serialVersionUID = 1057665567625010428L;
-    
+
     @XmlTransient
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

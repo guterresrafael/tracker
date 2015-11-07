@@ -14,7 +14,7 @@ public class PositionJob implements JobUnit {
     private static final long POSITION_JOB_INITIAL_DELAY = 0;
     private static final long POSITION_JOB_PERIOD = 15;
     private static final TimeUnit POSITION_JOB_TIME_UNIT = TimeUnit.SECONDS;
-    
+
     @Override
     public String getJobName() {
         return POSITION_JOB_NAME;
@@ -34,7 +34,7 @@ public class PositionJob implements JobUnit {
     public TimeUnit getTimeUnit() {
         return POSITION_JOB_TIME_UNIT;
     }
-    
+
     @Override
     public Runnable getRunnableTask() {
         return new Runnable() {

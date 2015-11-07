@@ -16,7 +16,7 @@ public class CommandService extends BaseService<Command, Long> implements Servic
     private static final long serialVersionUID = -5844347019434782533L;
 
     @Inject
-    CommandRepository commandRepository;
+    private CommandRepository commandRepository;
 
     @Override
     public Repository<Command, Long> getRepository() {

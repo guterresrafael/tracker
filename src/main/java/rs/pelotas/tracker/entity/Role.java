@@ -33,13 +33,13 @@ public class Role extends BaseEntity<Long> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    
+
     @Column(name = "name")
     private String name;
-    
+
     @Column(name = "description")
     private String description;
-    
+
     @XmlTransient
     @ManyToMany(mappedBy = "roles",
                 cascade = CascadeType.ALL,

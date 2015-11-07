@@ -47,27 +47,27 @@ public class Device extends BaseEntity<Long> implements Serializable {
     @XmlJavaTypeAdapter(MD5Adapter.class)
     @Column(name = "password")
     private String password;
-    
+
     @Column(name = "name")
     private String name;
 
     @Column(name = "phone")
     private String phone;
-    
+
     @XmlTransient
     @ManyToMany(mappedBy = "devices",
                 cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY)
     private List<User> users;
-    
+
     @OneToMany(mappedBy = "device",
                fetch = FetchType.LAZY)
     private List<DeviceMeta> metadata;
-    
+
     @OneToOne
-    @JoinColumn(name="latest_position_id", foreignKey = @ForeignKey(name = "fk_position_id__device_latestpositionid"))
+    @JoinColumn(name = "latest_position_id", foreignKey = @ForeignKey(name = "fk_position_id__device_latestpositionid"))
     private Position latestPosition;
-    
+
     @Override
     public Long getId() {
         return id;

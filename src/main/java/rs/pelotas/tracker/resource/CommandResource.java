@@ -36,34 +36,34 @@ public interface CommandResource extends Resource<Command, Long> {
     @GET
     @Path("/")
     @Override
-    public List<Command> getEntities(@Context HttpServletRequest request);
+    List<Command> getEntities(@Context HttpServletRequest request);
 
     @RolesAllowed({AdminRole.CREATE, CommandRole.CREATE})
     @LinkResource
     @POST
     @Path("/")
     @Override
-    public Response postEntity(Command entity);
-    
+    Response postEntity(Command entity);
+
     @RolesAllowed({AdminRole.READ, CommandRole.READ})
     @AddLinks
     @LinkResource
     @GET
     @Path("/{id}")
     @Override
-    public Command getEntityById(@PathParam("id") Long id);
+    Command getEntityById(@PathParam("id") Long id);
 
     @RolesAllowed({AdminRole.UPDATE, CommandRole.UPDATE})
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
-    public Response putEntity(@PathParam("id") Long id, Command entity);
+    Response putEntity(@PathParam("id") Long id, Command entity);
 
     @RolesAllowed({AdminRole.DELETE, CommandRole.DELETE})
     @LinkResource(value = Command.class)
     @DELETE
     @Path("/{id}")
     @Override
-    public Response deleteEntity(@PathParam("id") Long id);    
+    Response deleteEntity(@PathParam("id") Long id);
 }

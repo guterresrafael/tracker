@@ -11,7 +11,7 @@ import rs.pelotas.tracker.entity.User;
 import rs.pelotas.tracker.resource.ApplicationResource;
 
 /**
- * 
+ *
  * @author Rafael Guterres
  */
 @RequestScoped

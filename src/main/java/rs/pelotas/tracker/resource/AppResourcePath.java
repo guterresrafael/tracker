@@ -4,7 +4,7 @@ package rs.pelotas.tracker.resource;
  *
  * @author Rafael Guterres
  */
-public class AppResourcePath {
+public final class AppResourcePath {
 
     public static final String USERS = "/users";
     public static final String DEVICES = "/devices";

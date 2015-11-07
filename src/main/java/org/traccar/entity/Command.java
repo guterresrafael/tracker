@@ -25,7 +25,7 @@ import rs.pelotas.arch.entity.BaseEntity;
 public class Command extends BaseEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = -3696836637131129573L;
-    
+
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -35,13 +35,13 @@ public class Command extends BaseEntity<Long> implements Serializable {
     private Device device;
 
     private String commands;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date queued;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date executed;
-    
+
     @Override
     public Long getId() {
         return id;
@@ -51,7 +51,7 @@ public class Command extends BaseEntity<Long> implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public Device getDevice() {
         return device;
     }

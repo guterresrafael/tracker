@@ -25,29 +25,29 @@ import rs.pelotas.arch.entity.BaseEntity;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity(name = "devices")
-@Table(name="devices", uniqueConstraints = @UniqueConstraint(columnNames = "uniqueId"))
+@Table(name = "devices", uniqueConstraints = @UniqueConstraint(columnNames = "uniqueId"))
 public class Device extends BaseEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = -5900559872664830378L;
-        
+
     @Id
     private Long id;
-    
+
     private String name;
-    
-    @Column(name="uniqueId")
+
+    @Column(name = "uniqueId")
     private String imei;
-    
+
     @XmlTransient
-    @ManyToMany(mappedBy = "devices", 
+    @ManyToMany(mappedBy = "devices",
                 cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY)
     private List<User> users;
-    
+
     @OneToOne
-    @JoinColumn(name="latestPosition_id")
+    @JoinColumn(name = "latestPosition_id")
     private Position latestPosition;
-    
+
     @Override
     public Long getId() {
         return id;

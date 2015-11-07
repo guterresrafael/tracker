@@ -16,7 +16,7 @@ public class DeviceService extends BaseService<Device, Long> implements Service<
     private static final long serialVersionUID = -271039355862815425L;
 
     @Inject
-    DeviceRepository deviceRepository;
+    private DeviceRepository deviceRepository;
 
     @Override
     public Repository<Device, Long> getRepository() {

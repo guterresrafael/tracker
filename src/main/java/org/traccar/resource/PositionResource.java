@@ -35,14 +35,14 @@ public interface PositionResource extends Resource<Position, Long> {
     @GET
     @Path("/")
     @Override
-    public List<Position> getEntities(@Context HttpServletRequest request);
+    List<Position> getEntities(@Context HttpServletRequest request);
 
     @RolesAllowed({TraccarRole.POSITIONS_CREATE})
     @LinkResource
     @POST
     @Path("/")
     @Override
-    public Response postEntity(Position entity);
+    Response postEntity(Position entity);
 
     @RolesAllowed({TraccarRole.POSITIONS_READ})
     @AddLinks
@@ -50,26 +50,26 @@ public interface PositionResource extends Resource<Position, Long> {
     @GET
     @Path("/{id}")
     @Override
-    public Position getEntityById(@PathParam("id") Long id);
-    
+    Position getEntityById(@PathParam("id") Long id);
+
     @RolesAllowed({TraccarRole.POSITIONS_UPDATE})
     @AddLinks
     @LinkResource
     @PUT
     @Path("/{id}")
     @Override
-    public Response putEntity(@PathParam("id") Long id, Position entity);
+    Response putEntity(@PathParam("id") Long id, Position entity);
 
     @RolesAllowed({TraccarRole.POSITIONS_DELETE})
     @LinkResource(Position.class)
     @DELETE
     @Path("/{id}")
     @Override
-    public Response deleteEntity(@PathParam("id") Long id);
-    
+    Response deleteEntity(@PathParam("id") Long id);
+
     @RolesAllowed({TraccarRole.POSITIONS_READ})
     @LinkResource(value = Position.class, rel = "googlemaps")
     @GET
     @Path("/{id}/googlemaps")
-    public Response getGoogleMapsLink(@PathParam("id") Long id);
+    Response getGoogleMapsLink(@PathParam("id") Long id);
 }

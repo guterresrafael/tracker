@@ -18,13 +18,13 @@ public class PositionServiceBean extends BaseService<Position, Long> implements 
     private static final long serialVersionUID = -2496030139227407311L;
 
     @Inject
-    PositionRepository positionRepository;
+    private PositionRepository positionRepository;
 
     @Override
     public Repository<Position, Long> getRepository() {
         return positionRepository;
     }
-    
+
     public Position getPositionToImport() {
         return null;
     }

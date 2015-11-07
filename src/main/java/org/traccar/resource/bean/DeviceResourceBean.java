@@ -9,21 +9,21 @@ import org.traccar.resource.DeviceResource;
 import org.traccar.service.DeviceService;
 
 /**
- * 
+ *
  * @author Rafael Guterres
  */
 public class DeviceResourceBean extends BaseResource<Device, Long> implements DeviceResource {
-    
+
     private static final long serialVersionUID = 9145212157187874341L;
 
     @Inject
-    DeviceService deviceService;
-    
+    private DeviceService deviceService;
+
     @Override
     public Service<Device, Long> getService() {
         return deviceService;
     }
-    
+
     @Override
     public List<Device> getUsers(Long deviceId) {
         throw new UnsupportedOperationException("Not supported yet.");

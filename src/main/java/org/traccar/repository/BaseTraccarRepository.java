@@ -13,12 +13,12 @@ import rs.pelotas.arch.repository.BaseRepository;
  * @param <I>
  */
 public abstract class BaseTraccarRepository<T extends BaseEntity, I extends Serializable> extends BaseRepository<T, I> {
-    
+
     private static final long serialVersionUID = -6526885283678133001L;
 
     @PersistenceContext(unitName = "traccar")
-    EntityManager entityManager;
-    
+    private EntityManager entityManager;
+
     @Override
     public EntityManager getEntityManager() {
         return entityManager;

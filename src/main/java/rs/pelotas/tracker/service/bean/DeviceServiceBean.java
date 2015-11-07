@@ -18,7 +18,7 @@ public class DeviceServiceBean extends BaseService<Device, Long> implements Devi
     private static final long serialVersionUID = -6173900068176198955L;
 
     @Inject
-    DeviceRepository deviceRepository;
+    private DeviceRepository deviceRepository;
 
     @Override
     public Repository<Device, Long> getRepository() {

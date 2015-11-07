@@ -23,5 +23,5 @@ public class PositionProcessor implements ItemProcessor {
             return positionTracker;
         }
         return null;
-    }   
+    }
 }

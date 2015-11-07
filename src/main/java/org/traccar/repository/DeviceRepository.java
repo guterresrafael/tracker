@@ -13,7 +13,7 @@ import org.traccar.entity.Device;
  * @author Rafael Guterres
  */
 public class DeviceRepository extends BaseTraccarRepository<Device, Long> implements Repository<Device, Long> {
-    
+
     private static final long serialVersionUID = 5330144509499505026L;
 
     public List<Device> findDevicesByUserId(Long userId) {

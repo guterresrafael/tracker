@@ -14,18 +14,18 @@ import rs.pelotas.arch.resource.ResponseBuilder;
  * @author Rafael Guterres
  */
 public class PositionResourceBean extends BaseResource<Position, Long> implements PositionResource {
-    
+
     private static final long serialVersionUID = 3630413584076355265L;
 
     private static final String GOOGLE_MAPS_LINK = "https://maps.google.com?q=%s,%s";
 
     @Inject
-    PositionService positionService;
-    
+    private PositionService positionService;
+
     @Override
     public Service<Position, Long> getService() {
         return positionService;
-    }  
+    }
 
     @Override
     public Response getGoogleMapsLink(Long id) {

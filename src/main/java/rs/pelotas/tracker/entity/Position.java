@@ -24,51 +24,51 @@ import rs.pelotas.arch.entity.BaseEntity;
 @Entity
 @Table(name = "position")
 public class Position extends BaseEntity<Long> implements Serializable {
-    
+
     private static final long serialVersionUID = 461668360836681003L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    
+
     @Column(name = "address")
     private String address;
-    
+
     @Column(name = "altitude")
     private Double altitude;
-    
+
     @Column(name = "course")
     private Double course;
-    
+
     @Column(name = "latitude")
     private Double latitude;
-    
+
     @Column(name = "longitude")
     private Double longitude;
-    
+
     @Column(name = "other")
     private String other;
-    
+
     @Column(name = "power")
     private Double power;
-    
+
     @Column(name = "speed")
     private Double speed;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "time")
     private Date time;
-    
+
     @Column(name = "valid")
     private Boolean valid;
-    
+
 //    @OneToOne
 //    @JoinColumn(name="device_id")
 //    private Device device;
-    @Column(name="device_id")
+    @Column(name = "device_id")
     private Long deviceId;
-    
+
     @Override
     public Long getId() {
         return id;

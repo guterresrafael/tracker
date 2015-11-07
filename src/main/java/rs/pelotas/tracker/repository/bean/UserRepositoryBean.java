@@ -19,9 +19,9 @@ import rs.pelotas.tracker.repository.UserRepository;
  */
 @Stateless
 public class UserRepositoryBean extends BaseRepository<User, Long> implements UserRepository {
-    
+
     private static final long serialVersionUID = -5110859541451047877L;
-    
+
     @Override
     public List<User> findUsersByDeviceId(Long deviceId) {
         CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();

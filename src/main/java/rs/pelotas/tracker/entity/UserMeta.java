@@ -24,7 +24,7 @@ import rs.pelotas.arch.entity.BaseMetaEntity;
 @Entity
 @Table(name = "user_meta")
 public class UserMeta extends BaseMetaEntity {
-    
+
     private static final long serialVersionUID = -8682189201700121363L;
 
     @XmlTransient
@@ -59,7 +59,7 @@ public class UserMeta extends BaseMetaEntity {
     public void setUser(User user) {
         this.user = user;
     }
-    
+
     @Override
     public String getKey() {
         return key;
