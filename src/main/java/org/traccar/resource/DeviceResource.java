@@ -1,5 +1,6 @@
 package org.traccar.resource;
 
+import arch.resource.Resource;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
@@ -17,9 +18,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
-import rs.pelotas.arch.resource.Resource;
 import org.traccar.entity.Device;
-import rs.pelotas.tracker.security.role.TraccarRole;
+import tracker.security.role.TraccarRole;
 
 /**
  *

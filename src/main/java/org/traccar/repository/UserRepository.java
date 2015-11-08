@@ -1,6 +1,6 @@
 package org.traccar.repository;
 
-import rs.pelotas.arch.repository.Repository;
+import arch.repository.Repository;
 import org.traccar.entity.User;
 
 /**

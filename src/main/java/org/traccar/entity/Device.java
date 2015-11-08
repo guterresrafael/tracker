@@ -1,5 +1,6 @@
 package org.traccar.entity;
 
+import arch.entity.BaseEntity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -16,7 +17,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import rs.pelotas.arch.entity.BaseEntity;
 
 /**
  *

@@ -1,9 +1,9 @@
 package org.traccar.resource.bean;
 
+import arch.resource.BaseResource;
+import arch.service.Service;
 import java.util.List;
 import javax.inject.Inject;
-import rs.pelotas.arch.resource.BaseResource;
-import rs.pelotas.arch.service.Service;
 import org.traccar.entity.Device;
 import org.traccar.resource.DeviceResource;
 import org.traccar.service.DeviceService;

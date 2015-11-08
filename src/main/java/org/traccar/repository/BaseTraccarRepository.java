@@ -1,10 +1,10 @@
 package org.traccar.repository;
 
+import arch.entity.BaseEntity;
+import arch.repository.BaseRepository;
 import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import rs.pelotas.arch.entity.BaseEntity;
-import rs.pelotas.arch.repository.BaseRepository;
 
 /**
  *

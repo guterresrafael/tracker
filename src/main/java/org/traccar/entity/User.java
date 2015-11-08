@@ -1,5 +1,7 @@
 package org.traccar.entity;
 
+import arch.annotation.adapters.PasswordAdapter;
+import arch.entity.BaseEntity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -17,8 +19,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import rs.pelotas.arch.annotation.adapters.PasswordAdapter;
-import rs.pelotas.arch.entity.BaseEntity;
 
 /**
  *

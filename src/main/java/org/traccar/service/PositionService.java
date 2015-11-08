@@ -1,9 +1,9 @@
 package org.traccar.service;
 
+import arch.repository.Repository;
+import arch.service.BaseService;
+import arch.service.Service;
 import javax.inject.Inject;
-import rs.pelotas.arch.repository.Repository;
-import rs.pelotas.arch.service.BaseService;
-import rs.pelotas.arch.service.Service;
 import org.traccar.entity.Position;
 import org.traccar.repository.PositionRepository;
 

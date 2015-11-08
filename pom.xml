@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
-        <version.dependency.arch.pelotas.rs>1.0.0-SNAPSHOT</version.dependency.arch.pelotas.rs>
+        <version.dependency.arch.pelotas.rs>1.0-SNAPSHOT</version.dependency.arch.pelotas.rs>
         <version.dependency.traccar.org>3.1-SNAPSHOT</version.dependency.traccar.org>
         <version.dependency.jboss.spec.javaee.7.0>1.0.0.Final</version.dependency.jboss.spec.javaee.7.0>
         <version.dependency.cdi>1.2</version.dependency.cdi>

@@ -1,11 +1,11 @@
 package org.traccar.repository;
 
+import arch.repository.Repository;
 import java.util.List;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import rs.pelotas.arch.repository.Repository;
 import org.traccar.entity.Device;
 
 /**

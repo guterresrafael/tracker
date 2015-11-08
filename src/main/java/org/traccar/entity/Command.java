@@ -1,5 +1,6 @@
 package org.traccar.entity;
 
+import arch.entity.BaseEntity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -12,7 +13,6 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import rs.pelotas.arch.entity.BaseEntity;
 
 /**
  *
