@@ -4,25 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>rs.pelotas</groupId>
     <artifactId>tracker</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>tracker</name>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        
-        <version.dependency.arch.pelotas.rs>1.0-SNAPSHOT</version.dependency.arch.pelotas.rs>
-        <version.dependency.traccar.org>3.1-SNAPSHOT</version.dependency.traccar.org>
-        <version.dependency.jboss.spec.javaee.7.0>1.0.0.Final</version.dependency.jboss.spec.javaee.7.0>
-        <version.dependency.cdi>1.2</version.dependency.cdi>
-        <version.dependency.jsf>2.2.10</version.dependency.jsf>
-        <version.dependency.hibernate>5.1.3.Final</version.dependency.hibernate>
-        <version.dependency.hibernate-metamodel>4.3.8.Final</version.dependency.hibernate-metamodel>
-        <version.dependency.resteasy>3.0.11.Final</version.dependency.resteasy>
-        <version.dependency.jackson>2.5.2</version.dependency.jackson>
-        <version.dependency.junit>4.12</version.dependency.junit>
-        <version.dependency.arquillian>1.1.7.Final</version.dependency.arquillian>
-        <version.dependency.arquillian-container>8.2.0.Final</version.dependency.arquillian-container>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>        
         
         <version.plugin.wildfly>1.0.2.Final</version.plugin.wildfly>
         <version.plugin.compiler>3.1</version.plugin.compiler>
@@ -31,8 +18,6 @@
         
         <maven.compiler.target>1.7</maven.compiler.target>
         <maven.compiler.source>1.7</maven.compiler.source>
-                
-        <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
 
         <wildfly.home>${env.WILDFLY_HOME}</wildfly.home>
         <wildfly.hostname>127.0.0.1</wildfly.hostname>
@@ -66,9 +51,9 @@
         <dependency>
             <groupId>rs.pelotas</groupId>
             <artifactId>arch</artifactId>
-            <version>${version.dependency.arch.pelotas.rs}</version>
+            <version>1.0-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/arch-${version.dependency.arch.pelotas.rs}.jar</systemPath>
+            <systemPath>${project.basedir}/lib/arch-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
         <!-- /Arch Java -->
 
@@ -76,7 +61,7 @@
         <dependency>
             <groupId>org.jboss.spec.javax.annotation</groupId>
             <artifactId>jboss-annotations-api_1.2_spec</artifactId>
-            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
+            <version>1.0.0.Final</version>
             <scope>provided</scope>
         </dependency>
         <!-- /Annotation API -->
@@ -85,7 +70,7 @@
         <dependency>
             <groupId>org.jboss.spec.javax.ejb</groupId>
             <artifactId>jboss-ejb-api_3.2_spec</artifactId>
-            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
+            <version>1.0.0.Final</version>
             <scope>provided</scope>
         </dependency>
         <!-- /EJB API -->
@@ -94,29 +79,29 @@
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
+            <version>1.0.0.Final</version>
             <scope>provided</scope>
         </dependency>
         <!-- JPA 2.0 metamodel classes for typesafe criteria queries -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
-            <version>${version.dependency.hibernate-metamodel}</version>
+            <version>5.0.3.Final</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator-annotation-processor</artifactId>
-            <version>${version.dependency.hibernate}</version>
+            <version>5.2.2.Final</version>
             <scope>provided</scope>
         </dependency>
         <!-- /JPA API -->
 
-        <!-- /JTA API -->
+        <!-- JTA API -->
         <dependency>
             <groupId>org.jboss.spec.javax.transaction</groupId>
             <artifactId>jboss-transaction-api_1.2_spec</artifactId>
-            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
+            <version>1.0.0.Final</version>
             <scope>provided</scope>
         </dependency>
         <!-- /JTA API -->
@@ -125,7 +110,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>${version.dependency.hibernate}</version>
+            <version>5.2.2.Final</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -140,7 +125,7 @@
         <dependency>
             <groupId>org.jboss.spec.javax.servlet</groupId>
             <artifactId>jboss-servlet-api_3.1_spec</artifactId>
-            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
+            <version>1.0.0.Final</version>
             <scope>provided</scope>
         </dependency>
         <!-- /Servlet API -->
@@ -149,7 +134,7 @@
         <dependency>
             <groupId>org.jboss.spec.javax.faces</groupId>
             <artifactId>jboss-jsf-api_2.2_spec</artifactId>
-            <version>${version.dependency.jsf}</version>
+            <version>2.2.12</version>
             <scope>provided</scope>
         </dependency>
         <!-- JSF API -->
@@ -158,7 +143,7 @@
         <dependency>
             <groupId>org.jboss.spec.javax.json</groupId>
             <artifactId>jboss-json-api_1.0_spec</artifactId>
-            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
+            <version>1.0.0.Final</version>
             <scope>provided</scope>
         </dependency>
         <!-- /JSON API -->
@@ -167,43 +152,43 @@
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>jaxrs-api</artifactId>
-            <version>${version.dependency.resteasy}</version>
+            <version>3.0.12.Final</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxrs</artifactId>
-            <version>${version.dependency.resteasy}</version>
+            <version>3.0.13.Final</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-client</artifactId>
-            <version>${version.dependency.resteasy}</version>
+            <version>3.0.13.Final</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-servlet-initializer</artifactId>
-            <version>${version.dependency.resteasy}</version>
+            <version>3.0.13.Final</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-links</artifactId>
-            <version>${version.dependency.resteasy}</version>
+            <version>3.0.13.Final</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxb-provider</artifactId>
-            <version>${version.dependency.resteasy}</version>
+            <version>3.0.13.Final</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jettison-provider</artifactId>
-            <version>${version.dependency.resteasy}</version>
+            <version>3.0.13.Final</version>
             <scope>compile</scope>
             <exclusions>
                 <exclusion>
@@ -224,7 +209,7 @@
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
-            <version>${version.dependency.cdi}</version>
+            <version>1.2</version>
             <scope>provided</scope>
         </dependency>
         <!-- /CDI API -->
@@ -233,7 +218,7 @@
         <dependency>
             <groupId>org.jboss.spec.javax.enterprise.concurrent</groupId>
             <artifactId>jboss-concurrency-api_1.0_spec</artifactId>
-            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
+            <version>1.0.0.Final</version>
             <scope>provided</scope>
         </dependency>
         <!-- /Concurrency API -->
@@ -242,7 +227,7 @@
         <dependency>
             <groupId>org.jboss.spec.javax.batch</groupId>
             <artifactId>jboss-batch-api_1.0_spec</artifactId>
-            <version>${version.dependency.jboss.spec.javaee.7.0}</version>
+            <version>1.0.0.Final</version>
             <scope>provided</scope>
         </dependency>
         <!-- /Batch API -->
@@ -251,7 +236,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${version.dependency.junit}</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
         <!-- /JUnit -->
@@ -260,13 +245,13 @@
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
-            <version>${version.dependency.arquillian}</version>
+            <version>1.1.10.Final</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.protocol</groupId>
             <artifactId>arquillian-protocol-servlet</artifactId>
-            <version>${version.dependency.arquillian}</version>
+            <version>1.1.10.Final</version>
             <scope>test</scope>
         </dependency>
         <!-- /Arquillian -->
@@ -274,7 +259,6 @@
 
     <build>
         <finalName>${project.artifactId}</finalName>
-        
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -306,7 +290,7 @@
             
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>${version.plugin.war}</version>
+                <version>2.6</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <webXml>src/main/resources/config_xml/insecure.web.xml</webXml>
@@ -317,7 +301,7 @@
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
-                <version>${version.plugin.wildfly}</version>
+                <version>1.0.2.Final</version>
                 <configuration>
                     <jbossHome>${wildfly.home}</jbossHome>
                     <hostname>${wildfly.hostname}</hostname>
@@ -336,7 +320,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${version.plugin.surefire}</version>
+                        <version>2.19</version>
                         <configuration>
                             <skip>true</skip>
                         </configuration>
@@ -344,7 +328,7 @@
                     <plugin>
                         <groupId>org.wildfly.plugins</groupId>
                         <artifactId>wildfly-maven-plugin</artifactId>
-                        <version>${version.plugin.wildfly}</version>
+                        <version>1.0.2.Final</version>
                         <executions>
                             <execution>
                                 <id>undeploy</id>
@@ -461,7 +445,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${version.plugin.surefire}</version>
+                        <version>2.19</version>
                         <configuration>
                             <skip>true</skip>
                         </configuration>
@@ -469,7 +453,7 @@
                     <plugin>
                         <groupId>org.wildfly.plugins</groupId>
                         <artifactId>wildfly-maven-plugin</artifactId>
-                        <version>${version.plugin.wildfly}</version>
+                        <version>1.0.2.Final</version>
                         <executions>
                             <!--execution>
                                 <id>deploy_application</id>
@@ -493,7 +477,7 @@
                 <dependency>
                     <groupId>org.wildfly</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
-                    <version>${version.dependency.arquillian-container}</version>
+                    <version>8.2.1.Final</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -507,7 +491,7 @@
                 <dependency>
                     <groupId>org.wildfly</groupId>
                     <artifactId>wildfly-arquillian-container-remote</artifactId>
-                    <version>${version.dependency.arquillian-container}</version>
+                    <version>8.2.1.Final</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -538,7 +522,7 @@
                 </plugins>
             </build>
         </profile>
-
+<!--
         <profile>
             <id>sonar</id>
             <properties>
@@ -548,5 +532,6 @@
                 <sonar.host.url>http://sonar.dyndns-ip.com:9000</sonar.host.url>
             </properties>
         </profile>
+-->
     </profiles>
 </project>
